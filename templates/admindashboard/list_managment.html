@@ -1,0 +1,819 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+
+
+
+<div class="content-wrapper">
+    <!--<div class="page-header">
+        <h3 class="page-title">Report  </h3>
+    </div>-->
+
+    <div class="reporting_container">
+
+        <ul class="nav nav-tabs" >
+            <li>
+                <button type="button" class="btn" data-toggle="tab" href="#user_profile" style="font-size: 15px; background-color: #001AFF;">User and Role Management </button>
+
+
+            </li>
+
+            <li>
+                <button type="button" class="btn" data-toggle="tab" href="#threshold_setting" style="font-size: 15px; background-color: #001AFF;">Threshold Calibration  </button>
+
+
+            </li>
+            <li class="active">
+                <button type="button" class="btn" data-toggle="tab" href="#listmanagment" style="font-size: 15px; background-color: #001AFF;">List Management </button>
+
+            </li>
+
+        </ul>
+
+        <div class="tab-content">
+            <div id="listmanagment" class="tab-pane fade in active">
+                <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card" style="font-family: Prompt; height: 480px;">
+                            <div class="card-body" style="padding:2px;">
+                                <div class="row" style="padding:50px;">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    EUFS
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    NACTA PROSCRIBED PERSONS
+                                                </label>
+                                            </div>
+                                            
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    NACTA_PP_Denotified
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    OFAC
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    OFAC_SDN
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    OFSI
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    UNSC
+                                                </label>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn">Save</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div id="threshold_setting" class="tab-pane fade">
+
+                <form class="formdata">
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-lg-12 grid-margin stretch-card">
+                            <div class="card" style=" font-family: Prompt;">
+                                <div class="card-body" style=" padding:2px;">
+
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Dataset </th>
+                                                <th>Name/Alias Match Threshold </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <tr>
+                                                <td>
+                                                    Sanctions
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+
+
+                                                        <div class="col-sm-1">
+                                                            <div class="form-group row">
+                                                                <p>
+
+
+                                                                    <span id="sanctionSpan">
+                                                                        {{fuzzyScore.score}}
+
+                                                                    </span>
+
+                                                                </p>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-10">
+
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <input type="range" class="form-range" min="0" max="100" id="sanctionRange" name="sanctionRange"
+                                                                           value="{{fuzzyScore.score}}">
+
+                                                                </div>
+                                                                <div class="col-12" style="color: #ff7a08; width:650px;">
+                                                                    <span>
+                                                                        |Low
+                                                                    </span>
+                                                                    <span style="padding-left:150px;">
+                                                                        Fuzzy
+                                                                    </span>
+                                                                    <span style="padding-left:60px;">
+                                                                        Medium
+                                                                    </span>
+                                                                    <span style="padding-left:90px;">
+                                                                        Strong
+                                                                    </span>
+                                                                    <span style="float:right;padding-left:60px;">
+                                                                        Exact|
+                                                                    </span>
+
+                                                                </div>
+
+
+                                                            </div>
+
+
+
+
+
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    Law Enforcment
+                                                </td>
+                                                <td>
+
+                                                    <div class="row">
+                                                        <div class="col-md-1">
+                                                            <div class="form-group row">
+                                                                <span id="lawSpan"></span>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div class="form-group row">
+                                                                <input type="range" class="form-range" min="0" max="100" id="lawRange">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    Adverse Media
+
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-md-1">
+                                                            <div class="form-group row">
+                                                                <span id="otherSpan"></span>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div class="form-group row">
+                                                                <input type="range" class="form-range" min="0" max="100" id="otherRange">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+
+
+                                            <tr>
+                                                <td>
+                                                    PEP
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-md-1">
+                                                            <div class="form-group row">
+                                                                <span id="pepSpan"></span>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div class="form-group row">
+                                                                <input type="range" class="form-range" min="0" max="100" id="pepRange">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Entity Internal List
+
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col-md-1">
+                                                            <div class="form-group row">
+                                                                <span id="RESpan"></span>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div class="form-group row">
+                                                                <input type="range" class="form-range" min="0" max="100" id="RERange">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    Others
+                                                </td>
+                                                <td>
+
+                                                    <div class="row">
+                                                        <div class="col-md-1">
+                                                            <div class="form-group row">
+                                                                <span id="SISpan"></span>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div class="form-group row">
+                                                                <input type="range" class="form-range" min="0" max="100" id="SIRange">
+
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <button type="submit" class="btn ajaxcall">Save</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+            <div id="user_profile" class="tab-pane fade in active">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card" style="font-family:Prompt;">
+                            <div class="card-body">
+
+                                <form class="formdata">
+                                    {% csrf_token %}
+                                    <p class="card-description"> Create New User </p>
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label"> Bank/Organization Name </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" name="bank_name" id="bankNameID" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label"> Bank/Organization Code</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" name="bank_code" id="bankCodeID" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label"> Employee  Name</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" name="employee_name" id="employeeNameID" />
+                                                    <span id="customername" class="text-danger font-weight-bold"> </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label"> Employee Code</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" name="employee_code" id="employeeCodeID" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label"> Password </label>
+                                                <div class="col-sm-7">
+                                                    <input type="password" class="form-control" name="password1" id="password1" />
+                                                    <span id="customername" class="text-danger font-weight-bold"> </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">Retype Password</label>
+                                                <div class="col-sm-7">
+                                                    <input type="password" class="form-control" name="password2" id="password2" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label"> Designation</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" name="designation" id="designationID" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    Employment Status
+                                                </label>
+
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio" name="employee_status"
+                                                           value="permanent" id="employee_status">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Permanent
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio" name="employee_status"
+                                                           value="contractual " id="employee_status">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Contractual
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label"> Contact Number </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" name="contact_number" id="contactNoID" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">Email</label>
+                                                <div class="col-sm-7">
+                                                    <input type="email" class="form-control" name="email_address" id="emailAddressID" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label"> User Role Required   </label>
+                                                <div class="col-sm-7">
+                                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="width:inherit;" onchange="checkUserRole()" id="user_role" name="user_role">
+                                                        <option value="L1"> Level-I/Maker</option>
+                                                        <option value="L2"> Level-II/Checker</option>
+                                                        <option value="L3">Level-III/Quality Reviewer</option>
+                                                        <option value="MLRO"> MLRO</option>
+
+                                                        <option value="Leadership Level">Leadership Level</option>
+                                                        <option value="other"> Others</option>
+
+
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6" style="display:none;" id="userRoleOther">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label"> Please Specify details here </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" name="user_role_other" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label"> Action Required   </label>
+                                                <div class="col-sm-7">
+                                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="width:inherit;" id="action_required" name="action_required">
+                                                        <option value=" Level-I/Maker"> Creation</option>
+                                                        <option value=" Level-II/Checker"> Activition </option>
+                                                        <option value="Level-III/Quality Reviewer">Deletion</option>
+                                                        <option value=" MLRO">Password Reset</option>
+
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-6" style="display:none;">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label" title="Please leave blank in case of new user"> Exicting User ID </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label"> Remarks</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" class="form-control"
+                                                           name="remarks" id="remarks" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <p class="card-description"> Approving Authority / Head of Department</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-4 col-form-label"> Name</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control"
+                                                           name="hod_name" id="hod_nameID" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    Designation
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control"
+                                                           name="hod_designation" id="hod_designationID" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-4 col-form-label" title="Cell No. /Direct No."> Contact Details</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control"
+                                                           name="hod_cell_phone" id="hod_cell_phoneID" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    Official Email Address
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <input type="email" class="form-control"
+                                                           name="hod_email" id="hod_emailID" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-4 col-form-label"> Approver Signature </label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control"
+                                                           name="approval_signature" id="ctID" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <p class="card-description"> For Stifle Technologies Internal Use</p>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-4 col-form-label"> Reviewed By</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control"
+                                                           name="number_debit_transaction" id="dtID" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    Designation
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control"
+                                                           name="amount_debit_transaction" id="adtID" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-4 col-form-label"> Processed By</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control"
+                                                           name="number_credit_transaction" id="ctID" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    Official Email Address
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <input type="email" class="form-control"
+                                                           name="amount_credit_transaction" id="actID" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <button type="button" class="btn ajaxcall">Submit</button>
+                                            <button class="btn">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var lawSlider = document.getElementById("lawRange");
+        var lawSpan = document.getElementById("lawSpan");
+        var otherslider = document.getElementById("otherRange");
+        var otherSpan = document.getElementById("otherSpan");
+        var pepslider = document.getElementById("pepRange");
+        var pepSpan = document.getElementById("pepSpan");
+        var REslider = document.getElementById("RERange");
+        var reSpan = document.getElementById("RESpan");
+        var sanctionslider = document.getElementById("sanctionRange");
+        var sanctionSpan = document.getElementById("sanctionSpan");
+        var SIslider = document.getElementById("SIRange");
+        var SISpan = document.getElementById("SISpan");
+
+        lawSpan.innerHTML = lawSlider.value;
+        otherSpan.innerHTML = otherslider.value;
+        pepSpan.innerHTML = pepslider.value;
+        reSpan.innerHTML = REslider.value;
+        sanctionSpan.innerHTML = sanctionslider.value;
+        SISpan.innerHTML = SIslider.value;
+
+
+
+        lawSlider.oninput = function () {
+            lawSpan.innerHTML = this.value;
+        }
+
+
+        otherslider.oninput = function () {
+            
+            otherSpan.innerHTML = this.value;
+        }
+        pepslider.oninput = function () {
+            pepSpan.innerHTML = this.value;
+        }
+        REslider.oninput = function () {
+            reSpan.innerHTML = this.value;
+        }
+        sanctionslider.oninput = function () {
+            var val = this.value;
+            sanctionSpan.innerHTML =  val;
+            //if (val === "100") {
+            //    sanctionSpan.innerHTML = "Exact " + val;
+            //}
+            //else if (val >= "94" && val <= "99") {
+
+            //    sanctionSpan.innerHTML = "Strong " + val;
+            //}
+            //else if (val >= "83" && val <= "93") {
+
+            //    sanctionSpan.innerHTML = "Medium " + val;
+            //}
+            //else if (val >= "77" && val <= "82") {
+
+            //    sanctionSpan.innerHTML = "Fuzzy " + val;
+            //}
+            //else {
+            //    sanctionSpan.innerHTML = "Low " + val;
+
+            //}
+            
+        }
+        SIslider.oninput = function () {
+            SISpan.innerHTML = this.value;
+        }
+
+
+
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        // onclick ajax call
+        $('.ajaxcall').on('click', function (e) {
+            e.preventDefault();
+
+            // get all form data
+            var queryString = $('.formdata').serialize();
+            $.ajax({
+                url: '{% url "updateFuzzyScore" %}',
+                type: 'GET',
+                data: queryString,
+                success: function (data) {
+                    //get id from data
+                    /*alert("Fuzzy Score has been Updated Successfully")*/
+                    //var id = data.id;
+                    //console.log(id);
+                    // sweet alert isconfirm and hit url
+                    swal({
+                        title: "Fuzzy Score has been updated Successfully",
+                        /*text: "Do you want to Call Screeen this User?",*/
+                        icon: "success",
+                        button: "OK",
+                    })
+                }
+            });
+
+
+
+
+        });
+
+
+    </script>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+        function checkUserRole() {
+            var choice = document.getElementById("user_role");
+            var y = document.getElementById("userRoleOther");
+
+
+            var val = choice.value;
+            if (val == "other") {
+
+                y.style.display = "block";
+            }
+            else {
+
+                y.style.display = "none";
+            }
+
+
+        }
+    </script>
+
+    <script>
+        // onclick ajax call
+        $('.ajaxcall').on('click', function (e) {
+            e.preventDefault();
+
+            /* if (myFormValidation() === true) {*/
+            // get all form data
+            var queryString = $('.formdata').serialize();
+            $.ajax({
+                url: '{% url "createuser" %}',
+                type: 'POST',
+                data: queryString,
+                success: function (data) {
+                    //get id from data
+                    //var id = data.id;
+                    //console.log(id);
+                    // sweet alert isconfirm and hit url
+                    swal({
+                        title: "User Created Successfully",
+                        /*text: " ###?",*/
+                        icon: "success",
+                        button: "OK",
+                    }).then(function () {
+                        location.reload();
+                    });
+                }
+            });
+
+
+
+        });
+
+
+
+
+    </script>
+</div>
+{% endblock %}

@@ -1,0 +1,688 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <!--<div class="py-2" style="padding-left:20px;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 py-3 px-0">
+
+                <li class="breadcrumb-item"> <a href="{{ request.META.HTTP_REFERER }}">Return</a></li>
+
+            </ol>
+        </nav>
+    </div>-->
+    <!--<div class="row">
+        <div class="col-lg-12">
+            <div class="card card-body">-->
+    <!--<form method="get">
+
+        {{myFilter.form}}
+        <button class="btn btn-primary">
+            Search
+
+
+        </button>
+
+
+    </form>-->
+    <!--<input id="myInput" type="text" placeholder="Search..">
+
+            </div>
+
+        </div>
+
+    </div>-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card" style="height: 480px; font-family: Prompt;">
+                <div class="card-body" style="overflow:auto; padding:2px;">
+
+                    <table class="table table-hover" id="myTable">
+                        <thead>
+                            <tr>
+                                <th>LIST</th>
+                                <th>Type</th>
+                                <th>Case ID</th>
+                                <th>DATAID </th>
+                                <th>Name (Listed)</th>
+                                <th>Name (Customer)</th>
+                                <th>Match Score</th>
+                                <th>Alias</th>
+                                <th>ID Number (Listed)</th>
+                                <th>ID Number (Customer)</th>
+                                <th>Match Score</th>
+                                <th>Father Name (Listed)</th>
+                                <th>Father Name (Customer)</th>
+                                <th>Match Score</th>
+
+                                <th>Date Of Birth (Listed)</th>
+                                <th>Date Of Birth (Customer)</th>
+                                <th>Match Score</th>
+
+                                <th>Nationality (Listed)</th>
+                                <th>Nationality (Customer)</th>
+                                <th>Match Score</th>
+
+                                <th>Address (Listed)</th>
+                                <th>Address (Customer)</th>
+                                <th>Match Score</th>
+                                <th>District (Listed)</th>
+                                <th>District (Customer)</th>
+                                <th>Match Score</th>
+
+                                <th>Place of Birth(Listed)</th>
+                                <th>Place of Birth (Customer)</th>
+                                <th>Match Score</th>
+                                <th>Province (Listed)</th>
+                                <th>Province (Customer)</th>
+                                <th>Match Score</th>
+
+                                <th>Country (Listed)</th>
+                                <th>Country (Customer)</th>
+                                <th>Match Score</th>
+                                <th>Discounting Rationale</th>
+                                <th>Discounting Factor</th>
+                                <th>Risk</th>
+                                <th>Match Type</th>
+                                <th>Proposed Action</th>
+
+                                <th>Action Performed </th>
+                                <!--<th>File STR </th>-->
+                            </tr>
+                        </thead>
+                        <tbody id="myTable">
+                            {% for discount in obj %}
+                            <tr>
+                                <td>{{discount.list}}</td>
+                                <td>{{discount.type}}</td>
+                                <td>{{discount.case_id}}</td>
+                                <td>{{discount.data_Id}}</td>
+                                <td>{{discount.name}}</td>
+                                <td>{{name}}</td>
+                                <td>{{discount.name_match_score}}</td>
+                                <td>{{discount.alias}}</td>
+                                <td>{{discount.id_number}}</td>
+                                <td>{{cnicNumber}}</td>
+                                <td>{{discount.id_number_match_score}}</td>
+                                <td>{{discount.father_name}}</td>
+                                <td>{{father_name}}</td>
+                                <td>{{discount.father_name_match_score}}</td>
+                                <td>{{discount.dob}}</td>
+                                <td>{{dob}}</td>
+                                <td>{{discount.dob_match_score}}</td>
+                                <td>{{discount.nationality}}</td>
+                                <td>{{nationality}}</td>
+                                <td>{{discount.nationality_match_score}}</td>
+                                <td>{{discount.address}}</td>
+                                <td>{{address}}</td>
+                                <td>{{discount.address_match_score}}</td>
+                                <td>{{discount.district}}</td>
+                                <td>{{district}}</td>
+                                <td>{{discount.district_match_score}}</td>
+                                <td>{{discount.city}}</td>
+                                <td>{{pob}}</td>
+                                <td>{{discount.city_match_score}}</td>
+
+                                <td>{{discount.province}}</td>
+                                <td>{{province}}</td>
+                                <td>{{discount.province_match_score}}</td>
+
+
+                                <td>{{discount.country}}</td>
+                                <td>{{country}}</td>
+                                <td>{{discount.country_match_score}}</td>
+
+                                <td>{{discount.discounting_rationale}}</td>
+                                <td>{{discount.type_discounting_factor}}</td>
+                                <td>{{discount.risk}}</td>
+                                <td>{{discount.match_type}}</td>
+                                <td>{{discount.proposed_action}}</td>
+
+
+
+                                <td>
+                                    {% if discount.action_performed_type == "reject" %}
+                                    <button type="button" class="reject-form-link" style="background-color: #ff0018;color:#fff;"
+                                            data-toggle="modal"
+                                            data-target="#rejectModal"
+                                            data-name="{{discount.id}}"
+                                            data-html="{{discount.individual.customer_id}}">
+                                        Reject
+                                    </button>
+                                    {% elif  discount.action_performed_type == "seek_guidance" %}
+                                    <button type="button" class="seek-form-link" style="background-color: #ff0018;color:#fff;"
+                                            data-toggle="modal"
+                                            data-target="#seekSanctionModal"
+                                            data-name="{{discount.id}}"
+                                            data-html="{{discount.individual.customer_id}}">
+                                        Seek Guidance
+                                    </button>
+                                    {% else %}
+                                    {{discount.action_performed_type}}
+                                    <p></p>
+                                    {% endif %}
+
+                                </td>
+                                <!--<td>-->
+                                <!--<button type="button" class="reject-form-link" style="background-color: #ff0018;color:#fff;"
+                                        data-toggle="modal"
+                                        data-target="#rejectModal"
+                                        data-name="{{discount.id}}"
+                                        data-html="{{discount.individual.customer_id}}">
+                                    Reject
+                                </button>-->
+                                <!--{% if discount.action_performed_type == "reject" %}
+                                <button type="button" class="str-form" style="background-color: #ff0018;color:#fff;"
+                                        data-name="{{discount.action_performed_type}}"
+                                        data-html="{{discount.action_performed_type}}">
+                                    Perform STR
+                                </button>
+
+
+                                {% endif %}-->
+                                <!--</td>-->
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+    
+    <div class="modal bd-example-modal-lg" id="seekSanctionModal" data-backdrop="static">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #191a1a;color:#ffffff;font-family:Prompt-light;">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+
+                    <form class="seekForm">
+                        {% csrf_token %}
+                        <div class="row" id="approvalRemarks" style="padding-left: 50px; display:none; ">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="seekCustomerID" name="seek_customer_alert_id" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group row">
+
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="seekCustomerID2" name="seek_customer_id" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-12" style="margin-left:20px;">
+                                <p>
+                                    Action Performed:
+                                </p>
+
+
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+
+                                        <div class="col-sm-6">
+                                            <input class="form-check-input" type="radio" name="action_performed" value="Sent to L2">
+                                            <label class="form-check-label" for="gender1">
+                                                Send to L2
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input class="form-check-input" type="radio" name="action_performed" value="Sent to MLRO">
+                                            <label class="form-check-label" for="gender1">
+                                                Send to MLRO for further guidance
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input class="form-check-input" type="radio" name="action_performed" value="Self-analysis">
+                                            <label class="form-check-label" for="gender1">
+                                                Self-analysis and Evaluation
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <!--<div class="row" id="approvalRemarks" style="padding-left:50px;">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-form-label">Remarks</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" name="hold_remarks" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="col-md-12 text-center" id="btnCol">
+                            <button type="submit" class="btn btn-sm seekFunc " id="btnSubmit">Submit</button>
+                            <button type="button" class="btn btn-sm" data-dismiss="modal" aria-label="Close">
+                                Close
+                            </button>
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="modal fade bd-example-modal-lg" id="rejectModal" data-backdrop="static">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #191a1a;color:#ffffff;font-family:Prompt-light;">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+
+
+                    <form class="strForm">
+                        {% csrf_token %}
+                        <div class="row" id="" style="padding-left: 50px; display:block;">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="rejectAlertID" name="reject_customer_alert_id" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group row">
+
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="rejectCustomerID" name="reject_customer_id" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="card-description" style="margin-left:20px;">Suspect Type </p>
+                        <div class="row" style="margin-left:20px;">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Match with UNSC" id="flexCheckDefault" name="suspect_type">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Match with UNSC
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Match with OFAC" id="flexCheckDefault" name="suspect_type">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Match with OFAC
+                                        </label>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Match with PAK NACTA" id="flexCheckDefault" name="suspect_type">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Match with PAK NACTA
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="CDD Not Verified" id="flexCheckDefault" name="suspect_type">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            CDD Not Verified
+                                        </label>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+
+                            <!--<div class="col-md-12">
+                                <div class="form-group">
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">In case of other Please specify</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" name="suspect_type_other"/>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>-->
+                            <div class="col-lg-12 ">Action taken</div>
+                            <div class="col-lg-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-form-label">Freeze Funds</label>
+
+
+                                    <div class="col-sm-4" style="padding-left:30px;">
+                                        <input class="form-check-input" type="radio" name="fund_freeze" value="yes" checked onclick="fund_freeze(this)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-left:30px;">
+                                        <input class="form-check-input" type="radio" name="fund_freeze" value="no" onclick="fund_freeze(this)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            No
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-form-label">Account Reject</label>
+
+
+                                    <div class="col-sm-4" style="padding-left:30px;">
+                                        <input class="form-check-input" type="radio" name="account_reject" value="yes" checked onclick="account_reject(this)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-left:30px;">
+                                        <input class="form-check-input" type="radio" name="account_reject" value="no" onclick="account_reject(this)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            No
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-form-label">Transaction Reject</label>
+
+
+                                    <div class="col-sm-4" style="padding-left:30px;">
+                                        <input class="form-check-input" type="radio" name="transaction_reject" value="yes" checked onclick="transaction_reject(this)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-left:30px;">
+                                        <input class="form-check-input" type="radio" name="transaction_reject" value="no" onclick="transaction_reject(this)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            No
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-12 ">Relationship with Bank</div>
+
+
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Account Holder" id="flexCheckDefault" name="bank_relationship">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Account Holder
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Employee" id="flexCheckDefault" name="bank_relationship">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Employee
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Walk in Customer" id="flexCheckDefault" name="bank_relationship">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Walk in Customer
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Agent" id="flexCheckDefault" name="bank_relationship">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Agent
+                                        </label>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12 ">Capacity in which the person is performing the transactions / acts</div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Individual" id="flexCheckDefault" name="transaction_capacity">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Individual
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Company" id="flexCheckDefault" name="transaction_capacity">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Company
+                                        </label>
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Broker" id="flexCheckDefault" name="transaction_capacity">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Broker
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Agent" id="flexCheckDefault" name="transaction_capacity">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Agent
+                                        </label>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button type="button" class="btn btn-sm rejectUpdate">Submit</button>
+                                <button class="btn btn-sm">Cancel</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $('.seek-form-link').click(function () {
+
+
+
+        var val = $(this).data('html');
+        //var x = $(this).data('name');
+        var x = $(this).data('name');
+       /* alert(x);*/
+        $('#seekCustomerID').val(x);
+        $('#seekCustomerID2').val(val);
+
+    });
+
+
+    $('.seekFunc').on('click', function (e) {
+        
+        e.preventDefault();
+        var cid = $('#seekCustomerID2').val();
+        /*alert(cid);*/
+        var id = $('#seekCustomerID').val();
+        /*alert(id);*/
+        /* alert("hi in ajax ");*/
+        // get all form data
+        var queryString = $('.seekForm').serialize();
+        $.ajax({
+            url: '{% url "seekGuidanceUpdate" %}',
+            type: 'POST',
+
+            data: queryString,
+            success: function (data) {
+                //alert("hi in success ");
+                //$("#declineModal").hide();
+
+                /*$("#approveModal").style.display("none");*/
+                //get id from data
+                //var id = data.id;
+                //console.log(id);
+                // sweet alert isconfirm and hit url
+                swal({
+                    title: "Status have been updated successfully",
+                    /*text: "Do you want to Call Screeen this User?",*/
+                    icon: "success",
+                    button: "OK",
+                }).then(function () {
+                    // call another url
+                    window.location.href = '/discounting/ViewDiscounted/'+cid ;
+                });
+            }
+        });
+
+
+
+    });
+
+
+    $('.reject-form-link').click(function () {
+
+
+
+        var val = $(this).data('html');
+        //var x = $(this).data('name');
+        var x = $(this).data('name');
+        /*alert(x);*/
+        $('#rejectAlertID').val(x);
+        $('#rejectCustomerID').val(val);
+
+    });
+
+
+    $('.rejectUpdate').on('click', function (e) {
+
+        e.preventDefault();
+        var cid = $('#rejectCustomerID').val();
+        /*alert(cid);*/
+        var id = $('#seekCustomerID').val();
+        /*alert(id);*/
+        /* alert("hi in ajax ");*/
+        // get all form data
+        var queryString = $('.strForm').serialize();
+        $.ajax({
+            url: '{% url "rejectDiscountUpdate" %}',
+            type: 'POST',
+
+            data: queryString,
+            success: function (data) {
+                //alert("hi in success ");
+                //$("#declineModal").hide();
+
+                /*$("#approveModal").style.display("none");*/
+                //get id from data
+                //var id = data.id;
+                //console.log(id);
+                // sweet alert isconfirm and hit url
+                swal({
+                    title: "Status have been updated successfully",
+                    /*text: "Do you want to Call Screeen this User?",*/
+                    icon: "success",
+                    button: "OK",
+                }).then(function () {
+                    // call another url
+                    window.location.href = '/discounting/ViewDiscounted/' + cid;
+                });
+            }
+        });
+
+
+
+    });
+</script>
+{% endblock %}

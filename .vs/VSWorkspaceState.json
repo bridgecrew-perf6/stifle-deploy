@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\admindashboard",
+    "\\discounting",
+    "\\discounting\\templatetags",
+    "\\identification",
+    "\\myApp",
+    "\\screeing",
+    "\\templates",
+    "\\templates\\admindashboard",
+    "\\templates\\base"
+  ],
+  "SelectedNode": "\\discounting\\views.py",
+  "PreviewInSolutionExplorer": false
+}

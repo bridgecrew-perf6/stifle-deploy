@@ -1,0 +1,135 @@
+{% url 'dashboard' as dashboard %}
+{% url 'individualScreeing' as screening %}
+{% url 'addIndividual' as individual %}
+{% url 'addOrganization' as organization %}
+{% url 'customerRecords' as customer %}
+{% url 'customerRecordsL2' as customerL2 %}
+{% url 'riskrating' as risk %}
+{% url 'monitoringModule' as monitoring %}
+{% url 'reportingModule' as reporting %}
+{% url 'listmanagment' as listmanagement %}
+{% url 'logout' as logout %}
+
+
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav" style="padding-top:10px;">
+        <!--<li class="nav-item ">
+        <a class="nav-link" href="{% url 'addIndividual' %}">
+            <span class="menu-title">wizard</span>
+
+        </a>
+    </li>-->
+
+        <li class="nav-item {% if request.path == dashboard %} active {% endif %}">
+            <a class="nav-link" href="{% url 'dashboard' %}">
+                <span class="menu-title">Dashboard</span>
+
+            </a>
+        </li>
+
+
+
+        <li class="nav-item {% if request.path == screening %} active {% endif %}">
+            <a class="nav-link" href="{% url 'individualScreeing' %}">
+                <span class="menu-title">Screening</span>
+                <!--   <i class="mdi mdi-home menu-icon">  </i> > -->
+            </a>
+        </li>
+
+        {% if perms.identification.add_individual %}
+        <li class="nav-item {% if request.path == individual or request.path == organization %} active {% endif %}">
+            <a class="nav-link " data-toggle="collapse" href="#identification" aria-expanded="false" aria-controls="ui-basic">
+                <span class="menu-title">Identification & Profiling</span> <i class="menu-arrow" style="color: #70737a;"></i>
+                <!--<i class="mdi mdi-crosshairs-gps menu-icon"></i>-->
+            </a>
+            <div class="collapse" id="identification">
+                <ul class="nav flex-column sub-menu">
+
+
+
+                    <li class="nav-item ">  <a class="nav-link {% if request.path == individual %} active {% endif %}" href="{% url 'addIndividual' %}">Individual</a></li>
+                    <li class="nav-item"> <a class="nav-link {% if request.path == organization %} active {% endif %}" href="{% url 'addOrganization' %}">Entity</a></li>
+                    <!--<li class="nav-item"> <a class="nav-link {% if request.path == search %} active {% endif %}" href="">Search Customer </a></li>-->
+                    <li class="nav-item"> <a class="nav-link {% if request.path == demo %} active {% endif %}" href="{% url 'demo' %}">Entity</a></li>
+
+                </ul>
+            </div>
+        </li>
+
+        {% endif %}
+        
+
+        <li class="nav-item {% if request.path == customer %} active {% endif %}">
+            <a class="nav-link" href="{% url 'customerRecords' %}">
+                <span class="menu-title">Alerts Generation & Discounting  </span>
+                <!--   <i class="mdi mdi-home menu-icon">  </i> > -->
+            </a>
+        </li>
+       
+
+        {% load groupfilter %}
+        {% if request.user|group:"L2" %}
+
+        <li class="nav-item {% if request.path == customerL2 %} active {% endif %}">
+            <a class="nav-link" href="{% url 'customerRecordsL2' %}">
+                <span class="menu-title">Alerts Generation & Discounting  </span>
+                <!--   <i class="mdi mdi-home menu-icon">  </i> > -->
+            </a>
+        </li>
+        {% endif %}
+
+
+        {% if perms.discounting.add_alert %}
+        <li class="nav-item {% if request.path == risk %} active {% endif %}">
+            <a class="nav-link" href="{% url 'riskrating' %}">
+                <span class="menu-title">Risk Rating & Acceptance</span>
+                <!--   <i class="mdi mdi-home menu-icon">  </i> > -->
+            </a>
+        </li>
+
+        {% endif %}
+
+
+
+
+        <li class="nav-item {% if request.path == monitoring %} active {% endif %}">
+            <a class="nav-link" href="{% url 'monitoringModule' %}">
+                <span class="menu-title">
+                    Monitoring, Investigation and
+                    <br>  Reporting
+                </span>
+                <!--   <i class="mdi mdi-home menu-icon">  </i> > -->
+            </a>
+        </li>
+
+
+        <li class="nav-item {% if request.path == reporting %} active {% endif %}">
+            <a class="nav-link" href="{% url 'reportingModule' %}">
+                <span class="menu-title">
+
+                    Reports
+                </span>
+                <!--<i class="mdi mdi-table-large menu-icon"></i>-->
+            </a>
+        </li>
+        <li class="nav-item {% if request.path == listmanagement %} active {% endif %}">
+            <a class="nav-link" href="{% url 'listmanagment' %}">
+                <span class="menu-title">Admin</span>
+
+            </a>
+        </li>
+
+
+        <li class="nav-item {% if request.path == logout %} active {% endif %}">
+            <a class="nav-link" href="{% url 'logout' %}">
+                <span class="menu-title">Log Out</span>
+
+            </a>
+        </li>
+    </ul>
+</nav>
+
+
+
+

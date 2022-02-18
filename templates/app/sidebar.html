@@ -1,0 +1,94 @@
+{% load static %}
+
+        <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            <ul class="nav">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <span class="menu-title">Dashboard</span>
+                        <!--   <i class="mdi mdi-home menu-icon">  </i> > -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+                        <span class="menu-title">Identification & Profiling</span> <i class="menu-arrow"></i>
+                        <!-- <i class="mdi mdi-crosshairs-gps menu-icon"></i> -->
+                    </a>
+                    <div class="collapse" id="ui-basic">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="pages/forms/kyc_form.html">Individual</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="pages/forms/organization_ip.html">Organization</a></li>
+                            <!--<li class="nav-item"> <a class="nav-link" href="pages/forms/pep_form.html">PEP Identification </a></li>-->
+                            <li class="nav-item"> <a class="nav-link" href="pages/forms/organization_ip.html">Enhanced Due Diligence</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="collapse" href="#screeing" aria-expanded="false" aria-controls="ui-basic">
+                        <span class="menu-title">Screening</span> <i class="menu-arrow"></i>
+                        <!-- <i class="mdi mdi-crosshairs-gps menu-icon"></i> -->
+                    </a>
+                    <div class="collapse" id="screeing">
+                        <ul class="nav flex-column sub-menu">
+                            <li class="nav-item"> <a class="nav-link" href="pages/forms/screeing_individual.html">Individual</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="pages/forms/screeing_organization.html">Organization</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="pages/forms/screeing_port.html">Port</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="pages/forms/screeing_vessel.html">Vessel</a></li>
+                            <li class="nav-item"> <a class="nav-link" href="pages/forms/screeing_bulk.html">Bulk Screeing</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="menu-title">Discounting </span>
+                        <!--   <i class="mdi mdi-home menu-icon">  </i> > -->
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/forms/risk_rating.html">
+                        <span class="menu-title">
+                            Acceptance & Risk Rating
+                        </span>
+                            <!-- <i class="mdi mdi-table-large menu-icon"></i> -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="menu-title">
+                            Monitoring, Investigation and
+                            <br>  Reporting
+                        </span>
+                        <!-- <i class="mdi mdi-table-large menu-icon"></i> -->
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/forms/report_module.html">
+                        <span class="menu-title">Reports</span>
+                        <!-- <i class="mdi mdi-table-large menu-icon"></i> -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="menu-title">Admin</span>
+                        <!-- <i class="mdi mdi-table-large menu-icon"></i> -->
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pages/login/login_stifle.html">
+                        <span class="menu-title">Log Out</span>
+                        <!-- <i class="mdi mdi-table-large menu-icon"></i> -->
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- partial -->
+
+   
+    <!-- main-panel ends -->
+ 
+{% endblock %}
+
+
+

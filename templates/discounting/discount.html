@@ -1,0 +1,71 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <!--<div class="page-header">
+        <h3 class="page-title">Report  </h3>
+    </div>-->
+
+   
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card text-white bg-dark" style="height:480px;">
+                <div class="card-body" style="overflow:auto; padding:2px;">
+
+                    <table class="table table-striped table-dark">
+                        <thead>
+                            <tr>
+                                <th>Request ID</th>
+                                <th>Alert ID</th>
+                                <th>Name</th>
+                                <th>Father Name</th>
+                                <th>Alias</th>
+                                <th>Alias Quality</th>
+                                <th>ID Number</th>
+                                <th>Gender</th>
+                                <th>Type</th>
+                                <th>Strength</th>
+                                <th>Score</th>
+                                <th>DOB</th>
+                                <th>POB</th>
+                                <th>Address</th>
+                                <th>Province</th>
+                                <th>District</th>
+                                <th>Nationlity</th>
+                                <th>Country</th>
+                                <th>City</th>
+                                <th>List</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function () {
+        var id = '{{id}}';
+        $('.callajax').click(function () {
+            swal({
+                title: "Discount",
+                text: "Do you really want to discount?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            }).then(isConfirmed => {
+                if (isConfirmed) {
+                    location.href = "/discounting/discounting/"+id;
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

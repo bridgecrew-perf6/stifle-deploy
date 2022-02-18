@@ -1,0 +1,2220 @@
+<!--<div class="modal fade bd-example-modal-lg" id="declineModal" data-backdrop="static">
+       <div class="modal-dialog modal-dialog-scrollable" role="document">
+           <div class="modal-content">
+               <div class="modal-header" style="background-color: #191a1a;color:#ffffff;font-family:Prompt-light;">
+
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <div class="modal-body" style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+
+                   <form class="declineForm">
+                       {% csrf_token %}
+                       <input type="text" class="form-control" id="customerID" name="customer_id">
+                       <div class="row" style="padding-left:50px;">
+
+                           <div class="col-md-6">
+                               <div class="form-group row">
+                                   <label class="col-sm-5 col-form-label">State the reason for Declining the Customer</label>
+                                   <div class="col-sm-5">
+                                       <select id="decline_reason" name="decline_reason" style="width:240px !important;" required onselect="checkReason()">
+                                           {% for field in GeographicLocation %}
+                                           <option>Customer’s CDD is not verifiable</option>
+                                           <option>Customer is found as True Match with UNSC/NACTA/Country’s Negative List (Res. 1373)</option>
+                                           <option>Customer possesses High Risk</option>
+                                           <option>Customer is appearing in any Law Enforcement Agency List</option>
+                                           <option>Adverse Media against Customer</option>
+                                           <option>In case of Others, please specify</option>
+
+
+                                           {% endfor %}
+
+
+                                       </select>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+
+                       <div class="row" style="display:none;" id="otherReason" >
+                           <div class="col-md-10">
+
+                               <div class="form-group row">
+                                   <label class="col-sm-12 col-form-label">Reason</label>
+                                   <div class="col-sm-12">
+                                       <input type="text" class="form-control" name="otherReason" />
+                                   </div>
+                               </div>
+
+                           </div>
+
+                       </div>
+
+                       <div class="col-md-12 text-center" id="btnCol">
+                           <button type="submit" class="btn" id="btnSubmit">Submit</button>
+
+                       </div>
+
+
+                   </form>
+
+               </div>
+           </div>
+       </div>
+   </div>-->
+
+
+
+
+
+
+
+
+
+
+
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> Acceptance & Risk Rating </h3>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card card text-white bg-dark">
+                <div class="card-body" style="padding:2px;">
+                    <!--<h4 class="card-title">Cutomer Data</h4>-->
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Customer ID  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.customer_id}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Name </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.customer_name}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Father/Husband Name  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.father_name}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Account Title </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.account_title}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Account Number  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.account_number}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Branch Name</label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.branch_name}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Customer ID  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.branch_code}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Name </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.current_address}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Permanent Address  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.permanent_addres}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Name </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.district}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Customer ID  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.province}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Name </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.city}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Customer ID  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.zipcode}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Name </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.customer_type}}" />
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Beneficial Owner Name  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.beneficial_details.benefical_owner_name}}" />
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Name </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.delivery_channel}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Customer ID  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.account_purpose}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Mode of Transaction </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.mode_of_transactions}}" />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <p class="card-description"> beneficial Ownership Details </p>
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Customer ID  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.customer_id}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Name </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.customer_name}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Father/Husband Name  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.customer_id}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Name </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.account_title}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Customer ID  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.account_number}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Name </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.branch_name}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Customer ID  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.branch_code}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Name </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.current_address}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Permanent Address  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.permanent_addres}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Name </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.district}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Customer ID  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.province}}" />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Name </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.city}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Customer ID  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.zipcode}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Name </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.customer_type}}" />
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Beneficial Owner Name  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.beneficial_details.benefical_owner_name}}" />
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Name </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.delivery_channel}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Customer ID  </label>
+                                <div class="col-sm-6">
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value="{{showCustomerObject.account_purpose}}" />
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Mode of Transaction </label>
+                                <div class="col-sm-6">
+
+                                    <input type="text" class="form-control" name="user_cnic" required id="cnicID"
+                                           value=" {{showCustomerObject.mode_of_transactions}}" />
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Form Auto Fill</title>
+    <style>
+        fieldset {
+            margin-bottom: 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>AutoFill Form</h1>
+    <form>
+        //Fields for primary address
+        <fieldset>
+            <legend>
+                <b>Primary Address</b>
+            </legend>
+            <label for="primaryaddress">
+                Address:
+            </label>
+            <input type="text"
+                   name="Address"
+                   id="primaryaddress"
+                   required /><br />
+            <label for="primaryzip">Zip code:</label>
+            <input type="text"
+                   name="Zip code"
+                   id="primaryzip"
+                   pattern="[0-9]{6}"
+                   required /><br />
+        </fieldset>
+
+        <input type="checkbox"
+               id="same"
+               name="same"
+               onchange="addressFunction()" />
+        <label for="same">
+            If same secondary address select this box.
+        </label>
+
+        // Fields for secondary address
+        <fieldset>
+            <legend><b>Secondary Address</b></legend>
+            <label for="secondaryaddress">
+                Address:
+            </label>
+            <input type="text"
+                   name="Address"
+                   id="secondaryaddress"
+                   required /><br />
+            <label for="secondaryzip">
+                Zip code:
+            </label>
+            <input type="text"
+                   name="Zip code"
+                   id="secondaryzip"
+                   pattern="[0-9]{6}"
+                   required /><br />
+        </fieldset>
+
+        // Submit button in the form
+        <input type="submit"
+               value="Submit" />
+    </form>
+
+    // JavaScript Code
+    <script>
+        function addressFunction() {
+            if (document.getElementById(
+                "same").checked) {
+                document.getElementById(
+                    "secondaryaddress").value =
+                    document.getElementById(
+                        "primaryaddress").value;
+
+
+            } else {
+                document.getElementById(
+                    "secondaryaddress").value = "";
+                document.getElementById(
+                    "secondaryzip").value = "";
+            }
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<option>select</option>
+                  <option value="NGOs, NPOs, Charitable/Religious Organization, Associations, Cubs, Socities,etc"> NGOs, NPOs, Charitable/Religious Organization, Associations, Cubs, Socities,etc</option>
+                  <option value="Political Exposed Parties" selected> Political Exposed Parties/ Persons(PEPs)including their close associations or relatives </option>
+                  <option value="High Net worth customers with no clearly identifiable source of income, etc">High Net worth customers with no clearly identifiable source of income, etc</option>
+                  <option value=" Exchange Companies"> Exchange Companies </option>
+                  <option value="Administrators, Liquidators, Agents & like customers"> Administrators, Liquidators, Agents & like customers </option>
+                  <option value="Arms/ Ammunition Dealers">Arms/ Ammunition Dealers</option>
+                  <option value="High valuable/ Precious Metal Dealers (e.g. Gold, Silver, Diamond, Ruby, Antique, etc Dealers)">High valuable/ Precious Metal Dealers (e.g. Gold, Silver, Diamond, Ruby, Antique, etc Dealers)</option>
+                  <option value="Old Auto Parts and/ or Metal Scrap Dealers">Old Auto Parts and/ or Metal Scrap Dealers</option>
+                  <option value="Companies having Nominee Shareholders or Shares in Bearer Form"> Companies having Nominee Shareholders or Shares in Bearer Form</option>
+                  <option value="Legal Persons or Arrangments that are Personal Assest Holding Vehicle"> Legal Persons or Arrangments that are Personal Assest Holding Vehicle</option>
+                  <option value=" Correspodent Banks"> Correspodent Banks </option>
+                  <option value="Non Residents, Foreign Nationals"> Non Residents, Foreign Nationals</option>
+                  <option value="professional/Self Employed/ Proprietorship"> professional/Self Employed/ Proprietorship</option>
+                  <option value="Land Lords"> Land Lords</option>
+                  <option value="Housewives/ Widows/ Households">Housewives/ Widows/ Households</option>
+                  <option value="Minors,studets,Unemployed,& like customers ">Minors,studets,Unemployed,& like customers </option>
+                  <option value="Un-registered Partnership conerns OR Registerd Partnership Concerns Invloving business e.g. Real Estate , Cicil Work, Brokage, Share Dealing, Travel/Tourism, trading of general itmes">Un-registered Partnership conerns OR Registerd Partnership Concerns Invloving business e.g. Real Estate , Cicil Work, Brokage, Share Dealing, Travel/Tourism, trading of general itmes </option>
+                  <option value="Investment and Comodity Advisor">Investment and Comodity Advisor</option>
+                  <option value="Registerd partnerships involving business not specified above">Registerd partnerships involving business not specified above</option>
+
+                  <option value="Financial Insituations Regulated Supervised by SBP except Exchange Companies /Money Remitters/Change">Financial Insituations Regulated Supervised by SBP except Exchange Companies /Money Remitters/Change </option>
+                  <option value="Government Entities (Local/provincal/federl) / Public Administration">Government Entities (Local/provincal/federl) / Public Administration </option>
+                  <option value="Non-bank finance Companies (NBF's) Regulated /Supervised by securites and exchange commission of Pakistan(SECp)">Non-bank finance Companies (NBF's) Regulated /Supervised by securites and exchange commission of Pakistan(SECp) </option>
+                  <option value="Public/Private Limited/Guarantee Limited Companies">Public/Private Limited/Guarantee Limited Companies </option>
+                  <option value="Foregin Government Enites OR Foregin Private Entites(that are subject to regulatory disclousre requirments and whose information is publically avalible )">Foregin Government Enites OR Foregin Private Entites(that are subject to regulatory disclousre requirments and whose information is publically avalible ) </option>
+                  <option value="Lawyers"> Lawyers</option>
+                  <option value="Notaries">Notaries</option>
+                  <option value="Pensioners">Pensioners</option>
+                  <option value="Real-Estate Dealer/Agent">Real-Estate Dealer/Agent</option>
+                  <option value="Retired Person">Retired Person</option>
+                  <option value="Salaried Individuals and like Customers"> Salaried Individuals and like Customers</option>
+                  <option value="Security Brokers-Dealer (Such as Shares, Mutual Funds etc.)">Security Brokers-Dealer (Such as Shares, Mutual Funds etc.) </option>
+                  <option value="Self Employed/ Proprietorship">Self Employed/ Proprietorship</option>
+                  <option value="Student">Student </option>
+                  <option value="Unemployed">Unemployed </option>
+                  <option value="Widow Account">Widow Account </option>
+                  <option value="All other Customers not Specified above">All other Customers not Specified above</option>-->
+<!--<div class="row" id="pep_form">
+
+    <div class="col-12">-->
+<!--<div class="card">
+
+<div class="card-body">-->
+<!--<form class="form-sample">-->
+<!--<div class="card-body">
+
+
+    <div class="row">
+
+
+        <div class="col-md-12">
+
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Is the Customer High Ranking Government official?</label>
+
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="high_rank_official" value="yes">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Yes
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="high_rank_official" value="No">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        No
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="President" name="high_rank_official_type">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        President
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Prime Minister" name="high_rank_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Prime Minister
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Governor" name="high_rank_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Governor
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Minister of State" name="high_rank_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Minister of State
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Provincial Minister" name="high_rank_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Provincial Minister
+                    </label>
+                </div>
+
+
+
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Chief Minister" name="high_rank_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Chief Minister
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Federal Minister" name="high_rank_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Federal Minister
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Deputy/ Assistant Minister for Federal Ministries" name="high_rank_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Deputy/ Assistant Minister for Federal Ministries
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Advisors to Prime Minister/ President /Governor /Chief Minister" name="high_rank_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Advisors to Prime Minister/ President /Governor /Chief Minister
+                    </label>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label"> Specify in case of other</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<div class="card-body">
+
+
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">ls the Customer Member of a Legislative Assembly ?</label>
+
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="legislative_assembly" value="Yes">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Yes
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="legislative_assembly" value="No">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        No
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Chairman/Head of Political Party" name="legislative_assembly_type">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Chairman/Head of Political Party
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Key Member of Political Party" name="legislative_assembly_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Key Member of Political Party
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Advisors to Prime Minister / President /Governor /Chief Minister" name="legislative_assembly_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Advisors to Prime Minister / President /Governor /Chief Minister
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" name="legislative_assembly_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        lf Other Constituency / Political Affiliation (Please Specify Below )
+                    </label>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="National Assembly Member" name="legislative_assembly_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        National Assembly Member
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Senator" name="legislative_assembly_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Senator
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Provincial Assembly Member" name="legislative_assembly_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Provincial Assembly Member
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Minister of State" name="legislative_assembly_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Minister of State
+                    </label>
+                </div>
+
+
+
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label"> Specify in case of other</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="card-body">
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">ls the Customer Having a position as a Judicial Official ?</label>
+
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="judicial_official" value="Yes">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Yes
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="judicial_official" value="No">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        No
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Civil Judge-Judicial Magistrates Court" name="judicial_official_type">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Civil Judge-Judicial Magistrates Court
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Special Tribunal and Board" name="judicial_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Special Tribunal and Board
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" name="judicial_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Other, Specify Position with Name of Entity
+                    </label>
+                </div>
+
+
+
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Head of Govt. Prosecutorial Office" name="judicial_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Head of Govt. Prosecutorial Office
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Attorney General Or Equivalent" name="judicial_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Attorney General Or Equivalent
+                    </label>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label"> Specify in case of other</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<div class="card-body">
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">Does the Customer Hold any Prominent Public Function ?</label>
+
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="public_function" value="Yes">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Yes
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="public_function" value="No">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        No
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="City Nazim /Mayor" name="public_function_type">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        City Nazim /Mayor
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Head of Central Bank" name="public_function_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Head of Central Bank
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" name="public_function_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Other, Please Specify Position with name of Entity
+                    </label>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Head of Regulatory authorities / local Bodies (SBP, SECP, PEMRA, OGRA etc)" name="public_function_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Head of Regulatory authorities / local Bodies<br />(SBP, SECP, PEMRA, OGRA etc)
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Senior Civil Servant heading departments (National /Federal /District Level)" name="public_function_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Senior Civil Servant heading departments<br /> (National /Federal /District Level)
+
+                    </label>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label"> Specify in case of other</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<div class="card-body">
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">ls the Customer a Diplomat ?</label>
+
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="diplomat" value="Yes">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Yes
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="diplomat" value="No">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        No
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Ambassador" name="diplomat_type">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Ambassador
+                    </label>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Senior Embassy and Consulate Staff" name="diplomat_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Senior Embassy and Consulate Staff
+                    </label>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-5 col-form-label"> Specify Position with name of Embassy /Consulate/label </label>
+        <div class="col-sm-5">
+            <input type="text" class="form-control" />
+        </div>
+    </div>
+
+
+</div>
+<div class="card-body">-->
+<!--<p class="card-description"> ls the Customer High Ranking Military Official ? </p>-->
+<!--<div class="row">
+
+        <div class="col-md-12">
+
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">ls the Customer High Ranking Military Official ? </label>
+
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="military_official" value="Yes">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Yes
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="military_official" value="No">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        No
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="General / Admiral /Air Chief Marshall (Equivalent )" name="military_official_type">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        General / Admiral /Air Chief Marshall (Equivalent )
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Other High Ranking Officer in armed forces (Brigadier, Commodore, Air Commodore)" name="military_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Other High Ranking Officer in armed forces (Brigadier, Commodore, Air Commodore)
+                    </label>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label"> Specify in case of other </label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" />
+        </div>
+    </div>
+
+</div>
+<div class="card-body">
+    <label class="col-sm-12 col-form-label">Does Customer hold and Senior Position in State owned Enterprises /Corporation/ Autonomous Body ? </label>
+
+
+    <div class="row">
+        <div class="col-md-12">
+
+
+            <div class="form-group row" style="text-align:center;">
+
+
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="senior_position_status" value="Yes">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Yes
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="senior_position_status" value="No">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        No
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Member of the Management" name="senior_position_status_type">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Member of the Management
+                    </label>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Member of the Supervisory Board/ Board of Director" name="senior_position_status_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Member of the Supervisory Board/ Board of Director
+                    </label>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-6 col-form-label">  Other, Please Specify Position with Name of Employee </label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" />
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+<div class="card-body">
+    <label class="col-sm-12 col-form-label"> ls the Customer High Risk Ranking Officials in lnternational Organization (E.g United Nation, World Bank , European Union etc) </label>
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+
+            <div class="form-group row" style="text-align:center;">
+
+
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="high_risk_ranking_official" value="Yes">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Yes
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="high_risk_ranking_official" value="No">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        No
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Head of Large lnternational Organization" name="high_risk_ranking_official_type">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Head of Large lnternational Organization
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Board of Director" name="high_risk_ranking_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Board of Director
+                    </label>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Management team member of the lnternational Organization" name="high_risk_ranking_official_type">
+                    <label class="form-check-label" for="flexCheckChecked">
+                        Management team member of the lnternational Organization
+                    </label>
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <div class="col-md-12">
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"> other, Please Specify Position with Name of Employer </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<div class="card-body">
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+
+
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label">ls the Customer Member of Ruling Families ?</label>
+
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="member_of_ruling_families" value="Yes">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        Yes
+                    </label>
+                </div>
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="radio" name="member_of_ruling_families" value="No">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                        No
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="form-check form-check-success"> </div>
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label">lf Yes , Then Specify Position </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="member_of_ruling_familiesl_position" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="card-body">
+    <label class="col-sm-12 col-form-label">  ls the Customer lmmediate Family Member/ Close associate (*) to any of the above Classification ? </label>
+
+
+
+    <div class="row">
+        <div class="col-md-6">
+
+
+            <div class="form-group row" style="text-align:center;">-->
+<!--<label class="col-sm-6 col-form-label">Is the Customer High Ranking Government official?</label>-->
+<!--<div class="col-sm-4">
+                <input class="form-check-input" type="radio" name="immediate_family_member" value="Yes">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    Yes
+                </label>
+            </div>
+            <div class="col-sm-4">
+                <input class="form-check-input" type="radio" name="immediate_family_member" value="No">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    No
+                </label>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<label class="col-sm-6 col-form-label"> lf Yes , Then Fill the following </label>
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"> Relevant section No./ Classification to be Mentioned</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="immediate_family_member_section_no" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"> Name of the immediate family member/Close associate </label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="immediate_family_member_name" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-6 col-form-label"> Relationship with immediate family member/Close associate</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="immediate_family_member_relation" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>-->
+<!--<p class="card-description">  </p>-->
+<!--<div class="row">
+
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-6 col-form-label">  What is the Source of wealth of Customer (PEP) </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="pep_wealth_source" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-6 col-form-label">  What is the percentage of share holding of customer (PEP) in Corporation/ Enterprises? </label>
+
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="pep_share_holdig" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-6 col-form-label">  What is the period and country of the customer (PEP) where he held senior position?  </label>
+
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control" name="pep_country" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+    </div>
+</div>-->
+<!--<div class="row" id="pep_form" style="display:none;">
+
+
+    <div class="card-body">
+
+
+        <div class="row">
+
+
+            <div class="col-md-12">
+
+
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label">
+                        Is the Customer High
+                        Ranking Government official?
+                    </label>
+
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="high_rank_official" value="yes"
+                               onclick="highRank(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="high_rank_official" value="No"
+                               onclick="highRank(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-6" id="high_rank_official_type">
+            <div class="form-group row">
+                <label class="col-sm-7 col-form-label">
+                    Please Choose the Position
+                </label>
+                <div class="col-sm-5">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="high_rank_official_type" style="max-width:250px;">
+                        <option value=" President"> President</option>
+                        <option value="Prime Minister">Prime Minister</option>
+                        <option value="Governor">Governor</option>
+                        <option value="Minister of State">Minister of State</option>
+                        <option value=" Provincial Minister">  Provincial Minister</option>
+                        <option value="Chief Minister">Chief Minister</option>
+                        <option value="Federal Minister">Federal Minister</option>
+                        <option value="Deputy/ Assistant Minister for Federal Ministries">Deputy/ Assistant Minister for Federal Ministries</option>
+                        <option value="Advisors to Prime Minister/ President /Governor /Chief
+                                                        Minister">
+                            Advisors to Prime Minister/ President /Governor /Chief
+                            Minister
+                        </option>
+
+
+                    </select>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="card-body">
+
+
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label">
+                        ls the Customer Member of
+                        a Legislative Assembly ?
+                    </label>
+
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="legislative_assembly" value="Yes"
+                               onclick="legislativeAssembly(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="legislative_assembly" value="No"
+                               onclick="legislativeAssembly(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6" id="legislative_assembly_type">
+                <div class="form-group row">
+                    <label class="col-sm-7 col-form-label">
+                        Please Choose the Position
+                    </label>
+                    <div class="col-sm-5">
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="legislative_assembly_type" style="max-width:250px;">
+                            <option value=" Chairman/Head of Political Party"> Chairman/Head of Political Party</option>
+                            <option value=" Key Member of Political Party"> Key Member of Political Party</option>
+                            <option value="Advisors to Prime Minister / President /Governor /Chief
+                                              Minister">
+                                Advisors to Prime Minister / President /Governor /Chief
+                                Minister
+                            </option>
+                            <option value="Minister of State">Minister of State</option>
+                            <option value=" Provincial Minister">  Provincial Minister</option>
+                            <option value="Chief Minister">Chief Minister</option>
+                            <option value="Federal Minister">Federal Minister</option>
+                            <option value="Deputy/ Assistant Minister for Federal Ministries">Deputy/ Assistant Minister for Federal Ministries</option>
+                            <option value="Advisors to Prime Minister/ President /Governor /Chief
+                                                        Minister">
+                                Advisors to Prime Minister/ President /Governor /Chief
+                                Minister
+                            </option>
+                            <option value=" Advisors to Prime Minister/ President /Governor /Chief"> Advisors to Prime Minister/ President /Governor /Chief</option>
+                            <option value="Senator">Senator</option>
+                            <option value=" Provincial Assembly Member"> Provincial Assembly Member</option>
+                            <option value="Federal Minister">Federal Minister</option>
+                            <option value="Minister of State">Minister of State</option>
+
+
+
+
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="card-body">
+
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label">
+                        ls the Customer Having a
+                        position as a Judicial Official ?
+                    </label>
+
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="judicial_official" value="Yes"
+                               onclick="judicialOfficial(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="judicial_official" value="No"
+                               onclick="judicialOfficial(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-6" id="judicial_official_type">
+                <div class="form-group row">
+                    <label class="col-sm-7 col-form-label">
+                        Please Choose the Position
+                    </label>
+                    <div class="col-sm-5">
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="judicial_official_type" id="judicial_official_type" style="max-width:250px;">
+
+
+                            <option value="Civil Judge-Judicial Magistrates Court">Civil Judge-Judicial Magistrates Court</option>
+                            <option value="Special Tribunal and Board">Special Tribunal and Board</option>
+                            <option value="Head of Govt. Prosecutorial Office">Head of Govt. Prosecutorial Office</option>
+
+
+                            <option value="Attorney General Or Equivalent">Attorney General Or Equivalent</option>
+
+                            <option value="">
+                                lf Other Please
+                                Specify Below
+                            </option>
+
+
+
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+
+
+    </div>
+    <div class="card-body">
+
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label">
+                        Does the Customer Hold
+                        any Prominent Public Function ?
+                    </label>
+
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="public_function" value="Yes"
+                               onclick="publicFunction(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="public_function" value="No"
+                               onclick="publicFunction(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="col-md-6" id="public_function_type">
+            <div class="form-group row">
+                <label class="col-sm-7 col-form-label">
+                    Please Choose the Position
+                </label>
+                <div class="col-sm-5">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="public_function_type" style="max-width:250px;">
+
+
+
+                        <option value="City Nazim /Mayor">City Nazim /Mayor</option>
+                        <option value="Head of Regulatory authorities / local Bodies
+                                                         (SBP, SECP, PEMRA, OGRA etc)">
+                            Head of Regulatory authorities / local Bodies
+                            (SBP, SECP, PEMRA, OGRA etc)
+                        </option>
+
+                        <option value="Head of Central Bank">Head of Central Bank</option>
+
+                        <option value="Senior Civil Servant heading departments
+                                                            (National /Federal /District Level)">
+                            Senior Civil Servant heading departments
+                            (National /Federal /District Level)
+                        </option>
+
+
+
+
+
+                    </select>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+    <div class="card-body">
+
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label">
+                        ls the Customer a
+                        Diplomat ?
+                    </label>
+
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio" name="diplomat"
+                               value="Yes" onclick="diplomat(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio" name="diplomat"
+                               value="No" onclick="diplomat(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6" id="diplomat_type1">
+                <div class="form-group row">
+                    <label class="col-sm-7 col-form-label">
+                        Please Choose the Position
+                    </label>
+                    <div class="col-sm-5">
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="diplomat_type" style="max-width:250px;">
+
+                            <option value="Ambassador">Ambassador</option>
+                            <option value="Senior Embassy and Consulate Staff">Senior Embassy and Consulate Staff</option>
+
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <div class="card-body">
+
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label">
+                        ls the Customer High
+                        Ranking Military Official ?
+                    </label>
+
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="military_official" value="Yes"
+                               onclick="militaryOfficial(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="military_official" value="No"
+                               onclick="militaryOfficial(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6" id="military_official_type">
+                <div class="form-group row">
+                    <label class="col-sm-7 col-form-label">
+                        Please Choose the Position
+                    </label>
+                    <div class="col-sm-5">
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="military_official_type" style="max-width:250px;">
+
+
+
+
+
+                            <option value="General / Admiral /Air Chief Marshall (Equivalent )">General / Admiral /Air Chief Marshall (Equivalent )</option>
+                            <option value="Other High Ranking Officer in armed forces (Brigadier, Commodore, Air Commodore)">Other High Ranking Officer in armed forces (Brigadier, Commodore, Air Commodore)</option>
+
+
+
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>-->
+<!--<div class="form-group row">
+    <label class="col-sm-3 col-form-label">
+        Specify in case of other
+    </label>
+    <div class="col-sm-4">
+        <input type="text" class="form-control"
+               name="military_official_type_text" />
+    </div>
+</div>-->
+<!--</div>
+    <div class="card-body">
+        <label class="col-sm-12 col-form-label">
+            Does Customer hold and Senior
+            Position in State owned Enterprises /Corporation/ Autonomous Body ?
+        </label>
+
+
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <div class="form-group row" style="text-align:center;">
+
+
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="senior_position_status" value="Yes"
+                               onclick="seniorPosition(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="senior_position_status" value="No"
+                               onclick="seniorPosition(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="col-md-6" id="senior_position_status_type">
+                <div class="form-group row">
+                    <label class="col-sm-7 col-form-label">
+                        Please Choose the Position
+                    </label>
+                    <div class="col-sm-5">
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="senior_position_status_type" style="max-width:250px;">
+
+
+
+
+
+                            <option value="Member of the Management"> Member of the Management</option>
+                            <option value="Member of the Supervisory Board/ Board of Director">Member of the Supervisory Board/ Board of Director</option>
+
+
+                            <option value="">
+                                lf Other Please
+                                Specify Below
+                            </option>
+
+
+
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+    </div>
+    <div class="card-body">
+        <label class="col-sm-12 col-form-label">
+            ls the Customer High Risk Ranking
+            Officials in lnternational Organization (E.g United Nation, World Bank ,
+            European Union etc)
+        </label>
+
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+
+                <div class="form-group row" style="text-align:center;">
+
+
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="high_risk_ranking_official" value="Yes"
+                               onclick="internationalOrganization(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="high_risk_ranking_official" value="No"
+                               onclick="internationalOrganization(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-6" id="high_risk_ranking_official_type">
+                <div class="form-group row">
+                    <label class="col-sm-7 col-form-label">
+                        Please Choose the Position
+                    </label>
+                    <div class="col-sm-5">
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="high_risk_ranking_official_type" style="max-width:250px;">
+
+
+
+
+
+                            <option value="Head of Large lnternational Organization"> Head of Large lnternational Organization</option>
+
+                            <option value="Board of Director"> Board of Director</option>
+
+                            <option value="Management team member of the lnternational Organization">Management team member of the lnternational Organization</option>
+
+
+
+
+
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+    </div>
+    <div class="card-body">
+
+
+        <div class="row">
+
+            <div class="col-md-12">
+
+
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label">
+                        ls the Customer Member of
+                        Ruling Families ?
+                    </label>
+
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="member_of_ruling_families" value="Yes"
+                               onclick="rulingFamilies(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input class="form-check-input" type="radio"
+                               name="member_of_ruling_families" value="No"
+                               onclick="rulingFamilies(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row" id="rulingFamilies">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="form-check form-check-success"> </div>
+                    <div class="form-group row">
+                        <label class="col-sm-7 col-form-label">
+                            Please Specify
+                            Position
+                        </label>
+                        <div class="col-sm-5">
+                            <input type="text" class="form-control"
+                                   name="member_of_ruling_familiesl_position" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-body">
+        <label class="col-sm-12 col-form-label">
+            ls the Customer lmmediate Family
+            Member/ Close associate (*) to any of the above Classification ?
+        </label>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+
+
+                <div class="form-group row" style="text-align:center;">
+
+                    <div class="col-sm-4">
+                        <input class="form-check-input" type="radio"
+                               name="immediate_family_member" value="Yes" onchange="immediate_family_member(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="col-sm-4">
+                        <input class="form-check-input" type="radio"
+                               name="immediate_family_member" value="No" onchange="immediate_family_member(this)">
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="row" id="immediateFamily">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label">
+                            Relevant section
+                            No./ Classification to be Mentioned
+                        </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control"
+                                   name="immediate_family_member_section_no" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label">
+                            Name of the
+                            immediate family member/Close associate
+                        </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control"
+                                   name="immediate_family_member_name" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-6 col-form-label">
+                            Relationship with
+                            immediate family member/Close associate
+                        </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control"
+                                   name="immediate_family_member_relation" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label">
+                        What is the Source of
+                        wealth of Customer (PEP)
+                    </label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control"
+                               name="pep_wealth_source" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label">
+                        What is the percentage
+                        of share holding of customer (PEP) in Corporation/
+                        Enterprises?
+                    </label>
+
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control"
+                               name="pep_share_holdig" />
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-12">
+                <div class="form-group row">
+                    <label class="col-sm-6 col-form-label">
+                        What is the period and
+                        country of the customer (PEP) where he held senior position?
+                    </label>
+
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control"
+                               name="pep_country" />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+
+</div>-->

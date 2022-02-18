@@ -1,0 +1,635 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+   
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">
+                    Type:
+                </label>
+                <div class="col-sm-5">
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="b_fund_source">
+                        <option value="Agriculture">Individual </option>
+                        <option value="Business">Organization</option>
+
+                    </select>
+
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-sm">
+                        View
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="row">
+        <!--<div class="col-lg-12 grid-margin stretch-card">
+            <div class="card" style="height: 80px; background-color: #191a1a; color: #ffffff; font-family: Prompt;">
+                <div class="card-body" style=" padding:2px;">
+                    <form class="searchForm" method="POST">
+                        {% csrf_token %}
+
+                        <div class="row" style="padding:20px;">
+
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="customerID" name="search_customer_id" required>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-sm callsearch" type="button" style="font-size:15px;"><i class="fa fa-search fa-fw"></i> Search</button>-->
+                                <!--<button type="submit" class="btn ajaxcall" id="btnSubmit">Submit</button>-->
+
+                            <!--</div>
+                        </div>
+
+
+
+
+
+                    </form>
+
+
+
+                </div>
+
+
+            </div>
+        </div>-->
+
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card" style="height: 480px; background-color: #191a1a; color: #ffffff; font-family: Prompt;">
+                <div class="card-body" style="overflow:auto; padding:2px;">
+                    <!--<h4 class="card-title">Cutomer Data</h4>-->
+                    <table class="table table-bordered table-dark">
+                        <thead>
+                            <tr>
+
+
+                                <th> Customer ID </th>
+                                <th> Customer Name </th>
+                                <th> Father Name </th>
+                                <th> Date of Birth </th>
+                                <th> Place of Birth </th>
+                                <th> Nationality</th>
+                                <th> Address </th>
+                                <th> Screening Status </th>
+                                <th> Screening </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for data in individualData %}
+                            <tr>
+
+
+
+                                <td> {{data.customer_id}}</td>
+                                <td>{{data.customer_name}}</td>
+                                <td>{{data.father_name}}</td>
+                                <td>{{data.birth_date}}</td>
+                                <td>{{data.birth_place}}</td>
+                                <td>{{data.nationality}}</td>
+                                <td>{{data.current_address}}</td>
+
+                                <td>
+                                    {% if data.screening_status == "Yes" %}
+
+                                        Screening has already been Performed
+
+                                    {% else %}
+
+                                       Screening has not been Performed
+
+                                    {% endif %}
+                                </td>
+
+                                <td>
+
+
+                                    <a href="alerts/{{data.customer_id}}" style="color: #1dbf73;">
+                                        <i class="mdi mdi-home mdi-search-web">  Screen</i>
+
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+
+
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-lg" id="eddModal" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #191a1a;color:#ffffff;font-family:Prompt-light;">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+
+                    <form class="eddForm">
+                        {% csrf_token %}
+                        <input type="text" class="form-control" id="customerID" name="customer_id">
+                        <div class="row" style="padding-left:50px;">
+
+                            <div class="col-md-10">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-form-label">Is the Source of Wealth Verified?</label>
+
+
+                                    <div class="col-sm-4" style="padding-left:50px;">
+                                        <input class="form-check-input" type="radio" name="sourceFund" value="yes" checked onclick="detailFun(this)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-4" style="padding-left:50px;">
+                                        <input class="form-check-input" type="radio" name="sourceFund" value="no" onclick="detailFun(this)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            No
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="errorMessage" style="display:none;">
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label>Please verify the source of funds/wealth before proceeding further </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="row" id="imageSec" style="padding-left:50px;">
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label>Uplaod Verified Document</label>
+                                    <input type="file" name="verifiedDoc" class="file-upload-default">
+                                    <div class="input-group col-xs-12">
+                                        <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image"> <span class="input-group-append">
+                                            <button class="file-upload-browse btn " type="button">Upload</button>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row" id="seniorApproval" style="padding-left:50px;">
+
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-form-label">Is the Senior Management Approval taken?</label>
+
+
+                                    <div class="col-sm-3" style="padding-left:50px;">
+                                        <input class="form-check-input" type="radio" name="branchvist" value="yes" onclick="approvalFun(this)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3" style="padding-left:50px;">
+                                        <input class="form-check-input" type="radio" name="branchvist" value="no" onclick="approvalFun(this)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            No
+                                        </label>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="display:none;" id="emailSec">
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label>Please Send Email for approval </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row" id="approvalFile" style="padding-left:50px;">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-form-label">Please attach prior approval</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" name="wiretrasnfer" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" id="approvalRemarks" style="padding-left:50px;">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-form-label">Remarks</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" name="branchcomment" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center" id="btnCol">
+                            <button type="submit" class="btn ajaxcall" id="btnSubmit">Submit</button>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade bd-example-modal-lg" id="declineModal" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #191a1a;color:#ffffff;font-family:Prompt-light;">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+
+                    <form class="ed">
+                        <div class="row" id="approvalRemarks" style="padding-left:50px;">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="customerID" name="customer_id">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" id="approvalRemarks" style="padding-left:50px;">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-form-label">Remarks</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" name="branchcomment" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center" id="btnCol">
+                            <button type="submit" class="btn ajaxcall" id="btnSubmit">Submit</button>
+
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal bd-example-modal-lg" id="approveModal" data-backdrop="static">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #191a1a;color:#ffffff;font-family:Prompt-light;">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+
+                    <form class="remarkForm">
+                        {% csrf_token %}
+                        <div class="row" id="approvalRemarks" style="padding-left:50px;">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="statusID" name="status" style="display:none;">
+                                    </div>
+                                    <div class="col-sm-12" style="display:none;">
+                                        <input type="text" class="form-control" id="cID" name="customer_id">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Choice
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Choice
+                                        </label>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="row" id="approvalRemarks" style="padding-left:50px;">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-form-label">Remarks</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" name="remarks" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-center" id="btnCol">
+                            <button type="submit" class="btn remarks" id="btnSubmit">Submit</button>
+                            <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                                Close
+                            </button>
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script>
+
+        $('.callsearch').on('click', function (e) {
+            e.preventDefault();
+        alert("hi in ajax ");
+        // get all form data
+        var queryString = $('.searchForm').serialize();
+        $.ajax({
+            url: '',
+            type: 'POST',
+
+        data: queryString,
+        success: function (data) {
+            alert("hi in success ");
+        /*$(".modal.in").modal('hide');*/
+        /*$("#approveModal").style.display("none");*/
+        //get id from data
+        //var id = data.id;
+        //console.log(id);
+        // sweet alert isconfirm and hit url
+        swal({
+            title: "Data has been saved",
+        text: "Do you want to Call Screeen this User?",
+        icon: "success",
+        button: "OK",
+                }).then(function () {
+            // call another url
+            /*window.location.href = '/riskrating/riskrating/' ;*/
+        });
+            }
+        });
+
+
+
+    });
+        $('.remarks').on('click', function (e) {
+            e.preventDefault();
+        alert("hi in ajax ");
+        // get all form data
+        var queryString = $('.remarkForm').serialize();
+        $.ajax({
+            url: '{% url "updateRiskrating" %}',
+        type: 'POST',
+
+        data: queryString,
+        success: function (data) {
+            alert("hi in success ");
+        $(".modal.in").modal('hide');
+        /*$("#approveModal").style.display("none");*/
+        //get id from data
+        //var id = data.id;
+        //console.log(id);
+        // sweet alert isconfirm and hit url
+        swal({
+            title: "Data has been saved",
+        text: "Do you want to Call Screeen this User?",
+        icon: "success",
+        button: "OK",
+                }).then(function () {
+            // call another url
+            /*window.location.href = '/riskrating/riskrating/' ;*/
+        });
+            }
+        });
+
+
+
+    });
+
+        $('.modal-link').click(function () {
+
+
+
+        var val = $(this).data('html');
+        var x = $(this).data('name');
+        var x = $(this).data('name');
+        $('#cID').val(x);
+        $('#statusID').val(val);
+       /* alert(x)*/
+
+            //$('#customerID').html($(this).data('name'));
+            //var x = $(this).data('name');
+
+
+
+
+
+
+    });
+        $('.form-link').click(function () {
+
+
+
+        var val = $(this).data('html');
+
+        if (val === "EDD") {
+
+            $('#customerID').html($(this).data('name'));
+        var x = $(this).data('name');
+        $('#customerID').val(x);
+
+        }
+
+
+
+
+
+
+    });
+
+
+
+        function detailFun(choice) {
+        var x = document.getElementById("imageSec");
+        var aSec = document.getElementById("seniorApproval");
+        var aFile = document.getElementById("approvalFile");
+        var aRemarks = document.getElementById("approvalRemarks");
+        var y = document.getElementById("errorMessage");
+        /*var btns = document.getElementById("btnSubmit");*/
+        var btnCol = document.getElementById("btnCol");
+        if (choice.value == "yes") {
+            x.style.display = "block";
+        aSec.style.display = "block";
+        aFile.style.display = "block";
+        aRemarks.style.display = "block";
+        y.style.display = "none";
+        btnCol.style.display = "block";
+
+        }
+
+        else {
+            x.style.display = "none";
+        aSec.style.display = "none";
+        aFile.style.display = "none";
+        aRemarks.style.display = "none";
+        y.style.display = "block";
+        btnCol.style.display = "none";
+
+            /*window.alert("Please verify the source of funds/wealth before proceeding further")*/
+        }
+    }
+
+        function checkReason() {
+        var x = document.getElementById("decline_reason");
+        var otherReason = document.getElementById("otherReason");
+        if (x.value = "other") {
+            otherReason.style.display = "block";
+        }
+        else {
+            otherReason.style.display = "none";
+
+        }
+
+    }
+
+    //function approvalFun(choice) {
+
+
+    //    var aFile = document.getElementById("approvalFile");
+    //    var aRemarks = document.getElementById("approvalRemarks");
+    //    var y = document.getElementById("errorMessage");
+
+    //    var emailSec = document.getElementById("emailSec");
+    //    var btnCol = document.getElementById("btnCol");
+    //    if (choice.value == "yes") {
+
+
+    //        aFile.style.display = "block";
+    //        aRemarks.style.display = "block";
+
+
+    //        emailSec.style.display = "none";
+    //        btnCol.style.display = "block";
+    //    }
+
+    //    else {
+
+
+    //        aFile.style.display = "none";
+    //        aRemarks.style.display = "none";
+    //        btnCol.style.display = "none";
+    //        emailSec.style.display = "block";
+    //        /*window.alert("Please verify the source of funds/wealth before proceeding further")*/
+    //    }
+    //}
+
+
+</script>
+<!--<script>
+    // onclick ajax call
+    $('.ajaxcall').on('click', function (e) {
+        e.preventDefault();
+        alert("hi in ajax ");
+                    // get all form data
+            var queryString = $('.eddForm').serialize();
+            $.ajax({
+                url: ,
+                type: 'POST',
+
+                data: queryString,
+                success: function (data) {
+                    alert("hi in success ");
+                    $("#eddModal").modal('hide');
+
+                    //get id from data
+                    var id = data.id;
+                    console.log(id);
+                    // sweet alert isconfirm and hit url
+                    swal({
+                        title: "Data has been saved",
+                        text: "Do you want to Call Screeen this User?",
+                        icon: "success",
+                        button: "OK",
+                    }).then(function () {
+                        // call another url
+                        /*window.location.href = '/riskrating/riskrating/' ;*/
+                    });
+                }
+            });
+
+
+
+    });
+
+
+
+
+</script>-->
+{% endblock %}

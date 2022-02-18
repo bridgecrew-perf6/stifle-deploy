@@ -1,0 +1,417 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card" style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+            <div class="card-body">
+
+                <form class="strForm">
+                    {% csrf_token %}
+                    <p class="card-description">Suspect Details </p>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Customer ID</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="suspect_id" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <p class="card-description">Suspect Type </p>
+                    <div class="row" style="margin-left:30px;">
+                        <div class="col-md-6">
+                            <div class="form-group">
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Match with UNSC" id="flexCheckDefault" name="suspect_type">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Match with UNSC
+                                    </label>
+                                </div>
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Match with OFAC" id="flexCheckDefault" name="suspect_type">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Match with OFAC
+                                    </label>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="Match with PAK NACTA" id="flexCheckDefault" name="suspect_type">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Match with PAK NACTA
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="CDD Not Verified" id="flexCheckDefault" name="suspect_type">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        CDD Not Verified
+                                    </label>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+
+                        <!--<div class="col-md-12">
+                            <div class="form-group">
+
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">In case of other Please specify</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="suspect_type_other"/>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>-->
+
+                    </div>
+
+
+
+                    <div class="card-body">
+                        <p class="card-description">Action Taken</p>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Account Suspended" id="flexCheckDefault" name="action_taken">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Account Suspended
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Account Blocked" id="flexCheckDefault" name="action_taken">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Account Blocked
+                                        </label>
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Funds Freeze" id="flexCheckDefault" name="action_taken">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Funds Freeze
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Funds Withheld" id="flexCheckDefault" name="action_taken">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Funds Withheld
+                                        </label>
+                                    </div>
+                                    <!--<div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Other Please specify</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" />
+                                        </div>
+                                    </div>-->
+
+
+
+                                </div>
+                            </div>
+
+                            <!--<div class="col-md-12">
+                                <div class="form-group">
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">In case of other Please specify</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" />
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>-->
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-body">
+                        <p class="card-description">Relationship with Bank</p>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Account Holder" id="flexCheckDefault" name="bank_relationship">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Account Holder
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Employee" id="flexCheckDefault" name="bank_relationship">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Employee
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Walk in Customer" id="flexCheckDefault" name="bank_relationship">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Walk in Customer
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Agent" id="flexCheckDefault" name="bank_relationship">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Agent
+                                        </label>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+
+                            <!--<div class="col-md-12">
+                                <div class="form-group">
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">In case of other Please specify</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" />
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>-->
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Business Relation with Suspect (if any)</label>
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="business_relationship" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+
+
+                            <div class="form-group row">
+                                <label class="col-sm-6 col-form-label">Is Relationship still Maintained with the Person?</label>
+
+                                <div class="col-sm-2">
+                                    <input class="form-check-input" type="radio" name="relationshi_status" id="flexRadioDefault1" value="yes" selected onchange="chkTerminationStatus(this)">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        Yes
+                                    </label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <input class="form-check-input" type="radio" name="relationshi_status" id="flexRadioDefault1" value="no" onchange="chkTerminationStatus(this)">
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="row" id="terminationBox" style="display:none;">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label">Date of Termination of relationship</label>
+                                <div class="col-sm-7">
+                                    <input type="date" name="termination_date">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card-body">
+                        <p class="card-description">Capacity in which the person is performing the transactions / acts</p>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Individual" id="flexCheckDefault" name="transaction_capacity">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Individual
+                                        </label>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Company" id="flexCheckDefault" name="transaction_capacity">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Company
+                                        </label>
+                                    </div>
+
+
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Broker" id="flexCheckDefault" name="transaction_capacity">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Broker
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="Agent" id="flexCheckDefault" name="transaction_capacity">
+                                        <label class="form-check-label" for="flexCheckDefault">
+                                            Agent
+                                        </label>
+                                    </div>
+
+
+
+
+                                </div>
+                            </div>
+
+
+                            <!--<div class="col-md-12">
+                                <div class="form-group">
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">In case of other Please specify</label>
+                                        <div class="col-sm-4">
+                                            <input type="text" class="form-control" />
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>-->
+                        </div>
+
+
+
+
+
+
+                    </div>
+
+
+                    <!--<div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group row">
+                                <label class="col-sm-5 col-form-label"> Identities of other persons known to be involved in reported activity</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+
+
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="button" class="btn strUpdate">Submit</button>
+                            <button class="btn">Cancel</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+
+    $('.strUpdate').on('click', function (e) {
+        /*alert("in function")*/
+
+
+        e.preventDefault();
+        /* alert("hi in ajax ");*/
+        // get all form data
+        var queryString = $('.strForm').serialize();
+        $.ajax({
+
+            url: '{% url "strForm" %}',
+            type: 'POST',
+
+            data: queryString,
+            success: function (data) {
+
+                swal({
+                    title: "STR has been updated successfully",
+                    /*text: "Do you want to Call Screeen this User?",*/
+                    icon: "success",
+                    button: "OK",
+                });
+
+                setTimeout(function () {
+                    /*alert('Reloading Page');*/
+
+                    location.reload(true);
+                }, 1500);
+
+
+                /* location.reload();*/
+
+                //    .then(function () {
+                //    // call another url
+                //    /*window.location.href = '/riskrating/riskrating/' ;*/
+                //});
+            }
+        });
+
+
+
+    });
+
+</script>
+
+{% endblock %}

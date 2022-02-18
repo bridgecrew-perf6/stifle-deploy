@@ -1,0 +1,398 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+
+    <div class="reporting_container">
+        <ul class="nav nav-tabs">
+
+            <li>
+                <button type="button" class="btn btn-rounded" data-toggle="tab" href="#individual_tab" style="font-size: 15px; background-color: #001AFF;">Individual Record </button>
+
+
+            </li>
+
+            <li>
+                <button type="button" class="btn btn-rounded" data-toggle="tab" href="#entity_tab" style="font-size: 15px; background-color: #001AFF;">Entity Record </button>
+
+
+            </li>
+
+
+        </ul>
+
+
+
+
+        <div class="tab-content">
+            <div id="individual_tab" class="tab-pane fade show active">
+                <div class="row">
+
+
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card" style="height: 480px;  font-family: Prompt;">
+                            <div class="card-body" style="overflow:auto; padding:2px;">
+                                <!--<h4 class="card-title">Cutomer Data</h4>-->
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+
+
+                                            <th> Customer ID </th>
+                                            <th> Customer Name </th>
+                                            <th> Father Name </th>
+                                            <th> Date of Birth </th>
+                                            <th> Place of Birth </th>
+                                            <th> Nationality</th>
+                                            <th> Address </th>
+                                            <th> Screening Status </th>
+                                            <th> Screening </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {% for data in individualData %}
+                                        <tr>
+
+
+
+                                            <td> {{data.customer_id}}</td>
+                                            <td>{{data.customer_name}}</td>
+                                            <td>{{data.father_name}}</td>
+                                            <td>{{data.birth_date}}</td>
+                                            <td>{{data.birth_place}}</td>
+                                            <td>{{data.nationality}}</td>
+                                            <td>{{data.current_address}}</td>
+
+                                            <td>
+
+                                                {% if data.screening_performed == True %}
+
+                                                Screening has already been Performed
+
+                                                {% else %}
+
+                                                Screening has not been Performed
+
+                                                {% endif %}
+                                            </td>
+
+                                            <td>
+
+
+                                                <a href="alerts/{{data.customer_id}}" style="color: #1dbf73;">
+                                                    <i class="mdi mdi-home mdi-search-web">  Screen</i>
+
+
+                                                </a>
+
+                                            </td>
+
+                                        </tr>
+
+                                        {% endfor %}
+                                    </tbody>
+
+                                </table>
+
+
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="entity_tab" class="tab-pane">
+                <div class="row">
+
+
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body" style="overflow:auto; padding:2px;">
+                                <!--<h4 class="card-title">Cutomer Data</h4>-->
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+
+
+                                            <th> Entity ID </th>
+                                            <th> Entity Name </th>
+                                            <th> Screening Status </th>
+                                            <th> Screening </th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        {% for data in entityData %}
+                                        <tr>
+                                            <td>
+                                                {{data.organization_id}}
+
+
+
+                                            </td>
+                                            <td>
+
+                                                {{ data.corporation_name}}
+
+
+                                            </td>
+                                            <td>
+
+                                                {% if data.screening_performed == True %}
+
+                                                Screening has already been Performed
+
+                                                {% else %}
+
+                                                Screening has not been Performed
+
+                                                {% endif %}
+                                            </td>
+
+
+
+                                            <td>
+
+
+                                                <a href="entityAlertsAPI/{{data.organization_id}}" style="color: #1dbf73;">
+                                                    <i class="mdi mdi-home mdi-search-web">  Screen</i>
+
+
+                                                </a>
+
+                                            </td>
+
+
+
+
+
+                                        </tr>
+                                        {% endfor %}
+
+
+                                    </tbody>
+
+                                </table>
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+   
+    {% load groupfilter %}
+    {% if request.user|group:"L2" %}
+
+    <div class="reporting_container">
+        <ul class="nav nav-tabs">
+
+            <li>
+                <button type="button" class="btn btn-rounded" data-toggle="tab" href="#individual_tab" style="font-size: 15px; background-color: #001AFF;">Individual Record </button>
+
+
+            </li>
+
+            <li>
+                <button type="button" class="btn btn-rounded" data-toggle="tab" href="#entity_tab" style="font-size: 15px; background-color: #001AFF;">Entity Record </button>
+
+
+            </li>
+
+
+        </ul>
+
+
+
+
+        <div class="tab-content">
+            <div id="individual_tab" class="tab-pane fade show active">
+                <div class="row">
+
+
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card" style="height: 480px;  font-family: Prompt;">
+                            <div class="card-body" style="overflow:auto; padding:2px;">
+                                <!--<h4 class="card-title">Cutomer Data</h4>-->
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+
+
+                                            <th> Customer ID </th>
+                                            <th> Customer Name </th>
+                                            <th> Father Name </th>
+                                            <th> Date of Birth </th>
+                                            <th> Place of Birth </th>
+                                            <th> Nationality</th>
+                                            <th> Address </th>
+                                            <th> Screening Status </th>
+                                            <th> Screening </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {% for data in individualData %}
+                                        <tr>
+
+
+
+                                            <td> {{data.customer_id}}</td>
+                                            <td>{{data.customer_name}}</td>
+                                            <td>{{data.father_name}}</td>
+                                            <td>{{data.birth_date}}</td>
+                                            <td>{{data.birth_place}}</td>
+                                            <td>{{data.nationality}}</td>
+                                            <td>{{data.current_address}}</td>
+
+                                            <td>
+
+                                                {% if data.screening_performed == True %}
+
+                                                Screening has already been Performed
+
+                                                {% else %}
+
+                                                Screening has not been Performed
+
+                                                {% endif %}
+                                            </td>
+
+                                            <td>
+                                            </td>
+
+                                        </tr>
+
+                                        {% endfor %}
+                                    </tbody>
+
+                                </table>
+
+
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="entity_tab" class="tab-pane">
+                <div class="row">
+
+
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body" style="overflow:auto; padding:2px;">
+                                <!--<h4 class="card-title">Cutomer Data</h4>-->
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+
+
+                                            <th> Entity ID </th>
+                                            <th> Entity Name </th>
+                                            <th> Screening Status </th>
+                                            <th> Screening </th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        {% for data in entityData %}
+                                        <tr>
+                                            <td>
+                                                {{data.organization_id}}
+
+
+
+                                            </td>
+                                            <td>
+
+                                                {{ data.corporation_name}}
+
+
+                                            </td>
+                                            <td>
+
+                                                {% if data.screening_performed == True %}
+
+                                                Screening has already been Performed
+
+                                                {% else %}
+
+                                                Screening has not been Performed
+
+                                                {% endif %}
+                                            </td>
+
+
+
+                                            <td>
+
+
+                                                <a href="entityAlertsAPI/{{data.organization_id}}" style="color: #1dbf73;">
+                                                    <i class="mdi mdi-home mdi-search-web">  Screen</i>
+
+
+                                                </a>
+
+                                            </td>
+
+
+
+
+
+                                        </tr>
+                                        {% endfor %}
+
+
+                                    </tbody>
+
+                                </table>
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+    {% endif %}
+</div>
+    
+    {% endblock %}

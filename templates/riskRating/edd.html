@@ -1,0 +1,204 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> Acceptance and Risk Rating </h3>
+
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card text-white bg-dark">
+                <div class="card-body">
+
+                    <form class="form-sample" action="" method="POST">
+                        {% csrf_token %}
+                        <p class="card-description"> ENHANCED DUE DILIGENCE FORM(EDD) </p>
+
+
+                        <div class="row" style="padding-left:50px;">
+
+                            <div class="col-md-10" >
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Is the Source of Wealth Verified?</label>
+
+
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="branchvist" value="yes" checked onclick="detailFun(this)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="branchvist" value="no" onclick="detailFun(this)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            No
+                                        </label>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="errorMessage" style="display:none;">
+                            <div class="col-md-12">
+
+                                <div class="form-group">
+                                    <label>Please verify the source of funds/wealth before proceeding further </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="row" style="display:none;">
+                            <div class="col-md-12" id="emailSec">
+
+                                <div class="form-group">
+                                    <label>Please Send Email for approval </label>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                
+                <div class="row" id="imageSec" style="padding-left:50px;">
+                    <div class="col-md-8">
+
+                        <div class="form-group">
+                            <label>Uplaod Verified Document</label>
+                            <input type="file" name="img[]" class="file-upload-default">
+                            <div class="input-group col-xs-12">
+                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image"> <span class="input-group-append">
+                                    <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                                </span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row" id="seniorApproval" style="padding-left:50px;">
+
+                    <div class="col-md-10">
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Is the Senior Management Approval taken?</label>
+
+
+                            <div class="col-sm-3">
+                                <input class="form-check-input" type="radio" name="branchvist" value="yes" onclick="approvalFun(this)">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input class="form-check-input" type="radio" name="branchvist" value="no" onclick="approvalFun(this)">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    No
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="approvalFile" style="padding-left:50px;">
+                    <div class="col-md-10">
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Please attach prior approval</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="wiretrasnfer" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="approvalRemarks" style="padding-left:50px;">
+                    <div class="col-md-10">
+                        <div class="form-group row">
+                            <label class="col-sm-6 col-form-label">Remarks</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" name="branchcomment" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                    <button class="btn btn-gradient-success">Cancel</button>
+                </div>
+
+
+           
+
+
+
+
+            </form>
+
+
+
+        </div>
+    </div>
+</div>
+    </div>
+
+
+</div>
+
+
+<script>
+    function detailFun(choice) {
+        var x = document.getElementById("imageSec");
+        var aSec = document.getElementById("seniorApproval");
+        var aFile = document.getElementById("approvalFile");
+        var aRemarks = document.getElementById("approvalRemarks");
+        var y = document.getElementById("errorMessage");
+        if (choice.value == "yes") {
+            x.style.display = "block";
+            aSec.style.display = "block";
+            aFile.style.display = "block";
+            aRemarks.style.display = "block";
+            y.style.display = "none";
+        }
+
+        else {
+            x.style.display = "none";
+            aSec.style.display = "none";
+            aFile.style.display = "none";
+            aRemarks.style.display = "none";
+            y.style.display = "block";
+            /*window.alert("Please verify the source of funds/wealth before proceeding further")*/
+        }
+    }
+    function approvalFun(choice) {
+
+
+        var aFile = document.getElementById("approvalFile");
+        var aRemarks = document.getElementById("approvalRemarks");
+        var y = document.getElementById("errorMessage");
+
+        var emailSec = document.getElementById("emailSec");
+
+        if (choice.value == "yes") {
+
+
+            aFile.style.display = "block";
+            aRemarks.style.display = "block";
+
+
+            emailSecstyle.display = "none";
+        }
+
+        else {
+
+
+            aFile.style.display = "none";
+            aRemarks.style.display = "none";
+            emailSecstyle.display = "block";
+            /*window.alert("Please verify the source of funds/wealth before proceeding further")*/
+        }
+    }
+
+
+</script>
+{% endblock %}

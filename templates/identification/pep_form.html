@@ -1,0 +1,865 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <div class="page-header">
+        <h3 class="page-title"> PEP</h3>
+       
+    </div>
+    <div class="row" id="pepForm">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                  
+                    <form class="form-sample">
+                      
+
+                        <div class="card-body">
+
+
+                            <div class="row">
+
+
+                                <div class="col-md-12">
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Is the Customer High Ranking Government official?</label>
+
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="high_rank_official" value="yes">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="high_rank_official" value="No">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=" President" name="high_rank_official_type">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                President
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=" Prime Minister" name="high_rank_official_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Prime Minister
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=" Governor" name="high_rank_official_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Governor
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Minister of State" name="high_rank_official_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Minister of State
+                                            </label>
+                                        </div>
+
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label"> Specify </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=" Provincial Minister" name="high_rank_official_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Provincial Minister
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Chief Minister" name="high_rank_official_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Chief Minister
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Federal Minister" name="high_rank_official_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Federal Minister
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=" Deputy/ Assistant Minister for Federal Ministries" name="high_rank_official_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Deputy/ Assistant Minister for Federal Ministries
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=" Advisors to Prime Minister/ President /Governor /Chief Minister" name="high_rank_official_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Advisors to Prime Minister/ President /Governor /Chief Minister
+                                            </label>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="card-body">
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">ls the Customer Member of a Legislative Assembly ?</label>
+
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="legislative_assemblyt" value="Yes">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="legislative_assembly" value="No">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Chairman/Head of Political Party" name="legislative_assembly_type">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Chairman/Head of Political Party
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="  Key Member of Political Party" name="legislative_assembly_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Key Member of Political Party
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=" Advisors to Prime Minister / President /Governor /Chief Minister" name="legislative_assembly_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Advisors to Prime Minister / President /Governor /Chief Minister
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" name="legislative_assembly_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                lf Other Constituency / Political Affiliation (Please Specify Below )
+                                            </label>
+                                        </div>
+
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label"> Specify </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="National Assembly Member" name="legislative_assembly_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                National Assembly Member
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=" Senator" name="legislative_assembly_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Senator
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="  Provincial Assembly Member" name="legislative_assembly_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Provincial Assembly Member
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=" Minister of State" name="legislative_assembly_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Minister of State
+                                            </label>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="card-body">
+
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">ls the Customer Having a position as a Judicial Official ?</label>
+
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="judicial_official" value="Yes">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="judicial_official" value="No">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=" Civil Judge-Judicial Magistrates Court" name="judicial_official_type">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Civil Judge-Judicial Magistrates Court
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Special Tribunal and Board"  name="judicial_official_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Special Tribunal and Board
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""  name="judicial_official_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Other, Specify Position with Name of Entity
+                                            </label>
+                                        </div>
+
+
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label"> Specify </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=" Head of Govt. Prosecutorial Office"  name="judicial_official_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Head of Govt. Prosecutorial Office
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=" Attorney General Or Equivalent"  name="judicial_official_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Attorney General Or Equivalent
+                                            </label>
+                                        </div>
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="card-body">
+
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Does the Customer Hold any Prominent Public Function ?</label>
+
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="public_function" value="Yes">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="public_function" value="No">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" name="public_function_type">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                City Nazim /Mayor
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" name="public_function_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Head of Central Bank
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" name="public_function_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Other, Please Specify Position with name of Entity
+                                            </label>
+                                        </div>
+
+
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label"> Specify </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" name="public_function_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Head of Regulatory authorities / local Bodies<br />
+                                                (SBP, SECP, PEMRA, OGRA etc)
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" name="public_function_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Senior Civil Servant heading departments<br />
+                                                (National /Federal /District Level)
+
+                                            </label>
+                                        </div>
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="card-body">
+
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">ls the Customer a Diplomat ?</label>
+
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="diplomatt" value="Yes">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="diplomat" value="No">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=" Ambassador" name="diplomat_type">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Ambassador
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Specify Position with name of Embassy /Consulate/label" name="diplomat_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Specify Position with name of Embassy /Consulate/label
+                                            </label>
+                                        </div>
+
+
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label"> Specify </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Senior Embassy and Consulate Staff" name="diplomat_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Senior Embassy and Consulate Staff
+                                            </label>
+                                        </div>
+
+
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="card-body">
+                            <!--<p class="card-description"> ls the Customer High Ranking Military Official ? </p>-->
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">ls the Customer High Ranking Military Official ? </label>
+
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="military_official" value="Yes">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="military_official" value="No">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="General / Admiral /Air Chief Marshall (Equivalent )" name="military_official_type">
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                General / Admiral /Air Chief Marshall (Equivalent )
+                                            </label>
+                                        </div>
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="Other High Ranking Officer in armed forces (Brigadier, Commodore, Air Commodore)" name="military_official_type">
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Other High Ranking Officer in armed forces (Brigadier, Commodore, Air Commodore)
+                                            </label>
+                                        </div>
+
+
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label"> Specify </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="card-body">
+                            <p class="card-description"> Does Customer hold and Senior Position in State owned Enterprises /Corporation/ Autonomous Body ? </p>
+                            
+                                <div class="row">
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+
+
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio" name="senior_position_status" value="Yes">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio" name="senior_position_status" value="No">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Member of the Management" name="senior_position_status_type">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Member of the Management
+                                                </label>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Member of the Supervisory Board/ Board of Director" name="senior_position_status_type">
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    Member of the Supervisory Board/ Board of Director
+                                                </label>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">  Other, Please Specify Position with Name of Employee </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            
+                        </div>
+                        <div class="card-body">
+                            <p class="card-description"> ls the Customer High Risk Ranking Officials in lnternational Organization (E.g United Nation, World Bank , European Union etc) </p>
+                            <form>
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+
+
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio" name="high_risk_ranking_official" value="Yes">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio" name="high_risk_ranking_official" value="No">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <label class="col-sm-6 col-form-label"> lf Yes , Then Tick anyone of the following </label>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" name="high_risk_ranking_official_type">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Head of Large lnternational Organization
+                                                </label>
+                                            </div>
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" name="high_risk_ranking_official_type">
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    Board of Director
+                                                </label>
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=" Management team member of the lnternational Organization" name="high_risk_ranking_official_type">
+                                                <label class="form-check-label" for="flexCheckChecked">
+                                                    Management team member of the lnternational Organization
+                                                </label>
+                                            </div>
+
+
+                                        </div>
+                                        
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label"> other, Please Specify Position with Name of Employer </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </form>
+                        </div>
+                        <div class="card-body">
+                           
+                            
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">ls the Customer Member of Ruling Families ?</label>
+
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio" name="member_of_ruling_families" value="Yes">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio" name="member_of_ruling_families" value="No">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="form-check form-check-success"> </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">lf Yes , Then Specify Position </label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" name="member_of_ruling_familiesl_position"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                        </div>
+                        <div class="card-body">
+                            <p class="card-description"> ls the Customer lmmediate Family Member/ Close associate (*) to any of the above Classification ? </p>
+
+                            <div class="row">
+                                <div class="col-md-6">
+
+
+                                    <div class="form-group row">
+                                        <!--<label class="col-sm-6 col-form-label">Is the Customer High Ranking Government official?</label>-->
+
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="immediate_family_member" value="Yes">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="immediate_family_member" value="No">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <label class="col-sm-6 col-form-label"> lf Yes , Then Fill the following </label>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label"> Relevant section No./ Classification to be Mentioned</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="immediate_family_member_section_no"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label"> Name of the immediate family member/Close associate </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="immediate_family_member_name"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label"> Relationship with immediate family member/Close associate</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="immediate_family_member_relation"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <p class="card-description"> What is the Source of wealth of Customer (PEP) </p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="pep_wealth_source"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="card-description"> What is the percentage of share holding of customer (PEP) in Corporation/ Enterprises? </p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                       
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="pep_share_holdig"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="card-description"> What is the period and country of the customer (PEP) where he held senior position? </p>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                       
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="pep_country"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-gradient-primary mr-2">Submit</button>
+                                <button class="btn btn-gradient-success">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

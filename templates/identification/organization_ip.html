@@ -1,0 +1,1772 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <!--<div class="page-header">
+        <h3 class="page-title"> Identification and Profiling for Organizaion</h3>
+
+    </div>-->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+
+                    <form class="formdata" name="organizationForm">
+                        {% csrf_token %}
+                        <p class="card-description">  Identification & Profiling (Entity) </p>
+                        <div class="row">
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Registeration/<br />Incorporation Number </label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="incorporation_no" id="incorporation_noID" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Name of Organization</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="corporation_name" id="corporation_nameID" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Date of Company Incorporation </label>
+                                    <div class="col-sm-7">
+                                        <input type="date" class="form-control" name="corporation_date" id="corporation_dateID" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Type of Organization</label>
+                                    <div class="col-sm-7">
+                                        <select id="type_of_organization" name="corporation_type" style="width:inherit;" onchange="checkOrgType()">
+
+                                            <option value="Club" selected> Club</option>
+                                            <option value="Society">Society</option>
+                                            <option value="Trust">Trust</option>
+                                            <option value="Registered Partnership">Registered Partnership</option>
+                                            <option value=" Company/ Corporation"> Company/ Corporation</option>
+                                            <option value="Charities">Charities</option>
+                                            <option value="Agents Account"> Agents Account</option>
+                                            <option value="NGO">NGO</option>
+                                            <option value="Unregistered Partnership"> Unregistered Partnership</option>
+                                            <option value="Executors / Administrator"> Executors / Administrator</option>
+                                            <option value="Foreign Missions / Diplomatic Offices"> Foreign Missions / Diplomatic Offices</option>
+                                            <option value="Branch liaison Office of Foreign Companies"> Branch liaison Office of Foreign Companies</option>
+                                            <option value="Govt Institution (Federal / Provisional / Local)"> Govt Institution (Federal / Provisional / Local)</option>
+                                            <option value="Association"> Association</option>
+                                            <option value="other">Other </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6" style="display:none;" id="orgTypeOther">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Please Specify details here </label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Account Title</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="account_tite" id="account_titeID" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Account Number</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="account_number" id="account_numberID" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Branch Name</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="branch_name" id="branch_nameID" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Branch Code</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="branch_code" id="branch_codeID" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Registered Address</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="address" id="addressID" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">District</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="district" id="districtID" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Province</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="province" id="provinceID" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">City</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="city" id="cityID" />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Zip Code</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="zip_code" id="zipcodeID" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field_wrapper">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Name of Owners/Directors/Partners/Sponsor Shareholders</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" name="partner_name" id="partnernameID" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label"> Identification Document Number of Owners/Directors/Partners/Sponsor Shareholders</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" name="partner_id" id="partnerID" />
+
+                                        </div>
+                                        <div class="col-sm-1">
+
+                                            <a href="javascript:void(0);" class="add_button" title="Add field">  <i class="mdi mdi-plus menu-icon"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Customer Type</label>
+                                    <div class="col-sm-7">
+                                        <select id="customer_type" name="customer_type" style="width:inherit;" required onchange="pepDetails(this)">
+
+
+                                            {% for field in CustomerTypeOrganization %}
+
+                                            <option id="{{field.id}}">{{field.cust_type}}</option>
+
+
+                                            {% endfor %}
+
+
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Product and/or  Service Type </label>
+                                    <div class="col-sm-7">
+                                        <select id="product_type" name="product_type" style="width:inherit;" required>
+
+                                            {% for field in ProductType %}
+                                            <option>{{field.prod_type}}</option>
+                                            {% endfor %}
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Delivery Channel </label>
+                                    <div class="col-sm-7">
+                                        <select id="delivery_channel" name="delivery_channel" style="width:inherit;" required>
+
+                                            {% for field in DeliveryChannel %}
+                                            <option>{{field.channel}}</option>
+                                            {% endfor %}
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Mode of Transactions </label>
+                                    <div class="col-sm-7">
+                                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="fund_source" style="width:inherit;">
+                                            <option value="Donations"> Donations</option>
+                                            <option value="Dividends">Dividends</option>
+                                            <option value="Remittance">Remittance</option>
+
+                                            <option value="Local Trading">Local Trading</option>
+                                            <option value="Cheque Deposit / Withdrawal">Cheque Deposit / Withdrawal</option>
+                                            <option value="Govt Funds">Govt Funds</option>
+
+
+                                            <option value="Business Income">Business Income</option>
+                                            <option value="Rental Income">Rental Income</option>
+                                            <option value="Import / Export Proceeds">Import / Export Proceeds</option>
+                                            <option value="Real Estate">Real Estate</option>
+                                            <option value="Royalty Income">Royalty Income</option>
+                                            <option value="Equity/FX">Equity/FX</option>
+                                            <option value="Import / Export Proceeds">Import / Export Proceeds</option>
+
+                                            <option value="Grant/ Relief From Other Entities">Grant/ Relief From Other Entities</option>
+                                            <option value="Trading">Trading</option>
+
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Purpose of Account  </label>
+                                    <div class="col-sm-7">
+                                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="account_purpose" style="width:inherit;">
+                                            <option value="Business"> Business</option>
+                                            <option value="Foreign Remittance">Foreign Remittance</option>
+                                            <option value="Agriculture Income">Agriculture Income</option>
+
+                                            <option value="Stock / Investment Income">Stock / Investment Income</option>
+                                            <option value="Government Transactions">Government Transactions</option>
+                                            <option value="Charity & Donations/ Payments / Collection">Charity & Donations/ Payments / Collection</option>
+
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Mode of Transactions </label>
+                                    <div class="col-sm-7">
+                                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="transaction_mode" style="width:inherit;">
+                                            <option value="Clearing"> Clearing</option>
+                                            <option value="Collection">Collection</option>
+                                            <option value="Remittance">Remittance</option>
+
+                                            <option value="Cash Deposit / Withdrawal">Cash Deposit / Withdrawal</option>
+                                            <option value="Cheque Deposit / Withdrawal">Cheque Deposit / Withdrawal</option>
+                                            <option value="Online">Online</option>
+
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--<div class="row">
+
+                            <div class="col-md-12">
+
+
+                                <div class="form-group row">
+                                    <label class="col-sm-6 col-form-label">Politically Exposed Person (PEP)</label>
+
+                                    <div class="col-sm-3">
+                                        <input class="form-check-input" type="radio" name="pep_status" value="yes" onchange="pepDetails(this)" id="pepStatusID">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-check-input" type="radio" name="pep_status" value="no" onchange="pepDetails(this)" id="pepStatusID">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>-->
+
+
+
+
+                        <script>
+                            function pepDetails(choice) {
+                                /* alert(choice);*/
+                                var id = choice[choice.selectedIndex].id;
+                                var x = document.getElementById("pep_form");
+
+                                alert(id);
+                                if (id === '7') {
+                                    /* alert("yes");*/
+                                    x.style.display = "block";
+                                }
+
+                                else {
+                                    x.style.display = "none";
+                                }
+                            }
+                        </script>
+                        <div class="row" id="pep_form" style="display:none;">
+
+
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Is the Customer High
+                                                Ranking Government official?
+                                            </label>
+
+                                            <div class="col-sm-2">
+                                                <input class="form-check-input" type="radio"
+                                                       name="high_rank_official" value="yes"
+                                                       onclick="highRank(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input class="form-check-input" type="radio"
+                                                       name="high_rank_official" value="No"
+                                                       onclick="highRank(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6" id="high_rank_official_type" style="display:none;">
+                                    <div class="form-group row">
+                                        <label class="col-sm-7 col-form-label">
+                                            Please Choose the Position
+                                        </label>
+                                        <div class="col-sm-5">
+                                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="high_rank_official_type" style="max-width:250px;">
+                                                <option value=" President"> President</option>
+                                                <option value="Prime Minister">Prime Minister</option>
+                                                <option value="Governor">Governor</option>
+                                                <option value="Minister of State">Minister of State</option>
+                                                <option value=" Provincial Minister">  Provincial Minister</option>
+                                                <option value="Chief Minister">Chief Minister</option>
+                                                <option value="Federal Minister">Federal Minister</option>
+                                                <option value="Deputy/ Assistant Minister for Federal Ministries">Deputy/ Assistant Minister for Federal Ministries</option>
+                                                <option value="Advisors to Prime Minister/ President /Governor /Chief
+                                                        Minister">
+                                                    Advisors to Prime Minister/ President /Governor /Chief
+                                                    Minister
+                                                </option>
+
+
+
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="card-body">
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                ls the Customer Member of
+                                                a Legislative Assembly ?
+                                            </label>
+
+                                            <div class="col-sm-2">
+                                                <input class="form-check-input" type="radio"
+                                                       name="legislative_assembly" value="Yes"
+                                                       onclick="legislativeAssembly(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input class="form-check-input" type="radio"
+                                                       name="legislative_assembly" value="No"
+                                                       onclick="legislativeAssembly(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-6" id="legislative_assembly_type" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Please Choose the Position
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="legislative_assembly_type" style="max-width:250px;">
+                                                    <option value=" Chairman/Head of Political Party"> Chairman/Head of Political Party</option>
+                                                    <option value=" Key Member of Political Party"> Key Member of Political Party</option>
+                                                    <option value="Advisors to Prime Minister / President /Governor /Chief
+                                              Minister">
+                                                        Advisors to Prime Minister / President /Governor /Chief
+                                                        Minister
+                                                    </option>
+                                                    <option value="Minister of State">Minister of State</option>
+                                                    <option value=" Provincial Minister">  Provincial Minister</option>
+                                                    <option value="Chief Minister">Chief Minister</option>
+                                                    <option value="Federal Minister">Federal Minister</option>
+                                                    <option value="Deputy/ Assistant Minister for Federal Ministries">Deputy/ Assistant Minister for Federal Ministries</option>
+                                                    <option value="Advisors to Prime Minister/ President /Governor /Chief
+                                                        Minister">
+                                                        Advisors to Prime Minister/ President /Governor /Chief
+                                                        Minister
+                                                    </option>
+                                                    <option value=" Advisors to Prime Minister/ President /Governor /Chief"> Advisors to Prime Minister/ President /Governor /Chief</option>
+                                                    <option value="Senator">Senator</option>
+                                                    <option value=" Provincial Assembly Member"> Provincial Assembly Member</option>
+                                                    <option value="Federal Minister">Federal Minister</option>
+                                                    <option value="Minister of State">Minister of State</option>
+
+
+
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                ls the Customer Having a
+                                                position as a Judicial Official ?
+                                            </label>
+
+                                            <div class="col-sm-2">
+                                                <input class="form-check-input" type="radio"
+                                                       name="judicial_official" value="Yes"
+                                                       onclick="judicialOfficial(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input class="form-check-input" type="radio"
+                                                       name="judicial_official" value="No"
+                                                       onclick="judicialOfficial(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="col-md-6" id="judicial_official_type" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Please Choose the Position
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="judicial_official_type" id="judicial_official_type" style="max-width:250px;">
+
+
+                                                    <option value="Civil Judge-Judicial Magistrates Court">Civil Judge-Judicial Magistrates Court</option>
+                                                    <option value="Special Tribunal and Board">Special Tribunal and Board</option>
+                                                    <option value="Head of Govt. Prosecutorial Office">Head of Govt. Prosecutorial Office</option>
+
+
+                                                    <option value="Attorney General Or Equivalent">Attorney General Or Equivalent</option>
+
+
+
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+
+
+
+
+
+                            </div>
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Does the Customer Hold
+                                                any Prominent Public Function ?
+                                            </label>
+
+                                            <div class="col-sm-2">
+                                                <input class="form-check-input" type="radio"
+                                                       name="public_function" value="Yes"
+                                                       onclick="publicFunction(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input class="form-check-input" type="radio"
+                                                       name="public_function" value="No"
+                                                       onclick="publicFunction(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6" id="public_function_type" style="display:none;">
+                                    <div class="form-group row">
+                                        <label class="col-sm-7 col-form-label">
+                                            Please Choose the Position
+                                        </label>
+                                        <div class="col-sm-5">
+                                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="public_function_type" style="max-width:250px;">
+
+
+
+                                                <option value="City Nazim /Mayor">City Nazim /Mayor</option>
+                                                <option value="Head of Regulatory authorities / local Bodies
+                                                         (SBP, SECP, PEMRA, OGRA etc)">
+                                                    Head of Regulatory authorities / local Bodies
+                                                    (SBP, SECP, PEMRA, OGRA etc)
+                                                </option>
+
+                                                <option value="Head of Central Bank">Head of Central Bank</option>
+
+                                                <option value="Senior Civil Servant heading departments
+                                                            (National /Federal /District Level)">
+                                                    Senior Civil Servant heading departments
+                                                    (National /Federal /District Level)
+                                                </option>
+
+
+
+
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </div>
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                ls the Customer a
+                                                Diplomat ?
+                                            </label>
+
+                                            <div class="col-sm-2">
+                                                <input class="form-check-input" type="radio" name="diplomat"
+                                                       value="Yes" onclick="diplomatChk(this)" id="diplomatID">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input class="form-check-input" type="radio" name="diplomat"
+                                                       value="No" onclick="diplomatChk(this)" id="diplomatID">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-6" id="diplomat_type1" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Please Choose the Position
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="diplomat_type" style="max-width:250px;">
+
+                                                    <option value="Ambassador">Ambassador</option>
+                                                    <option value="Senior Embassy and Consulate Staff">Senior Embassy and Consulate Staff</option>
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                ls the Customer High
+                                                Ranking Military Official ?
+                                            </label>
+
+                                            <div class="col-sm-2">
+                                                <input class="form-check-input" type="radio"
+                                                       name="military_official" value="Yes"
+                                                       onclick="militaryOfficial(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <input class="form-check-input" type="radio"
+                                                       name="military_official" value="No"
+                                                       onclick="militaryOfficial(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-6" id="military_official_type" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Please Choose the Position
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="military_official_type" style="max-width:250px;">
+
+
+                                                    <option value="General / Admiral /Air Chief Marshall (Equivalent )">General / Admiral /Air Chief Marshall (Equivalent )</option>
+                                                    <option value="Other High Ranking Officer in armed forces (Brigadier, Commodore, Air Commodore)">Other High Ranking Officer in armed forces (Brigadier, Commodore, Air Commodore)</option>
+
+
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="card-body">
+                                <label class="col-sm-12 col-form-label">
+                                    Does Customer hold and Senior
+                                    Position in State owned Enterprises /Corporation/ Autonomous Body ?
+                                </label>
+
+
+                                <div class="row">
+                                    <div class="col-md-6 offset-md-6">
+
+
+                                        <div class="form-group row" style="text-align:center;">
+
+
+                                            <div class="col-sm-5">
+                                                <input class="form-check-input" type="radio"
+                                                       name="senior_position_status" value="Yes"
+                                                       onclick="seniorPosition(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-check-input" type="radio"
+                                                       name="senior_position_status" value="No"
+                                                       onclick="seniorPosition(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-6" id="senior_position_status_type" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Please Choose the Position
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="senior_position_status_type" style="max-width:250px;">
+
+
+
+
+
+                                                    <option value="Member of the Management"> Member of the Management</option>
+                                                    <option value="Member of the Supervisory Board/ Board of Director">Member of the Supervisory Board/ Board of Director</option>
+
+
+                                                    <option value="">
+                                                        lf Other Please
+                                                        Specify Below
+                                                    </option>
+
+
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                            </div>
+                            <div class="card-body">
+                                <label class="col-sm-12 col-form-label">
+                                    ls the Customer High Risk Ranking
+                                    Officials in lnternational Organization (E.g United Nation, World Bank ,
+                                    European Union etc)
+                                </label>
+
+
+                                <div class="row">
+
+                                    <div class="col-md-6 offset-md-6">
+
+
+                                        <div class="form-group row" style="text-align:center;">
+
+
+                                            <div class="col-sm-5">
+                                                <input class="form-check-input" type="radio"
+                                                       name="high_risk_ranking_official" value="Yes"
+                                                       onclick="internationalOrganization(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-check-input" type="radio"
+                                                       name="high_risk_ranking_official" value="No"
+                                                       onclick="internationalOrganization(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-6" id="high_risk_ranking_official_type" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Please Choose the Position
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="high_risk_ranking_official_type" style="max-width:250px;">
+
+
+                                                    <option value="Head of Large lnternational Organization"> Head of Large lnternational Organization</option>
+
+                                                    <option value="Board of Director"> Board of Director</option>
+
+                                                    <option value="Management team member of the lnternational Organization">Management team member of the lnternational Organization</option>
+
+
+
+
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                            </div>
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                ls the Customer Member of
+                                                Ruling Families ?
+                                            </label>
+
+                                            <div class="col-sm-2 ">
+                                                <input class="form-check-input" type="radio"
+                                                       name="member_of_ruling_families" value="Yes"
+                                                       onclick="rulingFamilies(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="member_of_ruling_families" value="No"
+                                                       onclick="rulingFamilies(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row" id="rulingFamilies" style="display:none;">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="form-check form-check-success"> </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-7 col-form-label">
+                                                    Please Specify
+                                                    Position
+                                                </label>
+                                                <div class="col-sm-5">
+                                                    <input type="text" class="form-control"
+                                                           name="member_of_ruling_familiesl_position" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-body">
+                                <label class="col-sm-12 col-form-label">
+                                    ls the Customer lmmediate Family
+                                    Member/ Close associate (*) to any of the above Classification ?
+                                </label>
+
+                                <div class="col-md-6 offset-md-6">
+
+
+                                    <div class="form-group row" style="text-align:center;">
+
+                                        <div class="col-sm-5 ">
+                                            <input class="form-check-input" type="radio"
+                                                   name="immediate_family_member" value="Yes" >
+                                            <label class="form-check-label" >
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4 ">
+                                            <input class="form-check-input" type="radio"
+                                                   name="immediate_family_member" value="No" >
+                                            <label class="form-check-label" >
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="row" id="immediateFamily">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                Relevant section
+                                                No./ Classification to be Mentioned
+                                            </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control"
+                                                       name="immediate_family_member_section_no" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                Name of the
+                                                immediate family member/Close associate
+                                            </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control"
+                                                       name="immediate_family_member_name" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                Relationship with
+                                                immediate family member/Close associate
+                                            </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control"
+                                                       name="immediate_family_member_relation" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">
+                                            What is the Source of
+                                            wealth of Customer (PEP)
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control"
+                                                   name="pep_wealth_source" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">
+                                            What is the percentage
+                                            of share holding of customer (PEP) in Corporation/
+                                            Enterprises?
+                                        </label>
+
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control"
+                                                   name="pep_share_holdig" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">
+                                            What is the period and
+                                            country of the customer (PEP) where he held senior position?
+                                        </label>
+
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control"
+                                                   name="pep_country" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                            </div>
+
+
+
+
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn ajaxcall">Submit</button>
+                                <button class="btn">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+        function myFormValidation() {
+            var x = document.getElementById("incorporation_noID");
+            var y = document.getElementById("corporation_nameID");
+
+            var edate = document.getElementById("corporation_dateID");
+            var accountTitleID = document.getElementById("account_titeID");
+            var accountNoID = document.getElementById("account_numberID");
+            var branchNameID = document.getElementById("branch_nameID");
+            var branchCodeID = document.getElementById("branch_codeID");
+
+            var currentAddressID = document.getElementById("addressID");
+            var districtID = document.getElementById("districtID");
+            var provinceID = document.getElementById("provinceID");
+           /* var pepID = document.getElementById("pepStatusID").checked;*/
+
+            var partnernameID = document.getElementById("partnernameID");
+            var partnerID = document.getElementById("partnerID");
+
+
+
+
+            if (x.value === "") {
+                alert("organization no is empty")
+                return false;
+            }
+            else if (edate.value === "") {
+                alert("Please Select the  Date ")
+                return false;
+            }
+
+            else if (y.value === "") {
+                alert("Corporation Name cant be empty ")
+                return false;
+            }
+
+            else if (accountTitleID.value === "") {
+                alert("accountTitleID cant be empty ")
+                return false;
+            }
+            else if (accountNoID.value === "") {
+                alert("accountNoID cant be empty ")
+                return false;
+            }
+            else if (branchNameID.value === "") {
+                alert("branchNameIDName cant be empty ")
+                return false;
+            }
+            else if (branchCodeID.value === "") {
+                alert("branchCodeID cant be empty ")
+                return false;
+            }
+
+            else if (currentAddressID.value === "") {
+                alert("currentAddressIDcant be empty ")
+                return false;
+            }
+
+            else if (districtID.value === "") {
+                alert("districtID Name cant be empty ")
+                return false;
+            }
+            else if (provinceID.value === "") {
+                alert("provinceID Name cant be empty ")
+                return false;
+            }
+            //else if (pepID.value === "") {
+            //    alert("Please Select PEP Status")
+            //    return false;
+            //}
+            else if (partnernameID.value === "") {
+                alert("Select Partner ID ")
+                return false;
+            }
+            else if (partnerID.value === "") {
+                alert("select partner  ID ")
+                return false;
+            }
+
+
+            else {
+                return true;
+            }
+
+
+        }
+
+
+        //function residenceCheck(this) {
+        //    var x = document.getElementById("residence_specify");
+
+        //    if (choice.value == "resident") {
+        //        x.style.display = "none";
+        //    }
+        //    else {
+        //        x.style.display = "block";
+        //    }
+
+
+        //}
+
+        function highRank(choice) {
+            var x = document.getElementById("high_rank_official_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+        function legislativeAssembly(choice) {
+            var x = document.getElementById("legislative_assembly_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+
+        function judicialOfficial(choice) {
+            var x = document.getElementById("judicial_official_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+
+        function publicFunction(choice) {
+            var x = document.getElementById("public_function_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+        function diplomatChk(choice) {
+            var x = document.getElementById("diplomat_type1");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+        }
+        function militaryOfficial(choice) {
+            var x = document.getElementById("military_official_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+        function seniorPosition(choice) {
+            var x = document.getElementById("senior_position_status_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+        function internationalOrganization(choice) {
+            var x = document.getElementById("high_risk_ranking_official_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+        }
+        function rulingFamilies(choice) {
+            var x = document.getElementById("rulingFamilies");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+        }
+        //function immediate_family_member(choice) {
+        //    var x = document.getElementById("immediateFamily");
+
+        //    if (choice.value == "No") {
+        //        x.style.display = "none";
+        //    }
+        //    else {
+        //        x.style.display = "block";
+        //    }
+
+        //}
+
+
+
+    </script>
+    <script>
+        // onclick ajax call
+        $('.ajaxcall').on('click', function (e) {
+            e.preventDefault();
+
+            if (myFormValidation() === true) {
+                // get all form data
+                var queryString = $('.formdata').serialize();
+                $.ajax({
+                    url: '{% url "addOrganization" %}',
+                    type: 'POST',
+                    data: queryString,
+                    success: function (data) {
+                        //get id from data
+                        //var id = data.id;
+                        //console.log(id);
+                        // sweet alert isconfirm and hit url
+                        swal({
+                            title: "Data Has been Saved ",
+                            /* text: "Do you want to Call Screeen this User?",*/
+                            icon: "success",
+                            button: "OK",
+                        });
+                        setTimeout(function () {
+
+                            location.reload(true);
+                        }, 1500);
+
+                    }
+                });
+
+            }
+
+
+        });
+
+
+
+
+    </script>
+    <script>
+       
+        function checkOrgType() {
+            var choice = document.getElementById("type_of_organization");
+            var y = document.getElementById("orgTypeOther");
+
+
+           
+            var val = choice.value;
+            if (val == "other") {
+                
+                y.style.display = "block";
+            }
+            else {
+               
+                y.style.display = "none";
+            }
+
+
+        } 
+        function checkCustomer() {
+            var choice = document.getElementById("customer_type");
+            var y = document.getElementById("orgTypeOther");
+
+            var val = choice.value;
+            alert(val)
+            //if (val == "other") {
+
+            //    y.style.display = "block";
+            //}
+            //else {
+
+            //    y.style.display = "none";
+            //}
+
+
+        }
+
+        function highRank(choice) {
+            var childNodes = document.getElementById("highrank").getElementsByTagName('*');
+            if (choice.value == "No") {
+                for (var node of childNodes) {
+                    node.disabled = true;
+                }
+            }
+            else {
+                for (var node of childNodes) {
+                    node.disabled = false;
+                }
+
+            }
+
+
+        }
+        function legislativeAssembly(choice) {
+            var childNodes = document.getElementById("legislativeAssembly").getElementsByTagName('*');
+            if (choice.value == "No") {
+                for (var node of childNodes) {
+                    node.disabled = true;
+                }
+            }
+            else {
+                for (var node of childNodes) {
+                    node.disabled = false;
+                }
+
+            }
+
+
+        }
+        function judicialOfficial(choice) {
+            var childNodes = document.getElementById("judicialOfficial").getElementsByTagName('*');
+            if (choice.value == "No") {
+                for (var node of childNodes) {
+                    node.disabled = true;
+                }
+            }
+            else {
+                for (var node of childNodes) {
+                    node.disabled = false;
+                }
+
+            }
+
+
+        }
+        function publicFunction(choice) {
+            var childNodes = document.getElementById("publicFunction").getElementsByTagName('*');
+            if (choice.value == "No") {
+                for (var node of childNodes) {
+                    node.disabled = true;
+                }
+            }
+            else {
+                for (var node of childNodes) {
+                    node.disabled = false;
+                }
+
+            }
+
+
+        }
+        function diplomat(choice) {
+            var childNodes = document.getElementById("diplomat").getElementsByTagName('*');
+            if (choice.value == "No") {
+                for (var node of childNodes) {
+                    node.disabled = true;
+                }
+            }
+            else {
+                for (var node of childNodes) {
+                    node.disabled = false;
+                }
+
+            }
+
+
+        }
+        function militaryOfficial(choice) {
+            var childNodes = document.getElementById("militaryOfficial").getElementsByTagName('*');
+            if (choice.value == "No") {
+                for (var node of childNodes) {
+                    node.disabled = true;
+                }
+            }
+            else {
+                for (var node of childNodes) {
+                    node.disabled = false;
+                }
+
+            }
+
+
+        }
+        function seniorPosition(choice) {
+            var childNodes = document.getElementById("seniorPosition").getElementsByTagName('*');
+            if (choice.value == "No") {
+                for (var node of childNodes) {
+                    node.disabled = true;
+                }
+            }
+            else {
+                for (var node of childNodes) {
+                    node.disabled = false;
+                }
+
+            }
+
+
+        }
+        function internationalOrganization(choice) {
+            var childNodes = document.getElementById("internationalOrganization").getElementsByTagName('*');
+            if (choice.value == "No") {
+                for (var node of childNodes) {
+                    node.disabled = true;
+                }
+            }
+            else {
+                for (var node of childNodes) {
+                    node.disabled = false;
+                }
+
+            }
+
+
+        }
+        function rulingFamilies(choice) {
+            var childNodes = document.getElementById("rulingFamilies").getElementsByTagName('*');
+            if (choice.value == "No") {
+                for (var node of childNodes) {
+                    node.disabled = true;
+                }
+            }
+            else {
+                for (var node of childNodes) {
+                    node.disabled = false;
+                }
+
+            }
+
+
+        }
+        function immediateFamily(choice) {
+            var childNodes = document.getElementById("immediateFamily").getElementsByTagName('*');
+            if (choice.value == "No") {
+                for (var node of childNodes) {
+                    node.disabled = true;
+                }
+            }
+            else {
+                for (var node of childNodes) {
+                    node.disabled = false;
+                }
+
+            }
+
+
+        }
+
+        function highRank(choice) {
+            var x = document.getElementById("high_rank_official_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+        function legislativeAssembly(choice) {
+            var x = document.getElementById("legislative_assembly_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+
+        function judicialOfficial(choice) {
+            var x = document.getElementById("judicial_official_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+
+        function publicFunction(choice) {
+            var x = document.getElementById("public_function_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+        function diplomat(choice) {
+            var x = document.getElementById("diplomat_type1");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+        }
+        function militaryOfficial(choice) {
+            var x = document.getElementById("military_official_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+        function seniorPosition(choice) {
+            var x = document.getElementById("senior_position_status_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+        function internationalOrganization(choice) {
+            var x = document.getElementById("high_risk_ranking_official_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+        }
+        function rulingFamilies(choice) {
+            var x = document.getElementById("rulingFamilies");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+        }
+        function immediate_family_member(choice) {
+            var x = document.getElementById("immediateFamily");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+        }
+
+
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var maxField = 5; //Input fields increment limitation                   
+            var addButton = $('.add_button'); //Add button selector
+            var wrapper = $('.field_wrapper'); //Input field wrapper
+            var fieldHTML1 = '<div class="col-md-12"><input type="text" name="field_name[]" value=""/><a href="javascript:void(0);" class="remove_button"><i class="mdi mdi-minus-box-outline menu-icon"></i></a></div>'; //New input field html
+            var fieldHTML = "";
+           
+            fieldHTML += '<div class="row">';
+            fieldHTML += '<div class="col-md-12">';
+            fieldHTML += ' <div class="form-group row">';
+            fieldHTML += ' <label class="col-sm-6 col-form-label">Name of Owners/Directors/Partners/Sponsor Shareholders</label>';
+            fieldHTML += '<div class="col-sm-5">';
+            fieldHTML += '  <input type="text" class="form-control" name="partner_name" id="partnernameID" />';
+            fieldHTML += ' </div> </div>  </div>';
+
+            fieldHTML += '<div class="col-md-12">';
+            fieldHTML += ' <div class="form-group row">';
+            fieldHTML += ' <label class="col-sm-6 col-form-label"> Identification Document Number of Owners/Directors/Partners/Sponsor Shareholders</label>';
+            fieldHTML += '<div class="col-sm-5">';
+            fieldHTML += ' <input type="text" class="form-control" name="partner_id" id="partnerID" /> ';
+            fieldHTML += '   </div> ';
+            fieldHTML += ' <a href="javascript:void(0);" class="remove_button" ><i class="mdi mdi-minus-box-outline menu-icon" style="float: right;"></i></a>  ';
+            
+            fieldHTML += '   </div> ';
+            fieldHTML += '   </div> ';
+            fieldHTML += '   </div> ';
+            fieldHTML += '   </div> ';
+          
+            
+           
+             
+            var x = 1; //Initial field counter is 1
+
+            //Once add button is clicked
+            $(addButton).click(function () {
+                //Check maximum number of input fields
+                if (x < maxField) {
+                    x++; //Increment field counter
+                    $(wrapper).append(fieldHTML); //Add field html
+                }
+            });
+
+            //Once remove button is clicked
+            $(wrapper).on('click', '.remove_button', function (e) {
+                e.preventDefault();
+                $(this).parent('div').parent('div').parent('div').remove(); //Remove field html
+                x--; //Decrement field counter
+            });
+        });
+    </script>
+
+
+</div>
+{% endblock %}

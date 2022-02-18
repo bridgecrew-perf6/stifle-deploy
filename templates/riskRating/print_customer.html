@@ -1,0 +1,1494 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Title</title>
+    <style type="text/css">
+        body {
+            font-weight: 200;
+            font-size: 14px;
+        }
+
+        .header {
+            font-size: 20px;
+            font-weight: 100;
+            text-align: center;
+            color: #007cae;
+        }
+
+        .title {
+            font-size: 22px;
+            font-weight: 100;
+            /* text-align: right;*/
+            padding: 10px 20px 0px 20px;
+        }
+
+            .title span {
+                color: #007cae;
+            }
+
+        .details {
+            padding: 10px 20px 0px 20px;
+            text-align: left !important;
+            /*margin-left: 40%;*/
+        }
+
+        .hrItem {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #fff; /* Modern Browsers */
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card" style="font-family:Prompt;">
+                    <div class="card-body">
+
+                        
+                            <p class="card-description"> Customer Identification </p>
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group row">
+                                        <label class="col-sm-7 col-form-label" title="Computerized National Identity Card">
+                                            Identity Document Number 
+
+                                        </label>
+
+                                        <label class="col-sm-7 col-form-label" title="Computerized National Identity Card">
+                                            {{showCustomerObject.customer_id}}
+
+                                        </label>
+                                        <div class="col-sm-5">
+                                            <input type="number" min="0" class="form-control" name="user_cnic" required id="cnicID"
+                                                   value="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label"> Expiry Date of Identity Document</label>
+                                        <div class="col-sm-7">
+                                            <input type="date" class="form-control" name="ex_date" id="exDateID"
+                                                   value="{{showCustomerObject.document_expiry_date}}" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Gender</label>
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="gender" value="male" id="genderID">
+                                            <label class="form-check-label" for="gender1">
+                                                Male
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="gender" value="female" id="genderID">
+                                            <label class="form-check-label" for="gender1">
+                                                Female
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label"> Account Title</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="account_tite" id="accountTitleID" required
+                                                   value="{{showCustomerObject.account_title}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label"> Account Number</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="account_number" id="accountNoID"
+                                                   value="{{showCustomerObject.account_number}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label"> Branch Name</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="branch_name" id="branchNameID"
+                                                   value="{{showCustomerObject.branch_name}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label"> Branch Code</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="branch_code" id="branchCodeID"
+                                                   value="{{showCustomerObject.branch_code}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label"> Customer Name</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="customer_name" id="customerNameID"
+                                                   value="{{showCustomerObject.customer_name}}" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label"> Father/Husband Name</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="father_name" id="fathernameID"
+                                                   value="{{showCustomerObject.father_name}}" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label"> Date of Birth</label>
+                                        <div class="col-sm-7">
+                                            <input type="date" class="form-control" name="birthday" id="dobID"
+                                                   value="{{showCustomerObject.birth_date}}" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Place of Birth</label>
+                                        <div class="col-sm-7">
+                                            {{showCustomerObject.birth_place}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Nationality</label>
+                                        <div class="col-sm-7">
+                                            {{showCustomerObject.nationality}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">Resident Status</label>
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="residence_status"
+                                                   value="Resident" id="residenceID">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Resident
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="residence_status"
+                                                   value="Non-Resident" id="residenceID">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Non-Resident
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Current Address</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="current_address" id="currentAddressID"
+                                                   value="{{showCustomerObject.current_address}}" />
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--<div class="col-md-6">
+                                    <div class="form-group row">
+
+                                        <div class="col-sm-7">
+
+                                            <div class="form-check">
+                                                <span>
+                                                    <input class="form-check-input" type="checkbox" value="" id="same" name="same" onchange="addressFunction()">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                        Same
+                                                    </label>
+                                                </span>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>-->
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Permanent Address</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="permanent_address" id="permanentAddress"
+                                                   value="{{showCustomerObject.permanent_addres}}" />
+                                            <span style="padding-left:20px;">
+                                                <input class="form-check-input" type="checkbox" id="same" name="same" onchange="addressFunction()">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Cick if Same as Current Address
+                                                </label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">District</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="district" id="districtID"
+                                                   value="{{showCustomerObject.district}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Province</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="province" id="provinceID"
+                                                   value="{{showCustomerObject.province}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Geographic Location</label>
+                                        <div class="col-sm-5">
+                                            <select id="customer_type" name="city" style="width:240px !important;" required ">
+                                                {% for field in GeographicLocation %}
+                                                <!--<option selected>{{showCustomerObject.city}}</option>-->
+                                                <option>{{field.city}}</option>
+                                                {% endfor %}
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Zip Code</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="zip_code" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Customer Type</label>
+                                        <div class="col-sm-5">
+                                            <select id="customer_type" name="customer_type"
+                                                    style="width:240px !important;" required
+                                                    onclick="pepDetails(this.value)">
+                                                {% for field in CustomerType %}
+                                                <!--<option selected>{{showCustomerObject.customer_type}}</option>-->
+                                                <option>{{field.cust_type}}</option>
+
+                                                if
+
+                                                {% endfor %}
+
+
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label"> Delivery Channels </label>
+                                        <div class="col-sm-7">
+                                            {{showCustomerObject.delivery_channel}}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label"> Source of Funds  </label>
+                                        <div class="col-sm-7">
+                                            {{showCustomerObject.fund_source}}
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Products & Services Type </label>
+                                        <div class="col-sm-7">
+                                            {{showCustomerObject.product_type}}
+
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label"> Purpose of Account  </label>
+                                        <div class="col-sm-7">
+                                            {{showCustomerObject.account_purpose}}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label"> Normal Mode of Transactions  </label>
+                                        <div class="col-sm-7">
+                                            {{showCustomerObject.mode_of_transactions}}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <p class="card-description"> Expected Monthly Turnover</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label"> No. of Debit Transactions</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control"
+                                                   name="number_debit_transaction" id="dtID"
+                                                   value="{{showCustomerObject.number_debit_transaction}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">
+                                            Equivalent Amount of Debit
+                                            Transactions (000)
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control"
+                                                   name="amount_debit_transaction" id="adtID"
+                                                   value="{{showCustomerObject.amount_debit_transaction}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label"> No. of Credit Transactions</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control"
+                                                   name="number_credit_transaction" id="ctID"
+                                                   value="{{showCustomerObject.number_credit_transaction}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">
+                                            Equivalent Amount of Credit
+                                            Transactions (000))
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control"
+                                                   name="amount_credit_transaction" id="actID"
+                                                   value="{{showCustomerObject.amount_credit_transaction}}" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="row">
+
+                                <div class="col-md-12">
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">
+                                            Is the Customer Politically Exposed
+                                            Person (PEP)?
+                                        </label>
+
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="pep_status"
+                                                   value="yes" onchange="pepDetails(this)" id="pepID">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="pep_status"
+                                                   value="no" onchange="pepDetails(this)" id="pepID">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Beneficial Ownership</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-check-input" type="radio" name="benefical_owner"
+                                                   value="self" onchange="benficialDetails(this)">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Self
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input class="form-check-input" type="radio" name="benefical_owner"
+                                                   value="other" onchange="benficialDetails(this)">
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                Other
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>-->
+                            <script>
+                                function benficialDetails(myradio) {
+                                    var x = document.getElementById("benficiary_form");
+
+                                    if (myradio.value == "other") {
+                                        x.style.display = "block";
+                                    }
+
+                                    else {
+                                        x.style.display = "none";
+                                    }
+                                }
+                            </script>
+                            <script>
+                                function pepDetails(choice) {
+                                    var x = document.getElementById("pep_form");
+
+                                    if (choice.value == "yes") {
+                                        x.style.display = "block";
+                                    }
+
+                                    else {
+                                        x.style.display = "none";
+                                    }
+                                }
+                            </script>
+
+                            <div id="benficiary_form" style="display:none;">
+                                <p class="card-description">
+                                    Please Provide Details Of Beneficial Owner-individual
+                                    Account
+                                </p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Name of Beneficial Owner </label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control"
+                                                       name="benefical_owner_name" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-5 col-form-label">
+                                                Relationship with
+                                                Customer
+                                            </label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control"
+                                                       name="relationship_with_customer" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">
+                                                Address of the Beneficial
+                                                Owner
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control" name="beneficial_address" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-5 col-form-label">Identity Document</label>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" name="beneficial_id" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Identity Document Number</label>
+                                            <div class="col-sm-8">
+                                                <input type="text" class="form-control"
+                                                       name="beneficial_document_no" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-5 col-form-label">
+                                                Expiray Date of Identity
+                                                Document Number
+                                            </label>
+                                            <div class="col-sm-7">
+                                                <input type="date" class="form-control"
+                                                       name="beneficial_expiry_date" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <br />
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Nationality</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-check-input" type="radio" name="nationality"
+                                                       value="pakistani" onchange="nationalityCheck(this)">
+                                                <label class="form-check-label" for="nationality1">
+                                                    Pakistani
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-check-input" type="radio" name="nationality"
+                                                       value="other" onchange="nationalityCheck(this)">
+                                                <label class="form-check-label" for="nationality1">
+                                                    Other
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6" id="nationality_other" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                Please Specify Nationality
+                                            </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="nationality_specify" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-4 col-form-label">Residence</label>
+                                            <div class="col-sm-4">
+                                                <input class="form-check-input" type="radio"
+                                                       name="beneficial_residence" value="resident" onchange="residenceCheck(this)">
+                                                <label class="form-check-label" for="residence1">
+                                                    Resident
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-check-input" type="radio"
+                                                       name="beneficial_residence" value="non-resident" onchange="residenceCheck(this)">
+                                                <label class="form-check-label" for="residence1">
+                                                    Non-Resident
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6" id="residence_specify" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                Please Specify Country
+                                            </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                Is the Beneficial Owner US Person
+                                                Select "Yes" OR "NO'
+                                            </label>
+
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio" name="us_person"
+                                                       value="Yes">
+                                                <label class="form-check-label" for="us_person1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio" name="us_person"
+                                                       value="No">
+                                                <label class="form-check-label" for="us_person1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+
+
+                                    <div class="col-md-6">
+                                        <div class="form-group row">
+                                            <label class="col-sm-5 col-form-label">
+                                                Source of Funds
+                                            </label>
+                                            <div class="col-sm-7">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="b_fund_source" style="max-width:240px;">
+                                                    <option value="Agriculture">  Agriculture</option>
+                                                    <option value="Business">Business</option>
+                                                    <option value="Rental Income">Rental Income</option>
+
+                                                    <option value="Specify in case of
+                                                other">
+                                                        Specify in case of
+                                                        other
+                                                    </option>
+
+
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+
+                            <div class="row" id="pep_form" style="display:none;">
+
+
+                                <div class="card-body">
+
+
+                                    <div class="row">
+
+
+                                        <div class="col-md-12">
+
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    Is the Customer High
+                                                    Ranking Government official?
+                                                </label>
+
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="high_rank_official" value="yes"
+                                                           onclick="highRank(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="high_rank_official" value="No"
+                                                           onclick="highRank(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6" id="high_rank_official_type" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Please Choose the Position
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="high_rank_official_type" style="max-width:250px;">
+                                                    <option value=" President"> President</option>
+                                                    <option value="Prime Minister">Prime Minister</option>
+                                                    <option value="Governor">Governor</option>
+                                                    <option value="Minister of State">Minister of State</option>
+                                                    <option value=" Provincial Minister">  Provincial Minister</option>
+                                                    <option value="Chief Minister">Chief Minister</option>
+                                                    <option value="Federal Minister">Federal Minister</option>
+                                                    <option value="Deputy/ Assistant Minister for Federal Ministries">Deputy/ Assistant Minister for Federal Ministries</option>
+                                                    <option value="Advisors to Prime Minister/ President /Governor /Chief
+                                                        Minister">
+                                                        Advisors to Prime Minister/ President /Governor /Chief
+                                                        Minister
+                                                    </option>
+
+
+
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
+                                <div class="card-body">
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    ls the Customer Member of
+                                                    a Legislative Assembly ?
+                                                </label>
+
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="legislative_assembly" value="Yes"
+                                                           onclick="legislativeAssembly(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="legislative_assembly" value="No"
+                                                           onclick="legislativeAssembly(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6" id="legislative_assembly_type" style="display:none;">
+                                            <div class="form-group row">
+                                                <label class="col-sm-7 col-form-label">
+                                                    Please Choose the Position
+                                                </label>
+                                                <div class="col-sm-5">
+                                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="legislative_assembly_type" style="max-width:250px;">
+                                                        <option value=" Chairman/Head of Political Party"> Chairman/Head of Political Party</option>
+                                                        <option value=" Key Member of Political Party"> Key Member of Political Party</option>
+                                                        <option value="Advisors to Prime Minister / President /Governor /Chief
+                                              Minister">
+                                                            Advisors to Prime Minister / President /Governor /Chief
+                                                            Minister
+                                                        </option>
+                                                        <option value="Minister of State">Minister of State</option>
+                                                        <option value=" Provincial Minister">  Provincial Minister</option>
+                                                        <option value="Chief Minister">Chief Minister</option>
+                                                        <option value="Federal Minister">Federal Minister</option>
+                                                        <option value="Deputy/ Assistant Minister for Federal Ministries">Deputy/ Assistant Minister for Federal Ministries</option>
+                                                        <option value="Advisors to Prime Minister/ President /Governor /Chief
+                                                        Minister">
+                                                            Advisors to Prime Minister/ President /Governor /Chief
+                                                            Minister
+                                                        </option>
+                                                        <option value=" Advisors to Prime Minister/ President /Governor /Chief"> Advisors to Prime Minister/ President /Governor /Chief</option>
+                                                        <option value="Senator">Senator</option>
+                                                        <option value=" Provincial Assembly Member"> Provincial Assembly Member</option>
+                                                        <option value="Federal Minister">Federal Minister</option>
+                                                        <option value="Minister of State">Minister of State</option>
+
+
+
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                                <div class="card-body">
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    ls the Customer Having a
+                                                    position as a Judicial Official ?
+                                                </label>
+
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="judicial_official" value="Yes"
+                                                           onclick="judicialOfficial(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="judicial_official" value="No"
+                                                           onclick="judicialOfficial(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+                                        <div class="col-md-6" id="judicial_official_type" style="display:none;">
+                                            <div class="form-group row">
+                                                <label class="col-sm-7 col-form-label">
+                                                    Please Choose the Position
+                                                </label>
+                                                <div class="col-sm-5">
+                                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="judicial_official_type" id="judicial_official_type" style="max-width:250px;">
+
+
+                                                        <option value="Civil Judge-Judicial Magistrates Court">Civil Judge-Judicial Magistrates Court</option>
+                                                        <option value="Special Tribunal and Board">Special Tribunal and Board</option>
+                                                        <option value="Head of Govt. Prosecutorial Office">Head of Govt. Prosecutorial Office</option>
+
+
+                                                        <option value="Attorney General Or Equivalent">Attorney General Or Equivalent</option>
+
+
+
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                    </div>
+
+
+
+
+
+                                </div>
+                                <div class="card-body">
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    Does the Customer Hold
+                                                    any Prominent Public Function ?
+                                                </label>
+
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="public_function" value="Yes"
+                                                           onclick="publicFunction(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="public_function" value="No"
+                                                           onclick="publicFunction(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-6" id="public_function_type" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Please Choose the Position
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="public_function_type" style="max-width:250px;">
+
+
+
+                                                    <option value="City Nazim /Mayor">City Nazim /Mayor</option>
+                                                    <option value="Head of Regulatory authorities / local Bodies
+                                                         (SBP, SECP, PEMRA, OGRA etc)">
+                                                        Head of Regulatory authorities / local Bodies
+                                                        (SBP, SECP, PEMRA, OGRA etc)
+                                                    </option>
+
+                                                    <option value="Head of Central Bank">Head of Central Bank</option>
+
+                                                    <option value="Senior Civil Servant heading departments
+                                                            (National /Federal /District Level)">
+                                                        Senior Civil Servant heading departments
+                                                        (National /Federal /District Level)
+                                                    </option>
+
+
+
+
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+                                <div class="card-body">
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    ls the Customer a
+                                                    Diplomat ?
+                                                </label>
+
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio" name="diplomat"
+                                                           value="Yes" onclick="diplomat(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio" name="diplomat"
+                                                           value="No" onclick="diplomat(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-6" id="diplomat_type1" style="display:none;">
+                                            <div class="form-group row">
+                                                <label class="col-sm-7 col-form-label">
+                                                    Please Choose the Position
+                                                </label>
+                                                <div class="col-sm-5">
+                                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="diplomat_type" style="max-width:250px;">
+
+                                                        <option value="Ambassador">Ambassador</option>
+                                                        <option value="Senior Embassy and Consulate Staff">Senior Embassy and Consulate Staff</option>
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                                <div class="card-body">
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    ls the Customer High
+                                                    Ranking Military Official ?
+                                                </label>
+
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="military_official" value="Yes"
+                                                           onclick="militaryOfficial(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="military_official" value="No"
+                                                           onclick="militaryOfficial(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-6" id="military_official_type" style="display:none;">
+                                            <div class="form-group row">
+                                                <label class="col-sm-7 col-form-label">
+                                                    Please Choose the Position
+                                                </label>
+                                                <div class="col-sm-5">
+                                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="military_official_type" style="max-width:250px;">
+
+
+                                                        <option value="General / Admiral /Air Chief Marshall (Equivalent )">General / Admiral /Air Chief Marshall (Equivalent )</option>
+                                                        <option value="Other High Ranking Officer in armed forces (Brigadier, Commodore, Air Commodore)">Other High Ranking Officer in armed forces (Brigadier, Commodore, Air Commodore)</option>
+
+
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                </div>
+                                <div class="card-body">
+                                    <label class="col-sm-12 col-form-label">
+                                        Does Customer hold and Senior
+                                        Position in State owned Enterprises /Corporation/ Autonomous Body ?
+                                    </label>
+
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+
+
+                                            <div class="form-group row" style="text-align:center;">
+
+
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="senior_position_status" value="Yes"
+                                                           onclick="seniorPosition(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="senior_position_status" value="No"
+                                                           onclick="seniorPosition(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-md-6" id="senior_position_status_type" style="display:none;">
+                                            <div class="form-group row">
+                                                <label class="col-sm-7 col-form-label">
+                                                    Please Choose the Position
+                                                </label>
+                                                <div class="col-sm-5">
+                                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="senior_position_status_type" style="max-width:250px;">
+
+
+
+
+
+                                                        <option value="Member of the Management"> Member of the Management</option>
+                                                        <option value="Member of the Supervisory Board/ Board of Director">Member of the Supervisory Board/ Board of Director</option>
+
+
+                                                        <option value="">
+                                                            lf Other Please
+                                                            Specify Below
+                                                        </option>
+
+
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+                                </div>
+                                <div class="card-body">
+                                    <label class="col-sm-12 col-form-label">
+                                        ls the Customer High Risk Ranking
+                                        Officials in lnternational Organization (E.g United Nation, World Bank ,
+                                        European Union etc)
+                                    </label>
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+
+                                            <div class="form-group row" style="text-align:center;">
+
+
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="high_risk_ranking_official" value="Yes"
+                                                           onclick="internationalOrganization(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="high_risk_ranking_official" value="No"
+                                                           onclick="internationalOrganization(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-6" id="high_risk_ranking_official_type" style="display:none;">
+                                            <div class="form-group row">
+                                                <label class="col-sm-7 col-form-label">
+                                                    Please Choose the Position
+                                                </label>
+                                                <div class="col-sm-5">
+                                                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="high_risk_ranking_official_type" style="max-width:250px;">
+
+
+                                                        <option value="Head of Large lnternational Organization"> Head of Large lnternational Organization</option>
+
+                                                        <option value="Board of Director"> Board of Director</option>
+
+                                                        <option value="Management team member of the lnternational Organization">Management team member of the lnternational Organization</option>
+
+
+
+
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+
+
+                                </div>
+                                <div class="card-body">
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    ls the Customer Member of
+                                                    Ruling Families ?
+                                                </label>
+
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="member_of_ruling_families" value="Yes"
+                                                           onclick="rulingFamilies(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="member_of_ruling_families" value="No"
+                                                           onclick="rulingFamilies(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row" id="rulingFamilies" style="display:none;">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="form-check form-check-success"> </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-7 col-form-label">
+                                                        Please Specify
+                                                        Position
+                                                    </label>
+                                                    <div class="col-sm-5">
+                                                        <input type="text" class="form-control"
+                                                               name="member_of_ruling_familiesl_position" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="card-body">
+                                    <label class="col-sm-12 col-form-label">
+                                        ls the Customer lmmediate Family
+                                        Member/ Close associate (*) to any of the above Classification ?
+                                    </label>
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+
+
+                                            <div class="form-group row" style="text-align:center;">
+
+                                                <div class="col-sm-4">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="immediate_family_member" value="Yes" onchange="immediate_family_member(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <input class="form-check-input" type="radio"
+                                                           name="immediate_family_member" value="No" onchange="immediate_family_member(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        No
+                                                    </label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row" id="immediateFamily">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">
+                                                        Relevant section
+                                                        No./ Classification to be Mentioned
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control"
+                                                               name="immediate_family_member_section_no" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">
+                                                        Name of the
+                                                        immediate family member/Close associate
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control"
+                                                               name="immediate_family_member_name" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-6 col-form-label">
+                                                        Relationship with
+                                                        immediate family member/Close associate
+                                                    </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="form-control"
+                                                               name="immediate_family_member_relation" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    What is the Source of
+                                                    wealth of Customer (PEP)
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control"
+                                                           name="pep_wealth_source" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    What is the percentage
+                                                    of share holding of customer (PEP) in Corporation/
+                                                    Enterprises?
+                                                </label>
+
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control"
+                                                           name="pep_share_holdig" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    What is the period and
+                                                    country of the customer (PEP) where he held senior position?
+                                                </label>
+
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control"
+                                                           name="pep_country" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+
+
+
+
+                                </div>
+
+
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <!--<button type="button" class="btn ajaxcall">Update</button>-->
+                                    <!--<button class="btn">Cancel</button>-->
+                                </div>
+                            </div>
+                       
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+</div>
+</body>
+</html>

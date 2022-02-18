@@ -1,0 +1,302 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card" style="height: 480px; font-family: Prompt;">
+                <div class="card-body" style="overflow:auto; padding:2px;">
+
+                    <table class="table table-hover" id="myTable">
+                        <thead>
+                            <tr>
+                                <th>DATAID </th>
+                                <th>Name (Listed)</th>
+                                <th>Name (Customer)</th>
+                                <th>Match Score</th>
+                                <th>Alias</th>
+                                <th>ID Number (Listed)</th>
+                                <th>ID Number (Customer)</th>
+                                <th>Match Score</th>
+                                <th>Father Name (Listed)</th>
+                                <th>Father Name (Customer)</th>
+                                <th>Match Score</th>
+
+                                <th>Date Of Birth (Listed)</th>
+                                <th>Date Of Birth (Customer)</th>
+                                <th>Match Score</th>
+
+                                <th>Place of Birth(Listed)</th>
+                                <th>Place of Birth (Customer)</th>
+                                <th>Match Score</th>
+
+                                <th>Nationality (Listed)</th>
+                                <th>Nationality (Customer)</th>
+                                <th>Match Score</th>
+
+                                <th>Address (Listed)</th>
+                                <th>Address (Customer)</th>
+                                <th>Match Score</th>
+                                <th>District (Listed)</th>
+                                <th>District (Customer)</th>
+                                <th>Match Score</th>
+
+
+                                <th>Province (Listed)</th>
+                                <th>Province (Customer)</th>
+                                <th>Match Score</th>
+
+                                <th>Country (Listed)</th>
+                                <th>Country (Customer)</th>
+                                <th>Match Score</th>
+                                <th>Discounting Rationale</th>
+                                <th>Discounting Factor</th>
+                                <th>Proposed Action</th>
+                                <th>Match Type</th>
+                                <th>Risk</th>
+                                <th>List</th>
+                                <th>Type</th>
+                                <!--<th>Action Performed</th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for discount in obj %}
+                            <tr>
+                                <td>{{discount.data_Id}}</td>
+                                <td>{{discount.name}}</td>
+                                <td>{{name}}</td>
+                                <td>{{discount.name_match_score}}</td>
+                                <td>{{discount.alias}}</td>
+                                <td>{{discount.id_number}}</td>
+                                <td>{{cnicNumber}}</td>
+                                <td>{{discount.id_number_match_score}}</td>
+                                <td>{{discount.father_name}}</td>
+                                <td>{{father_name}}</td>
+                                <td>{{discount.father_name_match_score}}</td>
+                                <td>{{discount.dob}}</td>
+                                <td>{{dob}}</td>
+                                <td>{{discount.dob_match_score}}</td>
+
+                                <td>{{discount.city}}</td>
+                                <td>{{pob}}</td>
+                                <td>{{discount.city_match_score}}</td>
+
+
+                                <td>{{discount.nationality}}</td>
+                                <td>{{nationality}}</td>
+                                <td>{{discount.nationality_match_score}}</td>
+                                <td>{{discount.address}}</td>
+                                <td>{{address}}</td>
+                                <td>{{discount.address_match_score}}</td>
+                                <td>{{discount.district}}</td>
+                                <td>{{district}}</td>
+                                <td>{{discount.district_match_score}}</td>
+
+
+                                <td>{{discount.province}}</td>
+                                <td>{{province}}</td>
+                                <td>{{discount.province_match_score}}</td>
+
+
+                                <td>{{discount.country}}</td>
+                                <td>{{country}}</td>
+                                <td>{{discount.country_match_score}}</td>
+
+                                <td>{{discount.discounting_rationale}}</td>
+                                <td>{{discount.type_discounting_factor}}</td>
+                                <td>{{discount.proposed_action}}</td>
+                                <td>{{discount.match_type}}</td>
+                                <td>{{discount.risk}}</td>
+                                <td>{{discount.list}}</td>
+                                <td>{{discount.type}}</td>
+
+                                <!--<td>
+                    {% if discount.action_performed_type == "reject" %}
+                    <button type="button" class="form-link" style="background-color: #ff0018;color:#fff;"
+                            data-toggle="modal"
+                            data-target="#rejectModal"
+                            data-name="{{discount.action_performed_type}}"
+                            data-html="{{discount.action_performed_type}}">
+                        {{discount.action_performed_type}}
+                    </button>
+                    {% elif  discount.action_performed_type == "seek_guidance" %}
+                    <button type="button" class="form-link" style="background-color: #ff0018;color:#fff;"
+                            data-toggle="modal"
+                            data-target="#seekSanctionModal"
+                            data-name="{{discount.action_performed_type}}"
+                            data-html="{{discount.action_performed_type}}">
+                        {{discount.action_performed_type}}
+                    </button>
+
+                    {% endif %}
+
+                </td>-->
+
+
+
+
+
+
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="modal bd-example-modal-lg" id="rejectModal" data-backdrop="static">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #191a1a;color:#ffffff;font-family:Prompt-light;">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+
+                    <form class="holdForm">
+                        {% csrf_token %}
+                        <div class="row" id="approvalRemarks" style="padding-left:50px; display:none;">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="rejected_customer_id" name="rejected_customer_id" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <p style="text-align:center;">Do You want to Reject the Customer ?	</p>
+                        <div class="row" style="text-align: center;">
+
+                            <div class="col-md-6">
+
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="monitoring_frequency" id="" checked value="yes">
+                                    <label class="form-check-label" for="flexRadioDisabled">
+                                        Yes
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="monitoring_frequency" id="" value="no">
+                                    <label class="form-check-label" for="flexRadioCheckedDisabled">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!--<div class="row" id="approvalRemarks" style="padding-left:50px;">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+                                    <label class="col-sm-12 col-form-label">Remarks</label>
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" name="hold_remarks" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="row" style="padding-top:60px;">
+                            <div class="col-md-12 text-center" id="btnCol">
+                                <button type="submit" class="btn rejectFunc" id="btnSubmit">Submit</button>
+                                <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal bd-example-modal-lg" id="seekSanctionModal" data-backdrop="static">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: #191a1a;color:#ffffff;font-family:Prompt-light;">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+
+                    <form class="holdForm">
+                        {% csrf_token %}
+                        <div class="row" id="approvalRemarks" style="padding-left:50px; display:none;">
+                            <div class="col-md-12">
+                                <div class="form-group row">
+
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" id="screen_customer_id" name="screen_customer_id" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <p style="text-align:center;">Do You want File STR against this customer ?	</p>
+                        <div class="row" style="text-align: center;">
+
+                            <div class="col-md-6">
+
+
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="monitoring_frequency" id="" checked value="yes">
+                                    <label class="form-check-label" for="flexRadioDisabled">
+                                        Yes
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="monitoring_frequency" id="" value="no">
+                                    <label class="form-check-label" for="flexRadioCheckedDisabled">
+                                        No
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+
+                     
+                        <div class="row" style="padding-top:60px;">
+                            <div class="col-md-12 text-center" id="btnCol">
+                                <button type="submit" class="btn rejectFunc" id="btnSubmit">Submit</button>
+                                <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+{% endblock %}

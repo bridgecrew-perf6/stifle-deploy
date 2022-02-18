@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+
+
+
+
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/mdi/css/materialdesignicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendors/css/vendor.bundle.base.css' %}" rel="stylesheet">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'vendors/js/vendor.bundle.base.js' %}"></script>
+    <script src="{% static 'js/off-canvas.js' %}"></script>
+    <script src="{% static 'js/hoverable-collapse.js' %}"></script>
+    <script src="{% static 'js/misc.js' %}"></script>
+
+    <script src="{% static 'js/file-upload.js' %}"></script>
+    <link href='https://fonts.googleapis.com/css?family=Prompt' rel='stylesheet'>
+    <link href="{% static 'css/loginstyle.css' %}" rel="stylesheet">
+
+</head>
+<body style="background: #191a1a;">
+
+    <div class="main-page">
+
+        <div class="main">
+
+            <nav class="navbar navbar-expand-lg navbar-light" style="background: #191a1a;">
+                <div class="container-fluid" style="padding-left:90px; padding-top:20px;">
+                    <!--<a class="navbar-brand " href="#">
+        <img src="{% static 'images/logo1.jpg' %}" width="100" height="100" class="d-inline-block align-top" alt="">
+
+    </a>-->
+                    <!--<p>
+                        Helping You Move Forward
+                    </p>-->
+                </div>
+            </nav>
+        </div>
+
+
+
+        <section class="signup">
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <!--<div class="container">-->
+            <div class="row">
+                <div class="col-m-8 mx-auto">
+                    <div style="position:center;">
+                        <img src="{% static 'images/login.png' %}" width="200" height="200" class="d-inline-block align-top" alt="">
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-m-8 mx-auto">
+
+                        <div class="signup-content">
+                           
+                            <form method="POST" name="formdata">
+                                {% csrf_token %}
+
+                                <!--<h1 class="form-title">Stifle </h1>-->
+                                <!--<h5>  <p class="form-title">  Insert your username and password to access to your secure MyStifle account </p></h5>-->
+                                {% if messages %}
+                                <ul class="messages" style="color:darkred;">
+                                    {% for message in messages %}
+
+                                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                                    {{ message }}
+
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+
+                                <div class="form-group">
+                                    <input type="text" class="form-input" name="user_name" id="user_name" placeholder="User Name" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-input" name="password" id="password" placeholder="Password" />
+                                    <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" name="submit" id="submit ajaxcall" class="form-submit" value="Sign in" />
+                                </div>
+                            </form>
+                            <p class="loginhere">
+                                Forgotten your password ? <!--<a href="#" class="loginhere-link">###</a>-->
+                            </p>
+                            <p class="loginhere">
+                                <a href="https://stifle.io/index.php/contact-us/" class="loginhere-link"> Contact Support</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--</div>-->
+</section>
+    </div>
+    
+
+    <!-- JavaScript files-->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/just-validate/js/just-validate.min.js"></script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/choices.js/public/assets/scripts/choices.min.js"></script>
+    <!-- Main File-->
+    <script src="js/front.js"></script>
+    <script>
+        // onclick ajax call
+        $('.ajaxcall').on('click', function (e) {
+            e.preventDefault();
+
+            if (myFormValidation() === true) {
+                // get all form data
+                var queryString = $('.formdata').serialize();
+                $.ajax({
+                    url: '{% url "login" %}',
+                    type: 'POST',
+                    data: queryString,
+                    success: function (data) {
+                        //get id from data
+                        //var id = data.id;
+                        //console.log(id);
+                        // sweet alert isconfirm and hit url
+                        swal({
+                            title: "KYC API Success",
+                            text: "Do you want to Call Screeen this User?",
+                            icon: "success",
+                            button: "OK",
+                        }).then(function () {
+                            // call another url
+
+                            //window.location.href = '/discounting/alerts/' + id;
+
+                        });
+                    }
+                });
+
+            }
+
+
+        });
+
+
+
+    </script>
+    <!-- FontAwesome CSS - loading as last, so it doesn't block rendering-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+
+
+
+    <!-- JS -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

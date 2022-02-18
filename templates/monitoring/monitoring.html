@@ -1,0 +1,675 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<!--<div class="py-2" style="padding-left:20px;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 py-3 px-0">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Forms</li>
+        </ol>
+    </nav>
+</div>-->
+
+<div class="content-wrapper">
+    <!--<div class="page-header">
+        <h3 class="page-title">Report  </h3>
+    </div>-->
+
+    <div class="reporting_container">
+
+        <ul class="nav nav-tabs" >
+            <!--<div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn" data-toggle="tab" href="#monitoring_tab" style="font-size: 15px; background-color: #001AFF;">Monitoring </button>
+
+                <button type="button" class="btn" data-toggle="tab" href="#investigation_tab" style="font-size: 15px; background-color: #001AFF;">Investigation </button>
+                <button type="button" class="btn" data-toggle="tab" href="#reporting_tab" style="font-size: 15px; background-color: #001AFF;">Reporting </button>
+
+
+            </div>-->
+            <li>
+                <button type="button" class="btn btn-rounded" data-toggle="tab" href="#monitoring_tab" style="font-size: 15px; background-color: #001AFF;">Monitoring </button>
+
+
+            </li>
+
+            <li>
+                <button type="button" class="btn btn-rounded" data-toggle="tab" href="#investigation_tab" style="font-size: 15px; background-color: #001AFF;">Investigation </button>
+
+
+            </li>
+            <li>
+                <button type="button" class="btn btn-rounded" data-toggle="tab" href="#reporting_tab" style="font-size: 15px; background-color: #001AFF;">Reporting </button>
+
+            </li>
+
+        </ul>
+
+        <div class="tab-content">
+            <div id="monitoring_tab" class="tab-pane fade show active">
+                <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card" style="font-family:Prompt;">
+                            <div class="card-body" style=" height:450px;overflow: auto; padding: 2px;  font-family:Prompt;">
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Discount Result</th>
+                                            <th>Customer id</th>
+                                            <th>Customer Name</th>
+                                            <th>Status</th>
+
+                                            <th> Date of Approval</th>
+
+                                            <th> Date of Monitoring</th>
+                                            <th> Turn Around Time (TAT)</th>
+                                            <th> Customer Risk Profiling</th>
+
+                                            <th>Frequency of Monitoring </th>
+                                            <th>Expected Monitoring Timeline </th>
+                                            <th> Final Action</th>
+                                            <th>Update </th>
+                                            <th>
+                                                Monitoring Status
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for data in approvedCases %}
+                                        <tr>
+                                            <td>
+                                                <a href="{% url 'ViewDiscounted' id=data.individual_id %}">
+                                                    <button class="btn btn-sm" type="button" style="font-size: 13px; background: #1dbf73;">
+                                                        <i class="fa fa-eye fa-1x" style="font-size: 13px;"></i>
+
+                                                        View
+                                                    </button>
+
+
+                                                </a>
+
+                                            </td>
+
+
+                                            <td>{{data.individual_id}}</td>
+                                            <td>
+
+                                                {{data.individual.customer_name}}
+                                            </td>
+                                            <td>{{data.riskrating_status}}</td>
+                                            <td>{{data.approval_date}}</td>
+                                            <td style="color: #1dbf73;">{{data.monitoring_approval_date}}</td>
+                                            <td style="color: #1dbf73;">{{data.turn_around_time}}</td>
+                                            <td>{{data.individual.risk_category}}</td>
+
+
+                                            <td style="color: #1dbf73;">
+                                                {% if  data.monitoring_frequency == "high" %}
+                                                <p>Twice a month </p>
+                                                {% elif data.monitoring_frequency == "medium" %}
+                                                <p>Every Month </p>
+                                                {% elif data.monitoring_frequency == "low" %}
+                                                <p>Every Quarter </p>
+                                                {% else %}
+                                                {% endif %}
+                                            </td>
+
+
+
+                                            <td style="color: #1dbf73;">
+                                                Monitoring on
+
+                                                {{data.monitoring_timeline}}
+                                            </td>
+
+
+
+
+                                            <td style="color: #1dbf73;">{{data.monitoring_status_report}}</td>
+
+
+                                            <td>
+                                                <button type="button" class="btn btn-sm" id="update-monitoring" style="background-color: #1dbf73;"
+                                                        data-toggle="modal"
+                                                        data-target="#updateModal"
+                                                        data-name="{{data.individual_id}}"
+                                                        data-html=>
+                                                    Action
+                                                </button>
+
+
+                                            </td>
+                                            <td>
+                                                {{data.monitoring_status}}
+
+                                            </td>
+
+                                        </tr>
+
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <div id="investigation_tab" class="tab-pane fade">
+                <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card" style="font-family:Prompt;">
+                            <div class="card-body" style=" height:450px;overflow: auto; padding: 2px; font-family:Prompt;">
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Discount Result</th>
+                                            <th>ID Number </th>
+
+                                            <th>Customer Name</th>
+
+                                            <th>Father Name </th>
+
+
+                                            <th>Date Of Birth</th>
+
+                                            <th>Nationality</th>
+
+                                            <th>Address </th>
+
+                                            <th>District </th>
+
+                                            <th>Place of Birth</th>
+                                            <th>Province </th>
+
+
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for data in holdCases %}
+                                        <tr>
+                                            <td>
+                                                <a href="{% url 'ViewDiscounted' id=data.individual_id %}">
+                                                    <button class="btn btn-sm" type="button" style="font-size: 13px; background: #1dbf73;">
+                                                        <i class="fa fa-eye fa-1x" style="font-size: 13px;"></i>
+
+                                                        View
+                                                    </button>
+
+
+                                                </a>
+
+                                            </td>
+                                            <td>
+                                                {{data.individual.customer_id}}
+                                            </td>
+
+                                            <td>
+                                                {{data.individual.customer_name}}
+                                            </td>
+                                            <td>
+                                                {{data.individual.father_name}}
+                                            </td>
+
+                                            <td>
+                                                {{data.individual.birth_date}}
+                                            </td>
+                                            <td>
+                                                {{data.individual.nationality}}
+                                            </td>
+                                            <td>
+                                                {{data.individual.current_address}}
+                                            </td>
+                                            <td>
+                                                {{data.individual.district}}
+                                            </td>
+                                            <td>
+                                                {{data.individual.birth_place}}
+                                            </td>
+                                            <td>
+                                                {{data.individual.province}}
+                                            </td>
+                                        </tr>
+
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+            <div id="reporting_tab" class="tab-pane fade in active">
+
+                <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card" style="font-family:Prompt;">
+                            <div class="card-body" style="height: 450px; overflow: auto; padding: 2px; font-family: Prompt;">
+
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Discount Result</th>
+                                            <th>Customer ID</th>
+                                            <th>Customer Name</th>
+
+
+                                            <th>Father Name</th>
+                                            <th> DOB</th>
+                                            <th> POB</th>
+                                            <th> Nationality</th>
+                                            <th> Address</th>
+                                            <th> Risk Profiling </th>
+                                            <th> Discounting Status (Rejection)</th>
+                                            <th>Final Action</th>
+                                            <th>  Reporting Status</th>
+
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {% for data in rejectedCases %}
+                                        <tr>
+
+
+                                            <td>
+                                                <!--<button href="{% url 'ViewDiscounted' id=data.individual_id %} class="btn btn-sm" type="button" style="font-size:15px;"><i class="fa fa-eye fa-1x"></i> View</button>-->
+
+                                                <a href="{% url 'ViewDiscounted' id=data.individual_id %}">
+                                                    <button class="btn btn-sm" type="button" style="font-size: 13px; background: #1dbf73;">
+                                                        <i class="fa fa-eye fa-1x" style="font-size: 13px;"></i>
+
+                                                        View
+                                                    </button>
+
+
+                                                </a>
+
+                                            </td>
+                                            <td>
+                                                {{data.individual_id}}
+
+                                            </td>
+                                            <td>{{data.individual.customer_name}}</td>
+                                            <td>{{data.individual.father_name}}</td>
+                                            <td>{{data.individual.birth_date}}</td>
+                                            <td>{{data.individual.city}}</td>
+                                            <td>{{data.individual.nationality}}</td>
+                                            <td>{{data.individual.current_address}}</td>
+                                            <td>{{data.individual.risk_category}}</td>
+                                            <td>{{data.discount_status}}</td>
+                                            <td>{{data.riskrating_status}}</td>
+                                            <td></td>
+
+                                        </tr>
+
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="modal bd-example-modal-lg" id="updateModal" data-backdrop="static">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #191a1a;color:#ffffff;font-family:Prompt-light;">
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+
+                        <form class="updateForm">
+                            {% csrf_token %}
+                            <div class="row" id="approvalRemarks" style="padding-left: 50px; display: none;">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" id="CustomerID" name="customer_id" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p>Status Report	</p>
+                            <div class="row" style="margin-left:20px;">
+
+                                <div class="col-md-4">
+
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="status_report" id="status_reportID" checked value="pass" onchange="statusCheck(this)">
+                                        <label class="form-check-label" for="flexRadioDisabled">
+                                            Pass
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="status_report" id="status_reportID" value="fail" onchange="statusCheck(this)">
+                                        <label class="form-check-label" for="flexRadioCheckedDisabled">
+                                            Fail
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="status_report" id="status_reportID" value="under_investigation" onchange="statusCheck(this)">
+                                        <label class="form-check-label" for="flexRadioCheckedDisabled">
+                                            Under Investigation
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="margin-left:20px; display:none;" id="investigation_box">
+
+                                <div class="col-md-6">
+
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="investigation_type" id="" checked value="">
+                                        <label class="form-check-label" for="flexRadioDisabled">
+                                            Send to MLRO
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="investigation_type" id="" value="Send to L1">
+                                        <label class="form-check-label" for="flexRadioCheckedDisabled">
+                                            Send to L1
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="investigation_type" id="" value="Self Analysis">
+                                        <label class="form-check-label" for="flexRadioCheckedDisabled">
+                                            Self Analysis
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <p>Frequency of Monitoring	</p>
+                            <div class="row" style="margin-left:20px;">
+
+                                <div class="col-md-4">
+
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="monitoring_frequency" id="" checked value="high">
+                                        <label class="form-check-label" for="flexRadioDisabled">
+                                            High
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="monitoring_frequency" id="" value="medium">
+                                        <label class="form-check-label" for="flexRadioCheckedDisabled">
+                                            Medium
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="monitoring_frequency" id="" value="low">
+                                        <label class="form-check-label" for="flexRadioCheckedDisabled">
+                                            Low
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="row" id="RemarksID">
+                                <div class="col-md-12">
+                                    <div class="form-group row">
+                                        <label class="col-sm-12 col-form-label">Remarks</label>
+                                        <div class="col-sm-12">
+                                            <input type="text" class="form-control" name="monitoring_remarks" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center" id="btnCol">
+                                <button type="submit" class="btn updateFunc" id="btnSubmit">Submit</button>
+                                <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                                    Close
+                                </button>
+                            </div>
+
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+        function chkTerminationStatus(val) {
+            var box = document.getElementById("terminationBox")
+
+            if (val.value == "yes") {
+                box.style.display = "none";
+            }
+            else {
+                box.style.display = "block";
+
+
+            }
+
+
+
+        }
+
+        function statusCheck(check) {
+            var val = document.getElementById("status_reportID");
+            var investigationBox = document.getElementById("investigation_box")
+
+            if (check.value === "under_investigation") {
+
+                investigationBox.style.display = "block";
+            }
+            else {
+
+                investigationBox.style.display = "none";
+            }
+
+        }
+
+
+
+    </script>
+
+    <script>
+
+
+
+
+
+
+
+
+
+
+        $('#update-monitoring').click(function () {
+
+
+            var x = $(this).data('name');
+            $('#CustomerID').val(x);
+
+
+        });
+        $('.updateFunc').on('click', function (e) {
+            /*alert("in function")*/
+
+
+            e.preventDefault();
+            /* alert("hi in ajax ");*/
+            // get all form data
+            var queryString = $('.updateForm').serialize();
+            $.ajax({
+
+                url: '{% url "updateMonitoring" %}',
+                type: 'POST',
+
+                data: queryString,
+                success: function (data) {
+
+                    swal({
+                        title: "Status have been updated successfully",
+                        /*text: "Do you want to Call Screeen this User?",*/
+                        icon: "success",
+                        button: "OK",
+                    });
+
+                    setTimeout(function () {
+                        /*alert('Reloading Page');*/
+
+                        location.reload(true);
+                    }, 1500);
+
+
+                    /* location.reload();*/
+
+                    //    .then(function () {
+                    //    // call another url
+                    //    /*window.location.href = '/riskrating/riskrating/' ;*/
+                    //});
+                }
+            });
+
+
+
+        });
+
+    </script>
+
+
+
+    <!--<script>
+        // onclick ajax call
+        $('.ajaxcall').on('click', function (e) {
+            e.preventDefault();
+
+
+            // get all form data
+            var queryString = $('.formData').serialize();
+            $.ajax({
+                url: '{% url "individualScreeing" %}',
+                type: 'GET',
+                data: queryString,
+                success: function (data) {
+                    //get id from data
+
+                    // sweet alert isconfirm and hit url
+                    swal({
+                        title: "KYC API Success",
+                        text: "Do you want to Call Screeen this User?",
+                        icon: "success",
+                        button: "OK",
+                    }).then(function () {
+                        // call another url
+                        /* window.location.href = '/discounting/alerts/' + id;*/
+                    });
+                }
+            });
+
+        });
+
+
+    </script>-->
+    <!--<script>
+        // onclick ajax call
+        $('.ajaxcall').on('click', function (e) {
+            e.preventDefault();
+
+            if (myFormValidation() === true) {
+                // get all form data
+                var queryString = $('.formdata').serialize();
+                $.ajax({
+                    //url: '{% url "addIndividual" %}',
+                    //type: 'POST',
+                    data: queryString,
+                    success: function (data) {
+                        //get id from data
+                        var id = data.id;
+                        console.log(id);
+                        // sweet alert isconfirm and hit url
+                        swal({
+                            title: "KYC API Success",
+                            text: "Do you want to Call Screeen this User?",
+                            icon: "success",
+                            button: "OK",
+                        }).then(function () {
+                            // call another url
+                            window.location.href = '/discounting/alerts/' + id;
+                        });
+                    }
+                });
+
+            }
+
+
+
+
+
+
+        });
+
+
+
+
+    </script>-->
+
+
+</div>
+{% endblock %}

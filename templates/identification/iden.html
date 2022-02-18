@@ -1,0 +1,131 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <!--<div class="page-header">
+        <h3 class="page-title">Report  </h3>
+    </div>-->
+
+    <div class="reporting_container">
+
+        <ul class="nav nav-tabs" style="background:#000000;">
+            <li>
+                <button type="button" class="btn" data-toggle="tab" href="#individual-tab" style="font-size:15px;">Individual  </button>
+
+
+            </li>
+
+            <li>
+                <button type="button" class="btn" data-toggle="tab" href="#investigation_tab" style="font-size:15px;">Investigation </button>
+
+
+            </li>
+            <li class="active">
+                <button type="button" class="btn" data-toggle="tab" href="#reporting_tab" style="font-size:15px;">Reporting </button>
+
+            </li>
+
+        </ul>
+
+        <div class="tab-content">
+            <div id="individual-tab" class="tab-pane fade in active">
+
+                {% include 'identification/individual_ip.html' %}
+
+
+            </div>
+
+            <div id="investigation_tab" class="tab-pane fade">
+             
+
+
+            </div>
+
+            <div id="bulk_screeing" class="tab-pane fade in active">
+
+               
+
+
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!--<script>
+        // onclick ajax call
+        $('.ajaxcall').on('click', function (e) {
+            e.preventDefault();
+
+
+            // get all form data
+            var queryString = $('.formData').serialize();
+            $.ajax({
+                url: '{% url "individualScreeing" %}',
+                type: 'GET',
+                data: queryString,
+                success: function (data) {
+                    //get id from data
+
+                    // sweet alert isconfirm and hit url
+                    swal({
+                        title: "KYC API Success",
+                        text: "Do you want to Call Screeen this User?",
+                        icon: "success",
+                        button: "OK",
+                    }).then(function () {
+                        // call another url
+                        /* window.location.href = '/discounting/alerts/' + id;*/
+                    });
+                }
+            });
+
+        });
+
+
+    </script>-->
+    <!--<script>
+        // onclick ajax call
+        $('.ajaxcall').on('click', function (e) {
+            e.preventDefault();
+
+            if (myFormValidation() === true) {
+                // get all form data
+                var queryString = $('.formdata').serialize();
+                $.ajax({
+                    //url: '{% url "addIndividual" %}',
+                    //type: 'POST',
+                    data: queryString,
+                    success: function (data) {
+                        //get id from data
+                        var id = data.id;
+                        console.log(id);
+                        // sweet alert isconfirm and hit url
+                        swal({
+                            title: "KYC API Success",
+                            text: "Do you want to Call Screeen this User?",
+                            icon: "success",
+                            button: "OK",
+                        }).then(function () {
+                            // call another url
+                            window.location.href = '/discounting/alerts/' + id;
+                        });
+                    }
+                });
+
+            }
+
+
+
+
+
+
+        });
+
+
+
+
+    </script>-->
+
+
+</div>
+{% endblock %}

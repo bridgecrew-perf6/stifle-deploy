@@ -1,0 +1,1120 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<div class="content-wrapper">
+    <!--<div class="page-header">
+        <h3 class="page-title"> Acceptance & Risk Rating </h3>
+    </div>-->
+    <!--<nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'riskrating' %}">Risk Rating</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Screeing</li>
+        </ol>
+    </nav>-->
+
+    <div class="reporting_container">
+
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <button type="button" class="btn btn-rounded btn-sm" data-toggle="tab" href="#risk_rating_individual" style="background-color: #001AFF;">Individual Risk Rating  </button>
+
+            </li>
+            <li>
+                <button type="button" class="btn btn-rounded btn-sm" data-toggle="tab" href="#risk_rating_entity" style="background-color: #001AFF;">Entity Risk Rating  </button>
+
+
+            </li>
+
+        </ul>
+
+        <div class="tab-content">
+            <div id="risk_rating_individual" class="tab-pane fade show active">
+
+                <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card" style="height:520px; background-color:#fff;">
+                            <div class="card-body" style="overflow:auto; padding:2px;">
+                                <!--<h4 class="card-title">Cutomer Data</h4>-->
+                                <table class="table table-hover" id="myTable">
+                                    <thead>
+                                        <tr>
+
+                                            <th>Discount Result</th>
+                                            <th> Customer ID </th>
+                                            <th> Customer Name </th>
+                                            <!--<th> Customer Type </th>
+
+                                            <th> Geographic Location </th>
+                                            <th> Delivery Channel </th>
+                                            <th> Product and/or Service Type </th>-->
+                                            <th> PEP Status </th>
+
+                                            <th> Risk Category </th>
+                                            <th> Risk Score </th>
+                                            <th>Due Diligence Type</th>
+                                            <th>Discounting Status</th>
+                                            <th>Final Action</th>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {% for data in individualRisk.itertuples %}
+                                        <tr>
+                                            <td>
+                                                <a href="{% url 'ViewDiscounted' id=data.customer_id %}">
+                                                    <button class="btn btn-sm" type="button" style="font-size: 13px; background: transparent; color: #1dbf73;">
+                                                        <i class="fa fa-eye" style="font-size:13px;"></i>
+
+                                                        View
+                                                    </button>
+
+
+                                                </a>
+
+                                            </td>
+                                            <td>
+
+                                                <a href="showCustomer/{{data.customer_id}}" target="_blank" style="color: #1dbf73;">
+                                                    {{data.customer_id}}
+                                                </a>
+
+                                            </td>
+
+
+
+                                            <td>
+
+                                                {{data.customer_name}}
+                                            </td>
+
+                                            <!--<td>{{data.customer_type}}</td>
+                                            <td>{{data.city}}</td>
+                                            <td>{{data.delivery_channel}}</td>
+                                            <td>{{data.product_type}}</td>-->
+                                            <td>{{data.pep_status}}</td>
+                                            <td>
+                                                {% if data.risk_category == "High" %}
+                                                <i class="fa fa-exclamation-circle" aria-hidden="true" style="color: #ff0f0f; "></i>
+                                                {{data.risk_category}}
+                                                {% else %}
+                                                {{data.risk_category}}
+                                                {% endif %}
+
+
+                                            </td>
+
+                                            <td>{{data.risk_score}}</td>
+
+                                            <td>
+
+                                                {% if data.diligence_type == "EDD" or data.pep_status == "yes" %}
+                                                <button type="button" class="form-link" style="background-color: #ff0018; color: #fff; font-size: 15px;"
+                                                        data-toggle="modal"
+                                                        data-target="#eddModal"
+                                                        data-name="{{data.customer_id}}"
+                                                        data-html="{{data.diligence_type}}">
+                                                    {{data.diligence_type}}
+                                                </button>
+
+                                                {% else %}
+
+                                                {{data.diligence_type}}
+                                                {% endif %}
+
+
+
+                                            </td>
+
+                                            <td>{{data.over_all_discount_status}}</td>
+                                            <td>
+                                                <button type="button" class="approve-modal-link" style="background-color: transparent; color: #1dbf73;"
+                                                        data-toggle="modal"
+                                                        data-target="#approveModal"
+                                                        data-name="{{data.customer_id}}"
+                                                        data-html="{{data.over_all_discount_status}}">
+                                                    Approve
+                                                </button>
+                                                <button type="button" class="hold-modal-link" style="background-color: transparent; color: #efc908; "
+                                                        data-toggle="modal"
+                                                        data-target="#holdModal"
+                                                        data-name="{{data.customer_id}}"
+                                                        data-html="{{data.over_all_discount_status}}">
+                                                    Hold
+                                                </button>
+
+                                                <button type="button" class="decline-modal-link" style="background-color: transparent; color: #ff0018;"
+                                                        data-toggle="modal"
+                                                        data-target="#declineModal"
+                                                        data-name="{{data.customer_id}}"
+                                                        data-html="{{data.over_all_discount_status}}">
+                                                    Decline
+                                                </button>
+                                                <!--<a href="" style="color:#73df74;">Approve</a>
+                                                <a href="" style="color: #ff0018;">Decline</a>-->
+                                            </td>
+
+
+                                        </tr>
+
+                                        {% endfor %}
+                                    </tbody>
+
+                                </table>
+
+
+
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal fade bd-example-modal-lg" id="eddModal" data-backdrop="static">
+                    <div class="modal-dialog " role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: #191a1a;color:#ffffff;font-family:Prompt-light;">
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+
+                                <form class="eddForm" id="edd_form_id" enctype='multipart/form-data'>
+                                    {% csrf_token %}
+                                    <input type="text" class="form-control" id="customerID" name="customer_id">
+                                    <div class="row" style="padding-left:30px;">
+
+                                        <div class="col-md-10">
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-form-label">Is the Source of Wealth Verified?</label>
+
+
+                                                <div class="col-sm-4" style="padding-left:30px;">
+                                                    <input class="form-check-input" type="radio" name="sourceFund" value="yes" checked onclick="detailFun(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-4" style="padding-left:30px;">
+                                                    <input class="form-check-input" type="radio" name="sourceFund" value="no" onclick="detailFun(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        No
+                                                    </label>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row" id="errorMessage" style="display:none;">
+                                        <div class="col-md-12">
+
+                                            <div class="form-group">
+                                                <label>Please verify the source of funds/wealth before proceeding further </label>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="row" id="imageSec" style="padding-left:30px;">
+                                        <div class="col-md-12">
+
+                                            <div class="form-group">
+                                                <!--<label>Uplaod Verified Document</label>-->
+                                                <input type="file" name="verifieddoc" class="file-upload-default" id="verifieddocID">
+                                                <div class="input-group col-xs-12">
+                                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Verifies Document"> <span class="input-group-append">
+                                                        <button class="file-upload-browse btn btn-sm" type="button">Upload</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="row" id="seniorApproval" style="padding-left:30px;">
+
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-form-label">Is the Senior Management Approval taken?</label>
+
+
+                                                <div class="col-sm-3" style="padding-left:50px;">
+                                                    <input class="form-check-input" type="radio" name="branchvist" value="yes" onclick="approvalFun(this)" checked>
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        Yes
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-3" style="padding-left:50px;">
+                                                    <input class="form-check-input" type="radio" name="branchvist" value="no" onclick="approvalFun(this)">
+                                                    <label class="form-check-label" for="flexRadioDefault1">
+                                                        No
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="display:none;" id="emailSec">
+                                        <div class="col-md-12">
+
+                                            <div class="form-group">
+                                                <label>Please Send Email for approval </label>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="row" id="approvalFile" style="padding-left:30px;">
+                                        <div class="col-md-12">
+
+                                            <div class="form-group">
+                                                <!--<label>Please attach prior approval</label>-->
+                                                <input type="file" name="approval_doc" class="file-upload-default" id="approva_doc_id">
+                                                <div class="input-group col-xs-12">
+                                                    <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Prior Approval File"> <span class="input-group-append">
+                                                        <button class="file-upload-browse btn btn-sm" type="button">Upload</button>
+                                                    </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="row" id="approvalRemarks" style="padding-left:30px;">
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-form-label">Remarks</label>
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" name="edd_remarks" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-md-12 text-center" id="btnCol">
+                                        <button type="submit" class="btn btn-sm updateEDD" id="btnSubmit">Submit</button>
+
+                                    </div>
+                                    <div class="col-md-12 text-center" id="btnEmail" style="display:none;">
+                                        <button type="submit" class="btn btn-sm sendEmail" id="btnEmai">Send Email</button>
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade bd-example-modal-lg" id="approveModal" data-backdrop="static">
+                    <div class="modal-dialog " role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: #191a1a;color:#ffffff;font-family:Prompt-light;">
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+
+                                <form class="approveForm">
+                                    {% csrf_token %}
+                                    <div class="row" id="approvalRemarks" style="padding-left: 50px; display:none; ">
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" id="approveCustomerID" name="approve_customer_id" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" id="approveCustomerDiscountStatus" name="approve_customer_discount_status" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-12" style="margin-left:20px;">
+                                            <p>
+                                                Approved due to:
+                                            </p>
+
+
+                                            <div class="form-group">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="Customer Risk Profiling" id="flexCheckDefault" name="approve_action_reason">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                        Customer Risk Profiling
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value=" Sanction Screening" id="flexCheckDefault" name="approve_action_reason">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                        Sanction Screening
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+                                    </div>
+
+
+                                    <div class="row" id="approvalRemarks" style="padding-left:50px;">
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-form-label">Remarks</label>
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" name="approve_remarks" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center" id="btnCol">
+                                        <button type="submit" class="btn approveFunc" id="btnSubmit">Submit</button>
+
+                                    </div>
+
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal bd-example-modal-lg" id="declineModal" data-backdrop="static">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: #191a1a;color:#ffffff;font-family:Prompt-light;">
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+
+                                <form class="declineForm">
+                                    {% csrf_token %}
+                                    <div class="row" id="approvalRemarks" style="padding-left: 50px; display:none;">
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" id="declineCustomerID" name="decline_customer_id" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" id="declineCustomerDiscountStatus" name="decline_customer_discount_status" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12" style="margin-left:20px;">
+
+                                            <h4>
+                                                State the reason for Declining the Customer
+                                            </h4>
+                                            <p>Customer Risk Profiling </p>
+                                            <div class="form-group">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="decline_reason">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                        Customer possesses High Risk
+                                                    </label>
+                                                </div>
+                                                <br />
+                                                <p>Sanction Screening </p>
+
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="decline_reason">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                        Customer is found as True Match with UNSC/NACTA/Countrys Negative List (Res. 1373)
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="Customer CDD is not verifiable" id="flexCheckDefault" name="decline_reason">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                        Customer CDD is not verifiable
+                                                    </label>
+                                                </div>
+                                                <br />
+                                                <p>
+                                                    Other
+                                                </p>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="decline_reason">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                        Customer is appearing in any Law Enforcement Agency List
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="decline_reason">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                        Adverse Media against Customer
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" name="decline_reason">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                        In case of Others, please specify
+                                                    </label>
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="row" id="approvalRemarks" style="padding-left:50px;">
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-form-label">Remarks</label>
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" name="decline_remarks" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center" id="btnCol">
+                                        <button type="submit" class="btn declineFunc" id="btnSubmit">Submit</button>
+                                        <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                                            Close
+                                        </button>
+                                    </div>
+
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal bd-example-modal-lg" id="holdModal" data-backdrop="static">
+                    <div class="modal-dialog " role="document">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: #191a1a;color:#ffffff;font-family:Prompt-light;">
+
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color:#fff;">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body" style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+
+                                <form class="holdForm">
+                                    {% csrf_token %}
+                                    <div class="row" id="approvalRemarks" style="padding-left: 50px;display:none;">
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" id="holdCustomerID" name="hold_customer_id" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" id="holdCustomerDiscountStatus" name="hold_customer_discount_status" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        <div class="col-md-12" style="margin-left:20px;">
+                                            <p>
+                                                Hold due to:
+                                            </p>
+
+
+                                            <div class="form-group">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="Customer Risk Profiling" id="flexCheckDefault" name="action_reason">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                        Customer Risk Profiling
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value=" Sanction Screening" id="flexCheckDefault" name="action_reason">
+                                                    <label class="form-check-label" for="flexCheckDefault">
+                                                        Sanction Screening
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="col-md-12" style="margin-left:20px;">
+
+
+                                            <p>
+                                                Action to be performed:
+                                            </p>
+
+                                            <div class="form-group row">
+
+                                                <div class="col-sm-6">
+                                                    <input class="form-check-input" type="radio" name="hold_chkbox" value="Sent to L1">
+                                                    <label class="form-check-label">
+                                                        Send to L1
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input class="form-check-input" type="radio" name="hold_chkbox" value="Sent to MLRO">
+                                                    <label class="form-check-label">
+                                                        Send to MLRO for review
+                                                    </label>
+                                                </div>
+
+                                                <!--<div class="form-group">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="Sent to L1" id="flexCheckDefault" name="hold_chkbox">
+                                                        <label class="form-check-label" for="flexCheckDefault">
+                                                            Send it to Level-I/Maker
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value="Sent to MLRO" id="flexCheckDefault" name="hold_chkbox">
+                                                        <label class="form-check-label" for="flexCheckDefault">
+                                                            Send it to MLRO for Review
+                                                        </label>
+                                                    </div>
+
+                                                </div>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" id="approvalRemarks" style="padding-left:50px;">
+                                        <div class="col-md-12">
+                                            <div class="form-group row">
+                                                <label class="col-sm-12 col-form-label">Remarks</label>
+                                                <div class="col-sm-12">
+                                                    <input type="text" class="form-control" name="hold_remarks" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 text-center" id="btnCol">
+                                        <button type="submit" class="btn holdFunc" id="btnSubmit">Submit</button>
+                                        <button type="button" class="btn" data-dismiss="modal" aria-label="Close">
+                                            Close
+                                        </button>
+                                    </div>
+
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <script>
+
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+
+
+        $('.sendEmail').on('click', function (e) {
+            e.preventDefault();
+            alert("hi in ajax ");
+
+            /* if (validateEdd() === true) {*/
+            var data = new FormData(document.getElementById("edd_form_id"));
+
+            $.ajax({
+
+                url: '{% url "sendApprovalEmailRequest" %}',
+                data: data,
+                type: 'POST',
+                enctype: 'multipart/form-data',
+                contentType: false,
+
+                processData: false,
+
+
+                success: function (data) {
+                    alert("hi in success ");
+
+                    swal({
+                        title: "EDD Form has been saved successfully",
+                        /*text: "Do you want to Call Screeen this User?",*/
+                        icon: "success",
+                        button: "OK",
+                    });
+                    setTimeout(function () {
+                        /*alert('Reloading Page');*/
+
+                        location.reload(true);
+                    }, 1500);
+                }
+            });
+
+            /*  }*/
+
+        });
+        $('.declineFunc').on('click', function (e) {
+            e.preventDefault();
+            /* alert("hi in ajax ");*/
+            // get all form data
+            var queryString = $('.declineForm').serialize();
+            $.ajax({
+                url: '{% url "declineRiskrating" %}',
+                type: 'POST',
+
+                data: queryString,
+                success: function (data) {
+                    //alert("hi in success ");
+                    //$("#declineModal").hide();
+
+                    /*$("#approveModal").style.display("none");*/
+                    //get id from data
+                    //var id = data.id;
+                    //console.log(id);
+                    // sweet alert isconfirm and hit url
+                    swal({
+                        title: "Status have been updated successfully",
+                        /*text: "Do you want to Call Screeen this User?",*/
+                        icon: "success",
+                        button: "OK",
+                    });
+
+                    setTimeout(function () {
+                        /*alert('Reloading Page');*/
+
+                        location.reload(true);
+                    }, 1500);
+
+
+                    /* location.reload();*/
+
+                    //    .then(function () {
+                    //    // call another url
+                    //    /*window.location.href = '/riskrating/riskrating/' ;*/
+                    //});
+                }
+            });
+
+
+
+        });
+        $('.approveFunc').on('click', function (e) {
+            e.preventDefault();
+            /* alert("hi in ajax ");*/
+            // get all form data
+            var queryString = $('.approveForm').serialize();
+            $.ajax({
+                url: '{% url "approveRiskrating" %}',
+                type: 'POST',
+
+                data: queryString,
+                success: function (data) {
+                    //alert("hi in success ");
+                    //$("#declineModal").hide();
+
+                    /*$("#approveModal").style.display("none");*/
+                    //get id from data
+                    //var id = data.id;
+                    //console.log(id);
+                    // sweet alert isconfirm and hit url
+                    swal({
+                        title: "Status have been updated successfully",
+                        /*text: "Do you want to Call Screeen this User?",*/
+                        icon: "success",
+                        button: "OK",
+                    });
+
+                    setTimeout(function () {
+                        /*alert('Reloading Page');*/
+
+                        location.reload(true);
+                    }, 1500);
+
+
+                    /* location.reload();*/
+
+                    //    .then(function () {
+                    //    // call another url
+                    //    /*window.location.href = '/riskrating/riskrating/' ;*/
+                    //});
+                }
+            });
+
+
+
+        });
+
+        $('.holdFunc').on('click', function (e) {
+            e.preventDefault();
+            /* alert("hi in ajax ");*/
+            // get all form data
+            var queryString = $('.holdForm').serialize();
+            $.ajax({
+                url: '{% url "holdRiskrating" %}',
+                type: 'POST',
+
+                data: queryString,
+                success: function (data) {
+                    //alert("hi in success ");
+                    //$("#declineModal").hide();
+
+                    /*$("#approveModal").style.display("none");*/
+                    //get id from data
+                    //var id = data.id;
+                    //console.log(id);
+                    // sweet alert isconfirm and hit url
+                    swal({
+                        title: "Status have been updated successfully",
+                        /*text: "Do you want to Call Screeen this User?",*/
+                        icon: "success",
+                        button: "OK",
+                    });
+
+                    setTimeout(function () {
+                        /*alert('Reloading Page');*/
+
+                        location.reload(true);
+                    }, 1500);
+
+
+                    /* location.reload();*/
+
+                    //    .then(function () {
+                    //    // call another url
+                    //    /*window.location.href = '/riskrating/riskrating/' ;*/
+                    //});
+                }
+            });
+
+
+
+        });
+
+        $('.remarks').on('click', function (e) {
+            e.preventDefault();
+            alert("hi in ajax ");
+            // get all form data
+            var queryString = $('.remarkForm').serialize();
+            $.ajax({
+                url: '{% url "updateRiskrating" %}',
+                type: 'POST',
+
+                data: queryString,
+                success: function (data) {
+                    alert("hi in success ");
+                    $(".modal.in").modal('hide');
+                    /*$("#approveModal").style.display("none");*/
+                    //get id from data
+                    //var id = data.id;
+                    //console.log(id);
+                    // sweet alert isconfirm and hit url
+                    swal({
+                        title: "Data has been saved",
+                        text: "Do you want to Call Screeen this User?",
+                        icon: "success",
+                        button: "OK",
+                    }).then(function () {
+                        // call another url
+                        /*window.location.href = '/riskrating/riskrating/' ;*/
+                    });
+                }
+            });
+
+
+
+        });
+
+        $('.modal-link').click(function () {
+
+
+
+            var val = $(this).data('html');
+            var x = $(this).data('name');
+            var x = $(this).data('name');
+            $('#cID').val(x);
+            $('#statusID').val(val);
+            /* alert(x)*/
+
+            //$('#customerID').html($(this).data('name'));
+            //var x = $(this).data('name');
+
+        });
+        $('.form-link').click(function () {
+
+
+
+            var val = $(this).data('html');
+
+            if (val === "EDD") {
+
+                $('#customerID').html($(this).data('name'));
+                var x = $(this).data('name');
+                $('#customerID').val(x);
+
+            }
+
+
+
+
+
+
+        });
+
+        $('.approve-modal-link').click(function () {
+
+
+
+            var stat = $(this).data('html');
+
+            var x = $(this).data('name');
+            $('#approveCustomerID').val(x);
+            $('#approveCustomerDiscountStatus').val(stat);
+
+
+        });
+
+        $('.hold-modal-link').click(function () {
+
+
+
+            var stat = $(this).data('html');
+            var x = $(this).data('name');
+            var x = $(this).data('name');
+            $('#holdCustomerID').val(x);
+            $('#holdCustomerDiscountStatus').val(stat);
+            /*$('#statusID').val(val);*/
+            /* alert(x)*/
+
+            //$('#customerID').html($(this).data('name'));
+            //var x = $(this).data('name');
+
+        });
+
+        $('.decline-modal-link').click(function () {
+
+            var stat = $(this).data('html');
+
+            var x = $(this).data('name');
+            /* alert(stat);*/
+            $('#declineCustomerID').val(x);
+            $('#declineCustomerDiscountStatus').val(stat);
+            /*$('#statusID').val(val);*/
+            /* alert(x)*/
+
+            //$('#customerID').html($(this).data('name'));
+            //var x = $(this).data('name');
+
+        });
+
+        $('.updateEDD').on('click', function (e) {
+            e.preventDefault();
+            alert("hi in ajax ");
+
+            if (validateEdd() === true) {
+                var data = new FormData(document.getElementById("edd_form_id"));
+
+                $.ajax({
+
+                    url: '{% url "updateEDD" %}',
+                    data: data,
+                    type: 'POST',
+                    enctype: 'multipart/form-data',
+                    contentType: false,
+
+                    processData: false,
+
+
+                    success: function (data) {
+                        alert("hi in success ");
+
+                        swal({
+                            title: "EDD Form has been saved successfully",
+                            /*text: "Do you want to Call Screeen this User?",*/
+                            icon: "success",
+                            button: "OK",
+                        });
+                        setTimeout(function () {
+                            /*alert('Reloading Page');*/
+
+                            location.reload(true);
+                        }, 1500);
+                    }
+                });
+
+            }
+
+        });
+
+
+
+
+
+
+        function detailFun(choice) {
+            var x = document.getElementById("imageSec");
+            var aSec = document.getElementById("seniorApproval");
+            var aFile = document.getElementById("approvalFile");
+            var aRemarks = document.getElementById("approvalRemarks");
+            var y = document.getElementById("errorMessage");
+            /*var btns = document.getElementById("btnSubmit");*/
+            var btnCol = document.getElementById("btnCol");
+            if (choice.value == "yes") {
+                x.style.display = "block";
+                aSec.style.display = "block";
+                aFile.style.display = "block";
+                aRemarks.style.display = "block";
+                y.style.display = "none";
+                btnCol.style.display = "block";
+
+            }
+
+            else {
+                x.style.display = "none";
+                aSec.style.display = "none";
+                aFile.style.display = "none";
+                aRemarks.style.display = "none";
+                y.style.display = "block";
+                btnCol.style.display = "none";
+
+                /*window.alert("Please verify the source of funds/wealth before proceeding further")*/
+            }
+        }
+
+        function checkReason() {
+            var x = document.getElementById("decline_reason");
+            var otherReason = document.getElementById("otherReason");
+            if (x.value = "other") {
+                otherReason.style.display = "block";
+            }
+            else {
+                otherReason.style.display = "none";
+
+            }
+
+        }
+
+        function approvalFun(choice) {
+
+
+            var aFile = document.getElementById("approvalFile");
+            var aRemarks = document.getElementById("approvalRemarks");
+            var y = document.getElementById("errorMessage");
+            var btnEmail = document.getElementById("btnEmail");
+
+            var emailSec = document.getElementById("emailSec");
+            var btnCol = document.getElementById("btnCol");
+            if (choice.value == "yes") {
+
+
+                aFile.style.display = "block";
+                aRemarks.style.display = "block";
+
+
+                emailSec.style.display = "none";
+                btnCol.style.display = "block";
+                btnEmail.style.display = "none";
+            }
+
+            else {
+
+
+                aFile.style.display = "none";
+                aRemarks.style.display = "none";
+                btnCol.style.display = "none";
+                emailSec.style.display = "block";
+                btnEmail.style.display = "block";
+                /*window.alert("Please verify the source of funds/wealth before proceeding further")*/
+            }
+        }
+
+
+    </script>
+    <script>
+
+        function validateEdd() {
+
+
+
+            if (document.getElementById("verifieddocID").files.length == 0) {
+                alert("Please Upload Verified Document")
+                return false;
+            }
+            else if (document.getElementById("approva_doc_id").files.length == 0) {
+
+                alert("Please Upload Senior Approval File")
+                return false;
+            }
+
+            else {
+                return true;
+            }
+
+        }
+
+
+
+
+
+
+
+    </script>
+
+    {% endblock %}
+</div>

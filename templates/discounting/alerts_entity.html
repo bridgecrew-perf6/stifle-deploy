@@ -1,0 +1,142 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<div class="content-wrapper">
+    <!--<div class="page-header">
+        <h3 class="page-title">Report  </h3>
+    </div>-->
+
+    <div class="row">
+
+        <div class="col-lg-12 ">
+            <a data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="background-color:transparent;">
+                <!--<i class="fa fa-arrow-down" aria-hidden="true" style="color:#fff;"></i>-->
+                Click Here to View Customer Details
+            </a>
+            <div class="collapse" id="collapseExample" style="padding-top:20px;">
+                <div class="card card-body">
+                    <div class="row">
+
+
+                        <label class="col-sm-6 col-form-label">
+                           Organization Name: &nbsp;
+                            {{org_name}}
+                        </label>
+
+                        
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-6 ">
+            <label class="col-sm-6 col-form-label">
+                Number of Matches:
+                {{total_alerts}}
+            </label>
+
+        </div>
+
+
+        <div class="col-md-6 text-right">
+            <button type="button" class="btn callajax">Discount</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card" style="height: 480px;  font-family: Prompt;">
+                <div class="card-body" style="overflow:auto; padding:2px;">
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Request ID</th>
+                                <th>Alert ID</th>
+                                <th>Name</th>
+                                <!--<th>Father Name</th>-->
+                                <th>Alias</th>
+                                <th>Alias Quality</th>
+                                <th>ID Number</th>
+                                <!--<th>Gender</th>-->
+                                <th>Type</th>
+                                <th>Strength</th>
+                                <th>Score</th>
+                                <!--<th>DOB</th>
+                <th>POB</th>-->
+                                <th>Address</th>
+                                <th>Province</th>
+                                <th>District</th>
+                                <th>Nationlity</th>
+                                <th>Country</th>
+                                <th>City</th>
+                                <th>List</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for data in alerts %}
+                            <tr>
+                                <td>{{data.org_registeration}}</td>
+                                <td>{{data.dataID}}</td>
+                                <td>{{data.name}}</td>
+
+                                .n
+                                  <!--<td>{{data.father_name}}</td>-->
+                                <td>{{data.alias}}</td>
+                                <td>{{data.alias_quality}}</td>
+
+                                <td>{{data.id_number}}</td>
+                                _n
+                                >
+                                <!--<td>{{data.gender}}</td>-->
+
+
+                                <td>{{data.type}}</td>
+                                <td>{{data.strength}}</td>
+
+                                <td>{{data.score}}</td>
+                                <!--<td>{{data.dob}}</td>
+                <td>{{data.pob}}</td>-->
+                                <td>{{data.address}}</td>
+                                <td>{{data.province}}</td>
+                                <td>{{data.distict}}</td>
+                                <td>{{data.nationality}}</td>
+                                <td>{{data.country}}</td>
+                                <td>{{data.city}}</td>
+                                <td>{{data.list}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(document).ready(function () {
+        var cid = '{{id}}';
+        alert(cid);
+        $('.callajax').click(function () {
+            swal({
+                title: "Discount",
+                text: "Do you want to discount?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, discount it!",
+                closeOnConfirm: false
+            }).then(isConfirmed => {
+                if (isConfirmed) {
+                    location.href = "/discounting/discountEntity/"+cid;
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

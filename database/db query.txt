@@ -1,0 +1,11 @@
+DB QUERY for RISK RATING
+SELECT * 
+FROM identification_individual
+LEFT JOIN discounting_searchname ON identification_individual.customer_id = discounting_searchname.individual_id
+where discount_status="Pending" or discount_status="Rejected" or discount_status="Passed";
+
+
+SELECT distinct (customer_id) ,over_all_discount_status
+FROM identification_individual
+LEFT JOIN discounting_searchname ON identification_individual.customer_id = discounting_searchname.individual_id
+where over_all_discount_status='Rejected' or over_all_discount_status='Pending';

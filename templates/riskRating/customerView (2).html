@@ -1,0 +1,2398 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+<div class="content-wrapper">
+    <!--<div class="page-header">
+        <h3 class="page-title"> Identification and Profiling for Individual</h3>
+    </div>-->
+    <div class="row">
+        <div class="col-12">
+            <div class="card"style="background-color: #191a1a;color:#ffffff;font-family:Prompt;">
+                <div class="card-body">
+
+                    <form class="formdata" name="individualForm" onsubmit="myFormValidation()">
+                        {% csrf_token %}
+                        <p class="card-description"> Customer Identification </p>
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <label class="col-sm-7 col-form-label" title="Computerized National Identity Card"
+                                           
+                                           >
+                                        Identity Document Number 
+
+                                    </label>
+                                    <div class="col-sm-5">
+                                        <input type="number" min="0" class="form-control" name="user_cnic" required id="cnicID" 
+                                               
+                                               value="{{showCustomerObject.customer_id}}"
+                                               />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group row">
+
+
+                                    <label class="col-sm-7 col-form-label" title="Emirates ID, Social Security Number etc.">
+                                        Identity Document Number (International)
+
+                                    </label>
+
+                                    <div class="col-sm-5">
+                                        <input type="text" class="form-control" name="user_cnic_other" required id="cnicID" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Expiry Date of Identity Document</label>
+                                    <div class="col-sm-7">
+                                        <input type="date" class="form-control" name="ex_date" id="exDateID"
+                                               value="{{showCustomerObject.document_expiry_date}}"
+                                               
+                                               />
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-6 col-form-label">Gender</label>
+                                    <div class="col-sm-3">
+                                        <input class="form-check-input" type="radio" name="gender" value="male" id="genderID">
+                                        <label class="form-check-label" for="gender1">
+                                            Male
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-check-input" type="radio" name="gender" value="female" id="genderID">
+                                        <label class="form-check-label" for="gender1">
+                                            Female
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Account Title</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="account_tite" id="accountTitleID" required
+                                               value="{{showCustomerObject.account_title}}"
+                                               />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Account Number</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="account_number" id="accountNoID"
+                                                value="{{showCustomerObject.account_number}}"
+                                               
+                                               />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Branch Name</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="branch_name" id="branchNameID" 
+                                               value="{{showCustomerObject.branch_name}}"
+                                               
+                                               />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Branch Code</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="branch_code" id="branchCodeID"
+                                               
+                                               value="{{showCustomerObject.branch_code}}"
+                                               />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Customer Name</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="customer_name" id="customerNameID" 
+                                               
+                                               value="{{showCustomerObject.customer_name}}"
+                                               />
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Father/Husband Name</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="father_name" id="fathernameID"
+                                               value="{{showCustomerObject.father_name}}"
+                                               />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Date of Birth</label>
+                                    <div class="col-sm-7">
+                                        <input type="date" class="form-control" name="birthday" id="dobID" 
+                                               value="{{showCustomerObject.birth_date}}"/>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Place of Birth</label>
+                                    <div class="col-sm-7">
+                                        <select name="birth_city" id="Location" style="width:240px;" required
+                                                
+                                                >
+                                            <option value="{{showCustomerObject.birth_place}}" selected>{{showCustomerObject.birth_place}}</option>
+                                            <option value="Islamabad">Islamabad</option>
+
+                                            <option value="Ahmed Nager Chatha">Ahmed Nager Chatha</option>
+                                            <option value="Ahmadpur East">Ahmadpur East</option>
+                                            <option value="Ali Khan Abad">Ali Khan Abad</option>
+                                            <option value="Alipur">Alipur</option>
+                                            <option value="Arifwala">Arifwala</option>
+                                            <option value="Attock">Attock</option>
+                                            <option value="Bhera">Bhera</option>
+                                            <option value="Bhalwal">Bhalwal</option>
+                                            <option value="Bahawalnagar">Bahawalnagar</option>
+                                            <option value="Bahawalpur">Bahawalpur</option>
+                                            <option value="Bhakkar">Bhakkar</option>
+                                            <option value="Burewala">Burewala</option>
+                                            <option value="Chillianwala">Chillianwala</option>
+                                            <option value="Chakwal">Chakwal</option>
+                                            <option value="Chichawatni">Chichawatni</option>
+                                            <option value="Chiniot">Chiniot</option>
+                                            <option value="Chishtian">Chishtian</option>
+                                            <option value="Daska">Daska</option>
+                                            <option value="Darya Khan">Darya Khan</option>
+                                            <option value="Dera Ghazi Khan">Dera Ghazi Khan</option>
+                                            <option value="Dhaular">Dhaular</option>
+                                            <option value="Dina">Dina</option>
+                                            <option value="Dinga">Dinga</option>
+                                            <option value="Dipalpur">Dipalpur</option>
+                                            <option value="Faisalabad">Faisalabad</option>
+                                            <option value="Ferozewala">Ferozewala</option>
+                                            <option value="Fateh Jhang">Fateh Jang</option>
+                                            <option value="Ghakhar Mandi">Ghakhar Mandi</option>
+                                            <option value="Gojra">Gojra</option>
+                                            <option value="Gujranwala">Gujranwala</option>
+                                            <option value="Gujrat">Gujrat</option>
+                                            <option value="Gujar Khan">Gujar Khan</option>
+                                            <option value="Hafizabad">Hafizabad</option>
+                                            <option value="Haroonabad">Haroonabad</option>
+                                            <option value="Hasilpur">Hasilpur</option>
+                                            <option value="Haveli Lakha">Haveli Lakha</option>
+                                            <option value="Jatoi">Jatoi</option>
+                                            <option value="Jalalpur">Jalalpur</option>
+                                            <option value="Jattan">Jattan</option>
+                                            <option value="Jampur">Jampur</option>
+                                            <option value="Jaranwala">Jaranwala</option>
+                                            <option value="Jhang">Jhang</option>
+                                            <option value="Jhelum">Jhelum</option>
+                                            <option value="Kalabagh">Kalabagh</option>
+                                            <option value="Karor Lal Esan">Karor Lal Esan</option>
+                                            <option value="Kasur">Kasur</option>
+                                            <option value="Kamalia">Kamalia</option>
+                                            <option value="Kamoke">Kamoke</option>
+                                            <option value="Khanewal">Khanewal</option>
+                                            <option value="Khanpur">Khanpur</option>
+                                            <option value="Kharian">Kharian</option>
+                                            <option value="Khushab">Khushab</option>
+                                            <option value="Kot Addu">Kot Addu</option>
+                                            <option value="Jauharabad">Jauharabad</option>
+                                            <option value="Lahore">Lahore</option>
+                                            <option value="Lalamusa">Lalamusa</option>
+                                            <option value="Layyah">Layyah</option>
+                                            <option value="Liaquat Pur">Liaquat Pur</option>
+                                            <option value="Lodhran">Lodhran</option>
+                                            <option value="Malakwal">Malakwal</option>
+                                            <option value="Mamoori">Mamoori</option>
+                                            <option value="Mailsi">Mailsi</option>
+                                            <option value="Mandi Bahauddin">Mandi Bahauddin</option>
+                                            <option value="Mian Channu">Mian Channu</option>
+                                            <option value="Mianwali">Mianwali</option>
+                                            <option value="Multan">Multan</option>
+                                            <option value="Murree">Murree</option>
+                                            <option value="Muridke">Muridke</option>
+                                            <option value="Mianwali Bangla">Mianwali Bangla</option>
+                                            <option value="Muzaffargarh">Muzaffargarh</option>
+                                            <option value="Narowal">Narowal</option>
+                                            <option value="Nankana Sahib">Nankana Sahib</option>
+                                            <option value="Okara">Okara</option>
+                                            <option value="Renala Khurd">Renala Khurd</option>
+                                            <option value="Pakpattan">Pakpattan</option>
+                                            <option value="Pattoki">Pattoki</option>
+                                            <option value="Pir Mahal">Pir Mahal</option>
+                                            <option value="Qaimpur">Qaimpur</option>
+                                            <option value="Qila Didar Singh">Qila Didar Singh</option>
+                                            <option value="Rabwah">Rabwah</option>
+                                            <option value="Raiwind">Raiwind</option>
+                                            <option value="Rajanpur">Rajanpur</option>
+                                            <option value="Rahim Yar Khan">Rahim Yar Khan</option>
+                                            <option value="Rawalpindi">Rawalpindi</option>
+                                            <option value="Sadiqabad">Sadiqabad</option>
+                                            <option value="Safdarabad">Safdarabad</option>
+                                            <option value="Sahiwal">Sahiwal</option>
+                                            <option value="Sangla Hill">Sangla Hill</option>
+                                            <option value="Sarai Alamgir">Sarai Alamgir</option>
+                                            <option value="Sargodha">Sargodha</option>
+                                            <option value="Shakargarh">Shakargarh</option>
+                                            <option value="Sheikhupura">Sheikhupura</option>
+                                            <option value="Sialkot">Sialkot</option>
+                                            <option value="Sohawa">Sohawa</option>
+                                            <option value="Soianwala">Soianwala</option>
+                                            <option value="Siranwali">Siranwali</option>
+                                            <option value="Talagang">Talagang</option>
+                                            <option value="Taxila">Taxila</option>
+                                            <option value="Toba Tek Singh">Toba Tek Singh</option>
+                                            <option value="Vehari">Vehari</option>
+                                            <option value="Wah Cantonment">Wah Cantonment</option>
+                                            <option value="Wazirabad">Wazirabad</option>
+                                            <!--<option value="" disabled>Sindh Cities</option>-->
+                                            <option value="Badin">Badin</option>
+                                            <option value="Bhirkan">Bhirkan</option>
+                                            <option value="Rajo Khanani">Rajo Khanani</option>
+                                            <option value="Chak">Chak</option>
+                                            <option value="Dadu">Dadu</option>
+                                            <option value="Digri">Digri</option>
+                                            <option value="Diplo">Diplo</option>
+                                            <option value="Dokri">Dokri</option>
+                                            <option value="Ghotki">Ghotki</option>
+                                            <option value="Haala">Haala</option>
+                                            <option value="Hyderabad">Hyderabad</option>
+                                            <option value="Islamkot">Islamkot</option>
+                                            <option value="Jacobabad">Jacobabad</option>
+                                            <option value="Jamshoro">Jamshoro</option>
+                                            <option value="Jungshahi">Jungshahi</option>
+                                            <option value="Kandhkot">Kandhkot</option>
+                                            <option value="Kandiaro">Kandiaro</option>
+                                            <option value="Karachi">Karachi</option>
+                                            <option value="Kashmore">Kashmore</option>
+                                            <option value="Keti Bandar">Keti Bandar</option>
+                                            <option value="Khairpur">Khairpur</option>
+                                            <option value="Kotri">Kotri</option>
+                                            <option value="Larkana">Larkana</option>
+                                            <option value="Matiari">Matiari</option>
+                                            <option value="Mehar">Mehar</option>
+                                            <option value="Mirpur Khas">Mirpur Khas</option>
+                                            <option value="Mithani">Mithani</option>
+                                            <option value="Mithi">Mithi</option>
+                                            <option value="Mehrabpur">Mehrabpur</option>
+                                            <option value="Moro">Moro</option>
+                                            <option value="Nagarparkar">Nagarparkar</option>
+                                            <option value="Naudero">Naudero</option>
+                                            <option value="Naushahro Feroze">Naushahro Feroze</option>
+                                            <option value="Naushara">Naushara</option>
+                                            <option value="Nawabshah">Nawabshah</option>
+                                            <option value="Nazimabad">Nazimabad</option>
+                                            <option value="Qambar">Qambar</option>
+                                            <option value="Qasimabad">Qasimabad</option>
+                                            <option value="Ranipur">Ranipur</option>
+                                            <option value="Ratodero">Ratodero</option>
+                                            <option value="Rohri">Rohri</option>
+                                            <option value="Sakrand">Sakrand</option>
+                                            <option value="Sanghar">Sanghar</option>
+                                            <option value="Shahbandar">Shahbandar</option>
+                                            <option value="Shahdadkot">Shahdadkot</option>
+                                            <option value="Shahdadpur">Shahdadpur</option>
+                                            <option value="Shahpur Chakar">Shahpur Chakar</option>
+                                            <option value="Shikarpaur">Shikarpaur</option>
+                                            <option value="Sukkur">Sukkur</option>
+                                            <option value="Tangwani">Tangwani</option>
+                                            <option value="Tando Adam Khan">Tando Adam Khan</option>
+                                            <option value="Tando Allahyar">Tando Allahyar</option>
+                                            <option value="Tando Muhammad Khan">Tando Muhammad Khan</option>
+                                            <option value="Thatta">Thatta</option>
+                                            <option value="Umerkot">Umerkot</option>
+                                            <option value="Warah">Warah</option>
+                                            <!--<option value="" disabled>Khyber Cities</option>-->
+                                            <option value="Abbottabad">Abbottabad</option>
+                                            <option value="Adezai">Adezai</option>
+                                            <option value="Alpuri">Alpuri</option>
+                                            <option value="Akora Khattak">Akora Khattak</option>
+                                            <option value="Ayubia">Ayubia</option>
+                                            <option value="Banda Daud Shah">Banda Daud Shah</option>
+                                            <option value="Bannu">Bannu</option>
+                                            <option value="Batkhela">Batkhela</option>
+                                            <option value="Battagram">Battagram</option>
+                                            <option value="Birote">Birote</option>
+                                            <option value="Chakdara">Chakdara</option>
+                                            <option value="Charsadda">Charsadda</option>
+                                            <option value="Chitral">Chitral</option>
+                                            <option value="Daggar">Daggar</option>
+                                            <option value="Dargai">Dargai</option>
+                                            <option value="Darya Khan">Darya Khan</option>
+                                            <option value="Dera Ismail Khan">Dera Ismail Khan</option>
+                                            <option value="Doaba">Doaba</option>
+                                            <option value="Dir">Dir</option>
+                                            <option value="Drosh">Drosh</option>
+                                            <option value="Hangu">Hangu</option>
+                                            <option value="Haripur">Haripur</option>
+                                            <option value="Karak">Karak</option>
+                                            <option value="Kohat">Kohat</option>
+                                            <option value="Kulachi">Kulachi</option>
+                                            <option value="Lakki Marwat">Lakki Marwat</option>
+                                            <option value="Latamber">Latamber</option>
+                                            <option value="Madyan">Madyan</option>
+                                            <option value="Mansehra">Mansehra</option>
+                                            <option value="Mardan">Mardan</option>
+                                            <option value="Mastuj">Mastuj</option>
+                                            <option value="Mingora">Mingora</option>
+                                            <option value="Nowshera">Nowshera</option>
+                                            <option value="Paharpur">Paharpur</option>
+                                            <option value="Pabbi">Pabbi</option>
+                                            <option value="Peshawar">Peshawar</option>
+                                            <option value="Saidu Sharif">Saidu Sharif</option>
+                                            <option value="Shorkot">Shorkot</option>
+                                            <option value="Shewa Adda">Shewa Adda</option>
+                                            <option value="Swabi">Swabi</option>
+                                            <option value="Swat">Swat</option>
+                                            <option value="Tangi">Tangi</option>
+                                            <option value="Tank">Tank</option>
+                                            <option value="Thall">Thall</option>
+                                            <option value="Timergara">Timergara</option>
+                                            <option value="Tordher">Tordher</option>
+                                            <!--<option value="" disabled>Balochistan Cities</option>-->
+                                            <option value="Awaran">Awaran</option>
+                                            <option value="Barkhan">Barkhan</option>
+                                            <option value="Chagai">Chagai</option>
+                                            <option value="Dera Bugti">Dera Bugti</option>
+                                            <option value="Gwadar">Gwadar</option>
+                                            <option value="Harnai">Harnai</option>
+                                            <option value="Jafarabad">Jafarabad</option>
+                                            <option value="Jhal Magsi">Jhal Magsi</option>
+                                            <option value="Kacchi">Kacchi</option>
+                                            <option value="Kalat">Kalat</option>
+                                            <option value="Kech">Kech</option>
+                                            <option value="Kharan">Kharan</option>
+                                            <option value="Khuzdar">Khuzdar</option>
+                                            <option value="Killa Abdullah">Killa Abdullah</option>
+                                            <option value="Killa Saifullah">Killa Saifullah</option>
+                                            <option value="Kohlu">Kohlu</option>
+                                            <option value="Lasbela">Lasbela</option>
+                                            <option value="Lehri">Lehri</option>
+                                            <option value="Loralai">Loralai</option>
+                                            <option value="Mastung">Mastung</option>
+                                            <option value="Musakhel">Musakhel</option>
+                                            <option value="Nasirabad">Nasirabad</option>
+                                            <option value="Nushki">Nushki</option>
+                                            <option value="Panjgur">Panjgur</option>
+                                            <option value="Pishin Valley">Pishin Valley</option>
+                                            <option value="Quetta">Quetta</option>
+                                            <option value="Sherani">Sherani</option>
+                                            <option value="Sibi">Sibi</option>
+                                            <option value="Sohbatpur">Sohbatpur</option>
+                                            <option value="Washuk">Washuk</option>
+                                            <option value="Zhob">Zhob</option>
+                                            <option value="Ziarat">Ziarat</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Nationality</label>
+                                    <div class="col-sm-7">
+                                        <select id="country" name='birth_country' required>
+                                            <option value="{{showCustomerObject.nationality}}" selected>{{showCustomerObject.nationality}}</option>
+                                            <option value="Afganistan">Afghanistan</option>
+                                            <option value="Albania">Albania</option>
+                                            <option value="Algeria">Algeria</option>
+                                            <option value="American Samoa">American Samoa</option>
+                                            <option value="Andorra">Andorra</option>
+                                            <option value="Angola">Angola</option>
+                                            <option value="Anguilla">Anguilla</option>
+                                            <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+                                            <option value="Argentina">Argentina</option>
+                                            <option value="Armenia">Armenia</option>
+                                            <option value="Aruba">Aruba</option>
+                                            <option value="Australia">Australia</option>
+                                            <option value="Austria">Austria</option>
+                                            <option value="Azerbaijan">Azerbaijan</option>
+                                            <option value="Bahamas">Bahamas</option>
+                                            <option value="Bahrain">Bahrain</option>
+                                            <option value="Bangladesh">Bangladesh</option>
+                                            <option value="Barbados">Barbados</option>
+                                            <option value="Belarus">Belarus</option>
+                                            <option value="Belgium">Belgium</option>
+                                            <option value="Belize">Belize</option>
+                                            <option value="Benin">Benin</option>
+                                            <option value="Bermuda">Bermuda</option>
+                                            <option value="Bhutan">Bhutan</option>
+                                            <option value="Bolivia">Bolivia</option>
+                                            <option value="Bonaire">Bonaire</option>
+                                            <option value="Bosnia & Herzegovina">Bosnia & Herzegovina</option>
+                                            <option value="Botswana">Botswana</option>
+                                            <option value="Brazil">Brazil</option>
+                                            <option value="British Indian Ocean Ter">British Indian Ocean Ter</option>
+                                            <option value="Brunei">Brunei</option>
+                                            <option value="Bulgaria">Bulgaria</option>
+                                            <option value="Burkina Faso">Burkina Faso</option>
+                                            <option value="Burundi">Burundi</option>
+                                            <option value="Cambodia">Cambodia</option>
+                                            <option value="Cameroon">Cameroon</option>
+                                            <option value="Canada">Canada</option>
+                                            <option value="Canary Islands">Canary Islands</option>
+                                            <option value="Cape Verde">Cape Verde</option>
+                                            <option value="Cayman Islands">Cayman Islands</option>
+                                            <option value="Central African Republic">Central African Republic</option>
+                                            <option value="Chad">Chad</option>
+                                            <option value="Channel Islands">Channel Islands</option>
+                                            <option value="Chile">Chile</option>
+                                            <option value="China">China</option>
+                                            <option value="Christmas Island">Christmas Island</option>
+                                            <option value="Cocos Island">Cocos Island</option>
+                                            <option value="Colombia">Colombia</option>
+                                            <option value="Comoros">Comoros</option>
+                                            <option value="Congo">Congo</option>
+                                            <option value="Cook Islands">Cook Islands</option>
+                                            <option value="Costa Rica">Costa Rica</option>
+                                            <option value="Cote DIvoire">Cote DIvoire</option>
+                                            <option value="Croatia">Croatia</option>
+                                            <option value="Cuba">Cuba</option>
+                                            <option value="Curaco">Curacao</option>
+                                            <option value="Cyprus">Cyprus</option>
+                                            <option value="Czech Republic">Czech Republic</option>
+                                            <option value="Denmark">Denmark</option>
+                                            <option value="Djibouti">Djibouti</option>
+                                            <option value="Dominica">Dominica</option>
+                                            <option value="Dominican Republic">Dominican Republic</option>
+                                            <option value="East Timor">East Timor</option>
+                                            <option value="Ecuador">Ecuador</option>
+                                            <option value="Egypt">Egypt</option>
+                                            <option value="El Salvador">El Salvador</option>
+                                            <option value="Equatorial Guinea">Equatorial Guinea</option>
+                                            <option value="Eritrea">Eritrea</option>
+                                            <option value="Estonia">Estonia</option>
+                                            <option value="Ethiopia">Ethiopia</option>
+                                            <option value="Falkland Islands">Falkland Islands</option>
+                                            <option value="Faroe Islands">Faroe Islands</option>
+                                            <option value="Fiji">Fiji</option>
+                                            <option value="Finland">Finland</option>
+                                            <option value="France">France</option>
+                                            <option value="French Guiana">French Guiana</option>
+                                            <option value="French Polynesia">French Polynesia</option>
+                                            <option value="French Southern Ter">French Southern Ter</option>
+                                            <option value="Gabon">Gabon</option>
+                                            <option value="Gambia">Gambia</option>
+                                            <option value="Georgia">Georgia</option>
+                                            <option value="Germany">Germany</option>
+                                            <option value="Ghana">Ghana</option>
+                                            <option value="Gibraltar">Gibraltar</option>
+                                            <option value="Great Britain">Great Britain</option>
+                                            <option value="Greece">Greece</option>
+                                            <option value="Greenland">Greenland</option>
+                                            <option value="Grenada">Grenada</option>
+                                            <option value="Guadeloupe">Guadeloupe</option>
+                                            <option value="Guam">Guam</option>
+                                            <option value="Guatemala">Guatemala</option>
+                                            <option value="Guinea">Guinea</option>
+                                            <option value="Guyana">Guyana</option>
+                                            <option value="Haiti">Haiti</option>
+                                            <option value="Hawaii">Hawaii</option>
+                                            <option value="Honduras">Honduras</option>
+                                            <option value="Hong Kong">Hong Kong</option>
+                                            <option value="Hungary">Hungary</option>
+                                            <option value="Iceland">Iceland</option>
+                                            <option value="Indonesia">Indonesia</option>
+                                            <option value="India">India</option>
+                                            <option value="Iran">Iran</option>
+                                            <option value="Iraq">Iraq</option>
+                                            <option value="Ireland">Ireland</option>
+                                            <option value="Isle of Man">Isle of Man</option>
+                                            <option value="Israel">Israel</option>
+                                            <option value="Italy">Italy</option>
+                                            <option value="Jamaica">Jamaica</option>
+                                            <option value="Japan">Japan</option>
+                                            <option value="Jordan">Jordan</option>
+                                            <option value="Kazakhstan">Kazakhstan</option>
+                                            <option value="Kenya">Kenya</option>
+                                            <option value="Kiribati">Kiribati</option>
+                                            <option value="Korea North">Korea North</option>
+                                            <option value="Korea Sout">Korea South</option>
+                                            <option value="Kuwait">Kuwait</option>
+                                            <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                            <option value="Laos">Laos</option>
+                                            <option value="Latvia">Latvia</option>
+                                            <option value="Lebanon">Lebanon</option>
+                                            <option value="Lesotho">Lesotho</option>
+                                            <option value="Liberia">Liberia</option>
+                                            <option value="Libya">Libya</option>
+                                            <option value="Liechtenstein">Liechtenstein</option>
+                                            <option value="Lithuania">Lithuania</option>
+                                            <option value="Luxembourg">Luxembourg</option>
+                                            <option value="Macau">Macau</option>
+                                            <option value="Macedonia">Macedonia</option>
+                                            <option value="Madagascar">Madagascar</option>
+                                            <option value="Malaysia">Malaysia</option>
+                                            <option value="Malawi">Malawi</option>
+                                            <option value="Maldives">Maldives</option>
+                                            <option value="Mali">Mali</option>
+                                            <option value="Malta">Malta</option>
+                                            <option value="Marshall Islands">Marshall Islands</option>
+                                            <option value="Martinique">Martinique</option>
+                                            <option value="Mauritania">Mauritania</option>
+                                            <option value="Mauritius">Mauritius</option>
+                                            <option value="Mayotte">Mayotte</option>
+                                            <option value="Mexico">Mexico</option>
+                                            <option value="Midway Islands">Midway Islands</option>
+                                            <option value="Moldova">Moldova</option>
+                                            <option value="Monaco">Monaco</option>
+                                            <option value="Mongolia">Mongolia</option>
+                                            <option value="Montserrat">Montserrat</option>
+                                            <option value="Morocco">Morocco</option>
+                                            <option value="Mozambique">Mozambique</option>
+                                            <option value="Myanmar">Myanmar</option>
+                                            <option value="Nambia">Nambia</option>
+                                            <option value="Nauru">Nauru</option>
+                                            <option value="Nepal">Nepal</option>
+                                            <option value="Netherland Antilles">Netherland Antilles</option>
+                                            <option value="Netherlands">Netherlands (Holland, Europe)</option>
+                                            <option value="Nevis">Nevis</option>
+                                            <option value="New Caledonia">New Caledonia</option>
+                                            <option value="New Zealand">New Zealand</option>
+                                            <option value="Nicaragua">Nicaragua</option>
+                                            <option value="Niger">Niger</option>
+                                            <option value="Nigeria">Nigeria</option>
+                                            <option value="Niue">Niue</option>
+                                            <option value="Norfolk Island">Norfolk Island</option>
+                                            <option value="Norway">Norway</option>
+                                            <option value="Oman">Oman</option>
+                                            <option value="Pakistan">Pakistan</option>
+                                            <option value="Palau Island">Palau Island</option>
+                                            <option value="Palestine">Palestine</option>
+                                            <option value="Panama">Panama</option>
+                                            <option value="Papua New Guinea">Papua New Guinea</option>
+                                            <option value="Paraguay">Paraguay</option>
+                                            <option value="Peru">Peru</option>
+                                            <option value="Phillipines">Philippines</option>
+                                            <option value="Pitcairn Island">Pitcairn Island</option>
+                                            <option value="Poland">Poland</option>
+                                            <option value="Portugal">Portugal</option>
+                                            <option value="Puerto Rico">Puerto Rico</option>
+                                            <option value="Qatar">Qatar</option>
+                                            <option value="Republic of Montenegro">Republic of Montenegro</option>
+                                            <option value="Republic of Serbia">Republic of Serbia</option>
+                                            <option value="Reunion">Reunion</option>
+                                            <option value="Romania">Romania</option>
+                                            <option value="Russia">Russia</option>
+                                            <option value="Rwanda">Rwanda</option>
+                                            <option value="St Barthelemy">St Barthelemy</option>
+                                            <option value="St Eustatius">St Eustatius</option>
+                                            <option value="St Helena">St Helena</option>
+                                            <option value="St Kitts-Nevis">St Kitts-Nevis</option>
+                                            <option value="St Lucia">St Lucia</option>
+                                            <option value="St Maarten">St Maarten</option>
+                                            <option value="St Pierre & Miquelon">St Pierre & Miquelon</option>
+                                            <option value="St Vincent & Grenadines">St Vincent & Grenadines</option>
+                                            <option value="Saipan">Saipan</option>
+                                            <option value="Samoa">Samoa</option>
+                                            <option value="Samoa American">Samoa American</option>
+                                            <option value="San Marino">San Marino</option>
+                                            <option value="Sao Tome & Principe">Sao Tome & Principe</option>
+                                            <option value="Saudi Arabia">Saudi Arabia</option>
+                                            <option value="Senegal">Senegal</option>
+                                            <option value="Seychelles">Seychelles</option>
+                                            <option value="Sierra Leone">Sierra Leone</option>
+                                            <option value="Singapore">Singapore</option>
+                                            <option value="Slovakia">Slovakia</option>
+                                            <option value="Slovenia">Slovenia</option>
+                                            <option value="Solomon Islands">Solomon Islands</option>
+                                            <option value="Somalia">Somalia</option>
+                                            <option value="South Africa">South Africa</option>
+                                            <option value="Spain">Spain</option>
+                                            <option value="Sri Lanka">Sri Lanka</option>
+                                            <option value="Sudan">Sudan</option>
+                                            <option value="Suriname">Suriname</option>
+                                            <option value="Swaziland">Swaziland</option>
+                                            <option value="Sweden">Sweden</option>
+                                            <option value="Switzerland">Switzerland</option>
+                                            <option value="Syria">Syria</option>
+                                            <option value="Tahiti">Tahiti</option>
+                                            <option value="Taiwan">Taiwan</option>
+                                            <option value="Tajikistan">Tajikistan</option>
+                                            <option value="Tanzania">Tanzania</option>
+                                            <option value="Thailand">Thailand</option>
+                                            <option value="Togo">Togo</option>
+                                            <option value="Tokelau">Tokelau</option>
+                                            <option value="Tonga">Tonga</option>
+                                            <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                                            <option value="Tunisia">Tunisia</option>
+                                            <option value="Turkey">Turkey</option>
+                                            <option value="Turkmenistan">Turkmenistan</option>
+                                            <option value="Turks & Caicos Is">Turks & Caicos Is</option>
+                                            <option value="Tuvalu">Tuvalu</option>
+                                            <option value="Uganda">Uganda</option>
+                                            <option value="United Kingdom">United Kingdom</option>
+                                            <option value="Ukraine">Ukraine</option>
+                                            <option value="United Arab Erimates">United Arab Emirates</option>
+                                            <option value="United States of America">United States of America</option>
+                                            <option value="Uraguay">Uruguay</option>
+                                            <option value="Uzbekistan">Uzbekistan</option>
+                                            <option value="Vanuatu">Vanuatu</option>
+                                            <option value="Vatican City State">Vatican City State</option>
+                                            <option value="Venezuela">Venezuela</option>
+                                            <option value="Vietnam">Vietnam</option>
+                                            <option value="Virgin Islands (Brit)">Virgin Islands (Brit)</option>
+                                            <option value="Virgin Islands (USA)">Virgin Islands (USA)</option>
+                                            <option value="Wake Island">Wake Island</option>
+                                            <option value="Wallis & Futana Is">Wallis & Futana Is</option>
+                                            <option value="Yemen">Yemen</option>
+                                            <option value="Zaire">Zaire</option>
+                                            <option value="Zambia">Zambia</option>
+                                            <option value="Zimbabwe">Zimbabwe</option>
+                                        </select> <br />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-6 col-form-label">Resident Status</label>
+                                    <div class="col-sm-3">
+                                        <input class="form-check-input" type="radio" name="residence_status"
+                                               value="Resident" id="residenceID">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Resident
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-check-input" type="radio" name="residence_status"
+                                               value="Non-Resident" id="residenceID">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Non-Resident
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Current Address</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="current_address" id="currentAddressID" 
+                                               
+                                               value="{{showCustomerObject.current_address}}"
+                                               
+                                               />
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div class="col-md-6">
+                                <div class="form-group row">
+
+                                    <div class="col-sm-7">
+
+                                        <div class="form-check">
+                                            <span>
+                                                <input class="form-check-input" type="checkbox" value="" id="same" name="same" onchange="addressFunction()">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    Same
+                                                </label>
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>-->
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Permanent Address</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="permanent_address" id="permanentAddress" 
+                                               value="{{showCustomerObject.permanent_addres}}"
+                                               />
+                                        <span style="padding-left:20px;">
+                                            <input class="form-check-input" type="checkbox" id="same" name="same" onchange="addressFunction()"
+                                                     
+                                                   
+                                                   >
+                                            <label class="form-check-label" for="flexCheckDefault">
+                                                Cick if Same as Current Address
+                                            </label>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">District</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="district" id="districtID" 
+                                                value="{{showCustomerObject.district}}"
+                                               />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Province</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="province" id="provinceID" 
+                                                value="{{showCustomerObject.province}}"
+                                               />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Geographic Location</label>
+                                    <div class="col-sm-5">
+                                        <select id="customer_type" name="city" style="width:240px !important;" required ">
+                                            {% for field in GeographicLocation %}
+                                            <!--<option selected>{{showCustomerObject.city}}</option>-->
+                                            <option>{{field.city}}</option>
+                                            {% endfor %}
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Zip Code</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" name="zip_code" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Customer Type</label>
+                                    <div class="col-sm-5">
+                                        <select id="customer_type" name="customer_type"
+                                                style="width:240px !important;" required
+                                                onclick="pepDetails(this.value)">
+                                            {% for field in CustomerType %}
+                                            <!--<option selected>{{showCustomerObject.customer_type}}</option>-->
+                                            <option>{{field.cust_type}}</option>
+
+                                            if
+
+                                            {% endfor %}
+
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Delivery Channels </label>
+                                    <div class="col-sm-7">
+                                        <select id="delivery_channel" name="delivery_channel"
+                                                style="width:250px;" required>
+
+                                            {% for field in DeliveryChannel %}
+                                            <!--<option selected>{{showCustomerObject.delivery_channel}}</option>-->
+                                            <option>{{field.channel}}</option>
+                                            {% endfor %}
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Source of Funds  </label>
+                                    <div class="col-sm-7">
+                                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" style="max-width:240px;">
+
+                                           
+                                            <!--<option selected>{{showCustomerObject.fund_source}}</option>-->
+                                            <option value="Pension">Pension</option>
+                                            <option value="Services">Services</option>
+                                            <option value="Property">Property</option>
+                                            <option value="Dividends">Dividends</option>
+                                            <option value="Royalty Income"> Royalty Income</option>
+                                            <option value="Interest Income">Interest Income</option>
+                                            <option value="Import / Export Proceeds">Import / Export Proceeds</option>
+                                            <option value="Dividends">Dividends</option>
+                                            <option value="Salary"> Salary</option>
+                                            <option value="Agriculture Income">  Agriculture Income</option>
+                                            <option value="Business Income"> Business Income</option>
+                                            <option value="Rental Income">Rental Income</option>
+                                            <option value="Home Remittance"> Home Remittance</option>
+                                            <option value="Support from Parents/ Spouse / other Family">Support from Parents/ Spouse / other Family</option>
+                                            <option value="Stock Investment /FX Trading">Stock Investment /FX Trading</option>
+
+
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label">Products & Services Type </label>
+                                    <div class="col-sm-7">
+
+
+                                        <select id="product_type" name="product_type" required style="max-width:250px;">
+                                            {% for field in ProductType %}
+
+                                            <!--<option selected>{{showCustomerObject.product_type}}</option>-->
+                                            <option>{{field.prod_type}}</option>
+                                            {% endfor %}
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Purpose of Account  </label>
+                                    <div class="col-sm-7">
+                                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="account_purpose" style="width:240px;">
+                                            <!--<option selected>{{showCustomerObject.account_purpose}}</option>-->
+                                            <option value="Salary"> Salary</option>
+                                            <option value="Stock / Investment">Stock / Investment</option>
+                                            <option value="Pension">Pension</option>
+                                            <option value=" Agriculture">  Agriculture</option>
+                                            <option value=" Home Remittance">Home Remittance</option>
+                                            <option value=" Personal Saving"> Personal Saving</option>
+                                            <option value=" Business / Self Employed"> Business / Self Employed</option>
+                                            <option value="Personal Saving">Personal Saving</option>
+                                            <option selected> Salary</option>
+                                            <option value="Property Rent"> Property Rent</option>
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-5 col-form-label"> Normal Mode of Transactions  </label>
+                                    <div class="col-sm-7">
+                                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="transaction_mode" style="max-width:250px;">
+                                            <!--<option selected>{{showCustomerObject.mode_of_transactions}}</option>-->
+                                            <option value="Clearings">Clearings</option>
+                                            <option value="Collection">Collection</option>
+                                            <option value="Cash Deposit / Withdrawal">Cash Deposit / Withdrawal</option>
+                                            <option value=" Cheque Deposit / Withdrawal"> Cheque Deposit / Withdrawal</option>
+                                            <option value=" Online">  Online</option>
+
+
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <p class="card-description"> Expected Monthly Turnover</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label"> No. of Debit Transactions</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"
+                                               name="number_debit_transaction" id="dtID"
+                                              value="{{showCustomerObject.number_debit_transaction}}"    
+                                               />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-6 col-form-label">
+                                        Equivalent Amount of Debit
+                                        Transactions (000)
+                                    </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control"
+                                               name="amount_debit_transaction" id="adtID"
+                                                value="{{showCustomerObject.amount_debit_transaction}}"  
+                                               />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label"> No. of Credit Transactions</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control"
+                                               name="number_credit_transaction" id="ctID" 
+                                               
+                                               value="{{showCustomerObject.number_credit_transaction}}"  
+                                               />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group row">
+                                    <label class="col-sm-6 col-form-label">
+                                        Equivalent Amount of Credit
+                                        Transactions (000))
+                                    </label>
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control"
+                                               name="amount_credit_transaction" id="actID" 
+                                                value="{{showCustomerObject.amount_credit_transaction}}"  
+                                               />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+
+                                <div class="form-group row">
+                                    <label class="col-sm-6 col-form-label">
+                                        Is the Customer Politically Exposed
+                                        Person (PEP)?
+                                    </label>
+
+                                    <div class="col-sm-3">
+                                        <input class="form-check-input" type="radio" name="pep_status"
+                                               value="yes" onchange="pepDetails(this)" id="pepID">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Yes
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input class="form-check-input" type="radio" name="pep_status"
+                                               value="no" onchange="pepDetails(this)" id="pepID">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            No
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+
+                                <div class="form-group row">
+                                    <label class="col-sm-4 col-form-label">Beneficial Ownership</label>
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="benefical_owner"
+                                               value="self" onchange="benficialDetails(this)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Self
+                                        </label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <input class="form-check-input" type="radio" name="benefical_owner"
+                                               value="other" onchange="benficialDetails(this)">
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            Other
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <script>
+                            function benficialDetails(myradio) {
+                                var x = document.getElementById("benficiary_form");
+
+                                if (myradio.value == "other") {
+                                    x.style.display = "block";
+                                }
+
+                                else {
+                                    x.style.display = "none";
+                                }
+                            }
+                        </script>
+                        <script>
+                            function pepDetails(choice) {
+                                var x = document.getElementById("pep_form");
+
+                                if (choice.value == "yes") {
+                                    x.style.display = "block";
+                                }
+
+                                else {
+                                    x.style.display = "none";
+                                }
+                            }
+                        </script>
+
+                        <div id="benficiary_form" style="display:none;">
+                            <p class="card-description">
+                                Please Provide Details Of Beneficial Owner-individual
+                                Account
+                            </p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Name of Beneficial Owner </label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control"
+                                                   name="benefical_owner_name" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">
+                                            Relationship with
+                                            Customer
+                                        </label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control"
+                                                   name="relationship_with_customer" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">
+                                            Address of the Beneficial
+                                            Owner
+                                        </label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="beneficial_address" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">Identity Document</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" name="beneficial_id" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Identity Document Number</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control"
+                                                   name="beneficial_document_no" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">
+                                            Expiray Date of Identity
+                                            Document Number
+                                        </label>
+                                        <div class="col-sm-7">
+                                            <input type="date" class="form-control"
+                                                   name="beneficial_expiry_date" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <br />
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Nationality</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-check-input" type="radio" name="nationality"
+                                                   value="pakistani" onchange="nationalityCheck(this)">
+                                            <label class="form-check-label" for="nationality1">
+                                                Pakistani
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input class="form-check-input" type="radio" name="nationality"
+                                                   value="other" onchange="nationalityCheck(this)">
+                                            <label class="form-check-label" for="nationality1">
+                                                Other
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6" id="nationality_other" style="display:none;">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">
+                                            Please Specify Nationality
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" name="nationality_specify" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-4 col-form-label">Residence</label>
+                                        <div class="col-sm-4">
+                                            <input class="form-check-input" type="radio"
+                                                   name="beneficial_residence" value="resident" onchange="residenceCheck(this)">
+                                            <label class="form-check-label" for="residence1">
+                                                Resident
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <input class="form-check-input" type="radio"
+                                                   name="beneficial_residence" value="non-resident" onchange="residenceCheck(this)">
+                                            <label class="form-check-label" for="residence1">
+                                                Non-Resident
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6" id="residence_specify" style="display:none;">
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">
+                                            Please Specify Country
+                                        </label>
+                                        <div class="col-sm-6">
+                                            <input type="text" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+
+
+                                    <div class="form-group row">
+                                        <label class="col-sm-6 col-form-label">
+                                            Is the Beneficial Owner US Person
+                                            Select "Yes" OR "NO'
+                                        </label>
+
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="us_person"
+                                                   value="Yes">
+                                            <label class="form-check-label" for="us_person1">
+                                                Yes
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <input class="form-check-input" type="radio" name="us_person"
+                                                   value="No">
+                                            <label class="form-check-label" for="us_person1">
+                                                No
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label class="col-sm-5 col-form-label">
+                                            Source of Funds
+                                        </label>
+                                        <div class="col-sm-7">
+                                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="b_fund_source" style="max-width:240px;">
+                                                <option value="Agriculture">  Agriculture</option>
+                                                <option value="Business">Business</option>
+                                                <option value="Rental Income">Rental Income</option>
+
+                                                <option value="Specify in case of
+                                                other">
+                                                    Specify in case of
+                                                    other
+                                                </option>
+
+
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+
+
+                        <div class="row" id="pep_form" style="display:none;">
+
+
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                Is the Customer High
+                                                Ranking Government official?
+                                            </label>
+
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="high_rank_official" value="yes"
+                                                       onclick="highRank(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="high_rank_official" value="No"
+                                                       onclick="highRank(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6" id="high_rank_official_type" style="display:none;">
+                                    <div class="form-group row">
+                                        <label class="col-sm-7 col-form-label">
+                                            Please Choose the Position
+                                        </label>
+                                        <div class="col-sm-5">
+                                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="high_rank_official_type" style="max-width:250px;">
+                                                <option value=" President"> President</option>
+                                                <option value="Prime Minister">Prime Minister</option>
+                                                <option value="Governor">Governor</option>
+                                                <option value="Minister of State">Minister of State</option>
+                                                <option value=" Provincial Minister">  Provincial Minister</option>
+                                                <option value="Chief Minister">Chief Minister</option>
+                                                <option value="Federal Minister">Federal Minister</option>
+                                                <option value="Deputy/ Assistant Minister for Federal Ministries">Deputy/ Assistant Minister for Federal Ministries</option>
+                                                <option value="Advisors to Prime Minister/ President /Governor /Chief
+                                                        Minister">
+                                                    Advisors to Prime Minister/ President /Governor /Chief
+                                                    Minister
+                                                </option>
+
+
+
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+                            <div class="card-body">
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                ls the Customer Member of
+                                                a Legislative Assembly ?
+                                            </label>
+
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="legislative_assembly" value="Yes"
+                                                       onclick="legislativeAssembly(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="legislative_assembly" value="No"
+                                                       onclick="legislativeAssembly(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-6" id="legislative_assembly_type" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Please Choose the Position
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="legislative_assembly_type" style="max-width:250px;">
+                                                    <option value=" Chairman/Head of Political Party"> Chairman/Head of Political Party</option>
+                                                    <option value=" Key Member of Political Party"> Key Member of Political Party</option>
+                                                    <option value="Advisors to Prime Minister / President /Governor /Chief
+                                              Minister">
+                                                        Advisors to Prime Minister / President /Governor /Chief
+                                                        Minister
+                                                    </option>
+                                                    <option value="Minister of State">Minister of State</option>
+                                                    <option value=" Provincial Minister">  Provincial Minister</option>
+                                                    <option value="Chief Minister">Chief Minister</option>
+                                                    <option value="Federal Minister">Federal Minister</option>
+                                                    <option value="Deputy/ Assistant Minister for Federal Ministries">Deputy/ Assistant Minister for Federal Ministries</option>
+                                                    <option value="Advisors to Prime Minister/ President /Governor /Chief
+                                                        Minister">
+                                                        Advisors to Prime Minister/ President /Governor /Chief
+                                                        Minister
+                                                    </option>
+                                                    <option value=" Advisors to Prime Minister/ President /Governor /Chief"> Advisors to Prime Minister/ President /Governor /Chief</option>
+                                                    <option value="Senator">Senator</option>
+                                                    <option value=" Provincial Assembly Member"> Provincial Assembly Member</option>
+                                                    <option value="Federal Minister">Federal Minister</option>
+                                                    <option value="Minister of State">Minister of State</option>
+
+
+
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                ls the Customer Having a
+                                                position as a Judicial Official ?
+                                            </label>
+
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="judicial_official" value="Yes"
+                                                       onclick="judicialOfficial(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="judicial_official" value="No"
+                                                       onclick="judicialOfficial(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="col-md-6" id="judicial_official_type" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Please Choose the Position
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="judicial_official_type" id="judicial_official_type" style="max-width:250px;">
+
+
+                                                    <option value="Civil Judge-Judicial Magistrates Court">Civil Judge-Judicial Magistrates Court</option>
+                                                    <option value="Special Tribunal and Board">Special Tribunal and Board</option>
+                                                    <option value="Head of Govt. Prosecutorial Office">Head of Govt. Prosecutorial Office</option>
+
+
+                                                    <option value="Attorney General Or Equivalent">Attorney General Or Equivalent</option>
+
+
+
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                </div>
+
+
+
+
+
+                            </div>
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                Does the Customer Hold
+                                                any Prominent Public Function ?
+                                            </label>
+
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="public_function" value="Yes"
+                                                       onclick="publicFunction(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="public_function" value="No"
+                                                       onclick="publicFunction(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6" id="public_function_type" style="display:none;">
+                                    <div class="form-group row">
+                                        <label class="col-sm-7 col-form-label">
+                                            Please Choose the Position
+                                        </label>
+                                        <div class="col-sm-5">
+                                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="public_function_type" style="max-width:250px;">
+
+
+
+                                                <option value="City Nazim /Mayor">City Nazim /Mayor</option>
+                                                <option value="Head of Regulatory authorities / local Bodies
+                                                         (SBP, SECP, PEMRA, OGRA etc)">
+                                                    Head of Regulatory authorities / local Bodies
+                                                    (SBP, SECP, PEMRA, OGRA etc)
+                                                </option>
+
+                                                <option value="Head of Central Bank">Head of Central Bank</option>
+
+                                                <option value="Senior Civil Servant heading departments
+                                                            (National /Federal /District Level)">
+                                                    Senior Civil Servant heading departments
+                                                    (National /Federal /District Level)
+                                                </option>
+
+
+
+
+
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+                            </div>
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                ls the Customer a
+                                                Diplomat ?
+                                            </label>
+
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio" name="diplomat"
+                                                       value="Yes" onclick="diplomat(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio" name="diplomat"
+                                                       value="No" onclick="diplomat(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-6" id="diplomat_type1" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Please Choose the Position
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="diplomat_type" style="max-width:250px;">
+
+                                                    <option value="Ambassador">Ambassador</option>
+                                                    <option value="Senior Embassy and Consulate Staff">Senior Embassy and Consulate Staff</option>
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                ls the Customer High
+                                                Ranking Military Official ?
+                                            </label>
+
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="military_official" value="Yes"
+                                                       onclick="militaryOfficial(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="military_official" value="No"
+                                                       onclick="militaryOfficial(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-6" id="military_official_type" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Please Choose the Position
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="military_official_type" style="max-width:250px;">
+
+
+                                                    <option value="General / Admiral /Air Chief Marshall (Equivalent )">General / Admiral /Air Chief Marshall (Equivalent )</option>
+                                                    <option value="Other High Ranking Officer in armed forces (Brigadier, Commodore, Air Commodore)">Other High Ranking Officer in armed forces (Brigadier, Commodore, Air Commodore)</option>
+
+
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+                            </div>
+                            <div class="card-body">
+                                <label class="col-sm-12 col-form-label">
+                                    Does Customer hold and Senior
+                                    Position in State owned Enterprises /Corporation/ Autonomous Body ?
+                                </label>
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row" style="text-align:center;">
+
+
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="senior_position_status" value="Yes"
+                                                       onclick="seniorPosition(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="senior_position_status" value="No"
+                                                       onclick="seniorPosition(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="col-md-6" id="senior_position_status_type" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Please Choose the Position
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="senior_position_status_type" style="max-width:250px;">
+
+
+
+
+
+                                                    <option value="Member of the Management"> Member of the Management</option>
+                                                    <option value="Member of the Supervisory Board/ Board of Director">Member of the Supervisory Board/ Board of Director</option>
+
+
+                                                    <option value="">
+                                                        lf Other Please
+                                                        Specify Below
+                                                    </option>
+
+
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+
+
+                            </div>
+                            <div class="card-body">
+                                <label class="col-sm-12 col-form-label">
+                                    ls the Customer High Risk Ranking
+                                    Officials in lnternational Organization (E.g United Nation, World Bank ,
+                                    European Union etc)
+                                </label>
+
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row" style="text-align:center;">
+
+
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="high_risk_ranking_official" value="Yes"
+                                                       onclick="internationalOrganization(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="high_risk_ranking_official" value="No"
+                                                       onclick="internationalOrganization(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-6" id="high_risk_ranking_official_type" style="display:none;">
+                                        <div class="form-group row">
+                                            <label class="col-sm-7 col-form-label">
+                                                Please Choose the Position
+                                            </label>
+                                            <div class="col-sm-5">
+                                                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" name="high_risk_ranking_official_type" style="max-width:250px;">
+
+
+                                                    <option value="Head of Large lnternational Organization"> Head of Large lnternational Organization</option>
+
+                                                    <option value="Board of Director"> Board of Director</option>
+
+                                                    <option value="Management team member of the lnternational Organization">Management team member of the lnternational Organization</option>
+
+
+
+
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                            </div>
+                            <div class="card-body">
+
+
+                                <div class="row">
+
+                                    <div class="col-md-12">
+
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                ls the Customer Member of
+                                                Ruling Families ?
+                                            </label>
+
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="member_of_ruling_families" value="Yes"
+                                                       onclick="rulingFamilies(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input class="form-check-input" type="radio"
+                                                       name="member_of_ruling_families" value="No"
+                                                       onclick="rulingFamilies(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row" id="rulingFamilies" style="display:none;">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="form-check form-check-success"> </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-7 col-form-label">
+                                                    Please Specify
+                                                    Position
+                                                </label>
+                                                <div class="col-sm-5">
+                                                    <input type="text" class="form-control"
+                                                           name="member_of_ruling_familiesl_position" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="card-body">
+                                <label class="col-sm-12 col-form-label">
+                                    ls the Customer lmmediate Family
+                                    Member/ Close associate (*) to any of the above Classification ?
+                                </label>
+
+
+
+                                <div class="row">
+                                    <div class="col-md-6">
+
+
+                                        <div class="form-group row" style="text-align:center;">
+
+                                            <div class="col-sm-4">
+                                                <input class="form-check-input" type="radio"
+                                                       name="immediate_family_member" value="Yes" onchange="immediate_family_member(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    Yes
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input class="form-check-input" type="radio"
+                                                       name="immediate_family_member" value="No" onchange="immediate_family_member(this)">
+                                                <label class="form-check-label" for="flexRadioDefault1">
+                                                    No
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="row" id="immediateFamily">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    Relevant section
+                                                    No./ Classification to be Mentioned
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control"
+                                                           name="immediate_family_member_section_no" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    Name of the
+                                                    immediate family member/Close associate
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control"
+                                                           name="immediate_family_member_name" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-6 col-form-label">
+                                                    Relationship with
+                                                    immediate family member/Close associate
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control"
+                                                           name="immediate_family_member_relation" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                What is the Source of
+                                                wealth of Customer (PEP)
+                                            </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control"
+                                                       name="pep_wealth_source" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                What is the percentage
+                                                of share holding of customer (PEP) in Corporation/
+                                                Enterprises?
+                                            </label>
+
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control"
+                                                       name="pep_share_holdig" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-md-12">
+                                        <div class="form-group row">
+                                            <label class="col-sm-6 col-form-label">
+                                                What is the period and
+                                                country of the customer (PEP) where he held senior position?
+                                            </label>
+
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control"
+                                                       name="pep_country" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+
+
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <button type="button" class="btn ajaxcall">Update</button>
+                                <button class="btn">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+        function myFormValidation() {
+            var x = document.getElementById("cnicID");
+            var y = document.getElementById("customerNameID");
+            var fname = document.getElementById("fathernameID");
+            var gender = document.getElementById("genderID").checked;
+            var edate = document.getElementById("exDateID");
+
+            var accountTitleID = document.getElementById("accountTitleID");
+            var accountNoID = document.getElementById("accountNoID");
+            var branchNameID = document.getElementById("branchNameID");
+            var branchCodeID = document.getElementById("branchCodeID");
+
+            var dobID = document.getElementById("dobID");
+            var currentAddressID = document.getElementById("currentAddressID");
+            var residenceID = document.getElementById("residenceID").checked;
+            var permanentAddress = document.getElementById("permanentAddress");
+
+            var districtID = document.getElementById("districtID");
+            var provinceID = document.getElementById("provinceID");
+            var pepID = document.getElementById("pepID").checked;
+
+            var dtID = document.getElementById("dtID");
+            var adtID = document.getElementById("adtID");
+            var ctID = document.getElementById("ctID");
+            var actID = document.getElementById("actID");
+
+
+
+
+
+
+
+
+
+
+            if (x.value === "") {
+                alert("cnic is empty")
+                return false;
+            }
+            else if (edate.value === "") {
+                alert("Please Select Expiray Date ")
+                return false;
+            }
+            else if (gender === false) {
+                alert("Please Select Gender ")
+                return false;
+            }
+
+            else if (x.value.length < 13) {
+                alert("cnic should be no less than of 13 digits ")
+                return false;
+            }
+            else if (x.value.length > 13) {
+                alert("cnic should no more than 13 digits ")
+                return false;
+            }
+            else if (y.value === "") {
+                alert("Name cant be empty ")
+                return false;
+            }
+            else if (fname.value === "") {
+                alert("Father Name cant be empty ")
+                return false;
+            }
+
+
+            else if (accountTitleID.value === "") {
+                alert("accountTitleID cant be empty ")
+                return false;
+            }
+            else if (accountNoID.value === "") {
+                alert("accountNoID cant be empty ")
+                return false;
+            }
+            else if (branchNameID.value === "") {
+                alert("branchNameIDName cant be empty ")
+                return false;
+            }
+            else if (branchCodeID.value === "") {
+                alert("branchCodeID cant be empty ")
+                return false;
+            }
+            else if (dobID.value === "") {
+                alert("dobID Name cant be empty ")
+                return false;
+            }
+            else if (residenceID.value === "") {
+                alert("residenceID Name cant be empty ")
+                return false;
+            }
+            else if (currentAddressID.value === "") {
+                alert("currentAddressIDcant be empty ")
+                return false;
+            }
+            else if (permanentAddress.value === "") {
+                alert("permanentAddress cant be empty ")
+                return false;
+
+            }
+            else if (districtID.value === "") {
+                alert("districtID Name cant be empty ")
+                return false;
+            }
+            else if (provinceID.value === "") {
+                alert("provinceID Name cant be empty ")
+                return false;
+            }
+            else if (pepID.value === "") {
+                alert("pepID Name cant be empty ")
+                return false;
+            }
+            else if (dtID.value === "") {
+                alert("dtID Name cant be empty ")
+                return false;
+            }
+            else if (adtID.value === "") {
+                alert("adtID Name cant be empty ")
+                return false;
+            }
+            else if (ctID.value === "") {
+                alert("ctID Name cant be empty ")
+                return false;
+            }
+            else if (actID.value === "") {
+                alert("actID Name cant be empty ")
+                return false;
+            }
+
+
+
+
+
+            else {
+                return true;
+            }
+
+
+        }
+        function nationalityCheck(choice) {
+            var x = document.getElementById("nationality_other");
+
+            if (choice.value == "pakistani") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+
+        //function residenceCheck(this) {
+        //    var x = document.getElementById("residence_specify");
+
+        //    if (choice.value == "resident") {
+        //        x.style.display = "none";
+        //    }
+        //    else {
+        //        x.style.display = "block";
+        //    }
+
+
+        //}
+
+        function highRank(choice) {
+            var x = document.getElementById("high_rank_official_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+        function legislativeAssembly(choice) {
+            var x = document.getElementById("legislative_assembly_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+
+        function judicialOfficial(choice) {
+            var x = document.getElementById("judicial_official_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+
+        function publicFunction(choice) {
+            var x = document.getElementById("public_function_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+        function diplomat(choice) {
+            var x = document.getElementById("diplomat_type1");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+        }
+        function militaryOfficial(choice) {
+            var x = document.getElementById("military_official_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+        function seniorPosition(choice) {
+            var x = document.getElementById("senior_position_status_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+
+        }
+        function internationalOrganization(choice) {
+            var x = document.getElementById("high_risk_ranking_official_type");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+        }
+        function rulingFamilies(choice) {
+            var x = document.getElementById("rulingFamilies");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+        }
+        function immediate_family_member(choice) {
+            var x = document.getElementById("immediateFamily");
+
+            if (choice.value == "No") {
+                x.style.display = "none";
+            }
+            else {
+                x.style.display = "block";
+            }
+
+        }
+
+
+
+    </script>
+    <script>
+        // onclick ajax call
+        $('.ajaxcall').on('click', function (e) {
+            e.preventDefault();
+
+            if (myFormValidation() === true) {
+                // get all form data
+                var queryString = $('.formdata').serialize();
+                $.ajax({
+                    url: '{% url "addIndividual" %}',
+                    type: 'POST',
+                    data: queryString,
+                    success: function (data) {
+                        //get id from data
+                        var id = data.id;
+                        console.log(id);
+                        // sweet alert isconfirm and hit url
+                        swal({
+                            title: "KYC API Success",
+                            text: "Do you want to Call Screeen this User?",
+                            icon: "success",
+                            button: "OK",
+                        }).then(function () {
+                            // call another url
+                            window.location.href = '/discounting/alerts/' + id;
+                        });
+                    }
+                });
+
+            }
+
+
+
+
+
+
+        });
+
+
+
+
+    </script>
+    <script>
+        function addressFunction() {
+
+            if (document.getElementById("same").checked) {
+                document.getElementById("permanentAddress").value = document.getElementById("currentAddressID").value;
+
+
+            }
+        }
+    </script>
+</div>
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>    
+
+
+{% endblock %}
