@@ -1,7 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\admindashboard",
+    "\\account",
     "\\discounting",
     "\\discounting\\templatetags",
     "\\identification",
@@ -11,6 +11,6 @@
     "\\templates\\admindashboard",
     "\\templates\\base"
   ],
-  "SelectedNode": "\\discounting\\views.py",
+  "SelectedNode": "\\account\\views.py",
   "PreviewInSolutionExplorer": false
 }

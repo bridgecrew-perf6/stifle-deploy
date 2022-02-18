@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 from identification.models import  *
 import riskrating
-from riskrating.searchTable import IndividualTable
+
 from .models import *
 from datetime import timedelta, date
 import sqlalchemy
@@ -14,7 +14,7 @@ import pandas as pd
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import View
 from django.template.loader import get_template
-from .utils import render_to_pdf
+#from .utils import render_to_pdf
 from django.db import connection
 from django.core.mail import send_mail
 
@@ -24,18 +24,21 @@ from django.core.mail import send_mail
 def riskrating(request):
      #individualRisk = Individual.objects.all()
      #engine = sqlalchemy.create_engine('mysql+pymysql://root:saim123@localhost:3306/compliance')     
-     engine = sqlalchemy.create_engine('postgresql://postgres:saim123@localhost:5432/compliancedb')
-     #individualRisk= pd.read_sql_query("""SELECT DISTINCT (customer_id),customer_id,customer_type,product_type,delivery_channel,diligence_type,
-     #                                       customer_name,over_all_discount_status,risk_score,risk_category,pep_status,identification_individual.city
-     #                                       FROM identification_individual
-     #                                       LEFT JOIN discounting_individuldiscount  ON identification_individual.customer_id = discounting_individuldiscount.individual_id
-     #                                       WHERE over_all_discount_status='Pending' or over_all_discount_status='Rejected' or over_all_discount_status='Proceed';""",engine)
-     schema_name = connection.schema_name
-     individualRisk= pd.read_sql_query(f"""SELECT DISTINCT (customer_id),customer_id,customer_type,product_type,delivery_channel,diligence_type,
+     engine = sqlalchemy.create_engine('postgresql://postgres:saim123@localhost:5432/compliancetest')
+     individualRisk= pd.read_sql_query("""SELECT DISTINCT (customer_id),customer_id,customer_type,product_type,delivery_channel,diligence_type,
                                             customer_name,over_all_discount_status,risk_score,risk_category,pep_status,identification_individual.city
-                                            FROM {schema_name}.identification_individual
-                                            LEFT JOIN {schema_name}.discounting_individuldiscount  ON {schema_name}.identification_individual.customer_id = {schema_name}.discounting_individuldiscount.individual_id
+                                            FROM identification_individual
+                                            LEFT JOIN discounting_individuldiscount  ON identification_individual.customer_id = discounting_individuldiscount.individual_id
                                             WHERE over_all_discount_status='Pending' or over_all_discount_status='Rejected' or over_all_discount_status='Proceed';""",engine)
+     
+     
+     
+     #schema_name = connection.schema_name
+     #individualRisk= pd.read_sql_query(f"""SELECT DISTINCT (customer_id),customer_id,customer_type,product_type,delivery_channel,diligence_type,
+     #                                       customer_name,over_all_discount_status,risk_score,risk_category,pep_status,identification_individual.city
+     #                                       FROM {schema_name}.identification_individual
+     #                                       LEFT JOIN {schema_name}.discounting_individuldiscount  ON {schema_name}.identification_individual.customer_id = {schema_name}.discounting_individuldiscount.individual_id
+     #                                       WHERE over_all_discount_status='Pending' or over_all_discount_status='Rejected' or over_all_discount_status='Proceed';""",engine)
      
      #people = IndividualTable()
 
@@ -313,27 +316,27 @@ def updateRiskratingStatus(request):
 
 
 
-def generate_pdf(request,id):
-        print(id)
-        template = get_template('riskRating/print_customer.html')
-        ind_obj=Individual.objects.get(customer_id=id)
+#def generate_pdf(request,id):
+#        print(id)
+#        template = get_template('riskRating/print_customer.html')
+#        ind_obj=Individual.objects.get(customer_id=id)
 
-        print(ind_obj.customer_id)
-        context = {          
-        }
+#        print(ind_obj.customer_id)
+#        context = {          
+#        }
 
 
-        context['showCustomerObject'] =  ind_obj
+#        context['showCustomerObject'] =  ind_obj
         
-        html = template.render(context)
-        pdf = render_to_pdf('riskRating/print_customer.html', context)
-        if pdf:
-            response = HttpResponse(pdf, content_type='application/pdf')
-            filename = "Invoice_%s.pdf" %(id)
-            content = "inline; filename='%s'" %(filename)
-            download = request.GET.get("download")
-            if download:
-                content = "attachment; filename='%s'" %(filename)
-            response['Content-Disposition'] = content
-            return response
-        return HttpResponse("Not found")
+#        html = template.render(context)
+#        pdf = render_to_pdf('riskRating/print_customer.html', context)
+#        if pdf:
+#            response = HttpResponse(pdf, content_type='application/pdf')
+#            filename = "Invoice_%s.pdf" %(id)
+#            content = "inline; filename='%s'" %(filename)
+#            download = request.GET.get("download")
+#            if download:
+#                content = "attachment; filename='%s'" %(filename)
+#            response['Content-Disposition'] = content
+#            return response
+#        return HttpResponse("Not found")

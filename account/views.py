@@ -25,25 +25,8 @@ def login_user(request):
         
         if user is not None:
              login(request,user)
-             current_url = request.META['HTTP_HOST']
 
-             print(current_url)
-
-             if (current_url.find('tenant1') != -1 ):
-                print("in find")
-                return redirect("dashboard")
-
-             else:
-
-                subdomain = '.localhost:8000'
-                host = request.META.get('HTTP_HOST', '')
-                scheme_url = request.is_secure() and "https" or "http"
-                url = f"{scheme_url}://{subdomain}.{host}"
-             
-                return HttpResponseRedirect('http://tenant1.localhost:8000/')
-
-
-            # return redirect("dashboard")
+             return redirect("dashboard")
         else:
             messages.info(request, "User Name or Password is incorrect")
             return redirect("login")

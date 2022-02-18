@@ -204,11 +204,14 @@ def discount(request,id):
     #cid=6512345678901
     print("in discount")
     cid=str(cid)
-    engine = sqlalchemy.create_engine('postgresql://postgres:saim123@localhost:5432/compliancedb')
+    engine = sqlalchemy.create_engine('postgresql://postgres:saim123@localhost:5432/compliancetest')
     ##df = pd.read_sql_table('discounting_alert',engine)
-    schema_name = connection.schema_name
-    print(schema_name)
-    df = pd.read_sql_query(f"select * from {schema_name}.discounting_alert where individual_id='%s'" %cid,engine)
+    #schema_name = connection.schema_name
+    #print(schema_name)
+    
+    df = pd.read_sql_query(f"select * from discounting_alert where individual_id='%s'" %cid,engine)
+
+    #df = pd.read_sql_query(f"select * from {schema_name}.discounting_alert where individual_id='%s'" %cid,engine)
     #df=Alert.objects.filter(individual_id=int(id))
 
     global alerts_df
@@ -1869,11 +1872,13 @@ def discountEntity(request,id):
     #cid=6512345678901
     print("in discount")
     cid=str(cid)
-    engine = sqlalchemy.create_engine('postgresql://postgres:saim123@localhost:5432/compliancedb')
+    engine = sqlalchemy.create_engine('postgresql://postgres:saim123@localhost:5432/compliancetest')
     ##df = pd.read_sql_table('discounting_alert',engine)
     schema_name = connection.schema_name
     print(schema_name)
-    df = pd.read_sql_query(f"select * from {schema_name}.discounting_entityalerts where entity_id='%s'" %cid,engine)
+    
+    df = pd.read_sql_query(f"select * from discounting_entityalerts where entity_id='%s'" %cid,engine)
+    #df = pd.read_sql_query(f"select * from {schema_name}.discounting_entityalerts where entity_id='%s'" %cid,engine)
 
 
     org_obj=Organization.objects.get(organization_id=cid)

@@ -1,4 +1,4 @@
-from customers.models import Client, Domain
+#from customers.models import Client, Domain
 
 
 

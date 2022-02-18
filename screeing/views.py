@@ -351,13 +351,17 @@ def ScreenDiscount(request,id):
     #cid=6512345678901
     print("in discount")
     cid=str(cid)
-    engine = sqlalchemy.create_engine('postgresql://postgres:saim123@localhost:5432/compliancedb')
+    engine = sqlalchemy.create_engine('postgresql://postgres:saim123@localhost:5432/compliancetest')
     #df = pd.read_sql_table('discounting_alert',engine)
     schema_name = connection.schema_name
     print(schema_name)
-
-    df = pd.read_sql_query(f"select * from {schema_name}.screeing_screenalert where customer_id='%s'" %cid,engine)
     
+
+    #df = pd.read_sql_query(f"select * from {schema_name}.screeing_screenalert where customer_id='%s'" %cid,engine)
+    df = pd.read_sql_query(f"select * from screeing_screenalert where customer_id='%s'" %cid,engine)
+    
+
+
     print("customer id",cid)
     name = request.session.get('customer_name')   
     passportNum = request.session.get('customer_id')
@@ -474,10 +478,12 @@ def ScreenDiscountOrg(request,id):
     #cid=6512345678901
     print("in discount")
     cid=str(cid)
-    engine = sqlalchemy.create_engine('mysql+pymysql://root:saim123@localhost:3306/compliance')
+    engine = sqlalchemy.create_engine('mysql+pymysql://root:saim123@localhost:3306/compliancetest')
     #df = pd.read_sql_table('discounting_alert',engine)
+    #df = pd.read_sql_query("select * from screeing_organizationalerts where org_registeration="+cid,engine)
     df = pd.read_sql_query("select * from screeing_organizationalerts where org_registeration="+cid,engine)
     
+
     name = request.session.get('org_name')    
     
     registeration = request.session.get('org_registeration')  

@@ -58,7 +58,7 @@
         </li>
 
         {% endif %}
-        
+
 
         <li class="nav-item {% if request.path == customer %} active {% endif %}">
             <a class="nav-link" href="{% url 'customerRecords' %}">
@@ -66,7 +66,7 @@
                 <!--   <i class="mdi mdi-home menu-icon">  </i> > -->
             </a>
         </li>
-       
+
 
         {% load groupfilter %}
         {% if request.user|group:"L2" %}
@@ -127,6 +127,16 @@
 
             </a>
         </li>
+
+        <!--<li class="nav-item {% if request.path == insertDefaultValues %} active {% endif %}">
+            <a class="nav-link" href="{% url 'insertDefaultValues' %}">
+                <span class="menu-title">Insert Record</span>
+
+            </a>
+        </li>-->
+        
+
+
     </ul>
 </nav>
 

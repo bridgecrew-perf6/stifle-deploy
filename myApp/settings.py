@@ -37,28 +37,51 @@ ALLOWED_HOSTS = ['*']
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-INSTALLED_APPS
 
 
-SHARED_APPS = (
-    'django_tenants',  # mandatory
-    'customers', # you must list the app where your tenant model resides in
+#SHARED_APPS = (
+#    'django_tenants',  # mandatory
+#    'customers', # you must list the app where your tenant model resides in
 
-    'django.contrib.contenttypes',
-    'django.contrib.staticfiles',
-    # everything below here is optional
-    'django.contrib.auth',
-    'django.contrib.sessions',
-    #'django.contrib.sites',
-    'django.contrib.messages',
+#    'django.contrib.contenttypes',
+#    'django.contrib.staticfiles',
+#    # everything below here is optional
+#    'django.contrib.auth',
+#    'django.contrib.sessions',
+#    #'django.contrib.sites',
+#    'django.contrib.messages',
+#    'django.contrib.admin',
+#    'django_filters',
+#    'ajax_datatable',
+#    'account',
+#)
+
+#TENANT_APPS = (
+#    # The following Django contrib apps must be in TENANT_APPS
+#    'django.contrib.contenttypes',
+
+#    # your tenant-specific apps
+#    'app',
+#    'identification',
+#    'screeing',
+#    'riskrating',
+#    'monitoring',
+#    'discounting',
+#    'reporting',
+#    'admindashboard',
+#    'account',
+#    'debug_toolbar',
+#    'redflags',
+#)
+
+INSTALLED_APPS = [
+    
+    # Add your apps here to enable them
     'django.contrib.admin',
-    'django_filters',
-    'ajax_datatable',
-    'account',
-)
-
-TENANT_APPS = (
-    # The following Django contrib apps must be in TENANT_APPS
+    'django.contrib.auth',
     'django.contrib.contenttypes',
-
-    # your tenant-specific apps
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
     'app',
     'identification',
     'screeing',
@@ -70,44 +93,24 @@ TENANT_APPS = (
     'account',
     'debug_toolbar',
     'redflags',
-)
-
-#INSTALLED_APPS = [
     
-#    # Add your apps here to enable them
-#    'django.contrib.admin',
-#    'django.contrib.auth',
-#    'django.contrib.contenttypes',
-#    'django.contrib.sessions',
-#    'django.contrib.messages',
-#    'django.contrib.staticfiles',
-#    'rest_framework',
-#    'app',
-#    'identification',
-#    'screeing',
-#    'riskrating',
-#    'monitoring',
-#    'discounting',
-#    'reporting',
-#    'admindashboard',
-#    'account',
-#    'debug_toolbar',
-    
-#]
+]
 
 
-INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
+#INSTALLED_APPS = list(SHARED_APPS) + [app for app in TENANT_APPS if app not in SHARED_APPS]
 
 
-TENANT_MODEL = "customers.Client" # app.Model
+#TENANT_MODEL = "customers.Client" # app.Model
 
-TENANT_DOMAIN_MODEL = "customers.Domain"  # app.Model
+#TENANT_DOMAIN_MODEL = "customers.Domain"  # app.Model
+
+
 
 
 # Middleware framework
 # https://docs.djangoproject.com/en/2.1/topics/http/middleware/
 MIDDLEWARE = [
-    'django_tenants.middleware.main.TenantMainMiddleware',
+    #'django_tenants.middleware.main.TenantMainMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -120,8 +123,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'myApp.urls'
-PUBLIC_SCHEMA_URLCONF = 'myApp.urls_public'
-SHOW_PUBLIC_IF_NO_TENANT_FOUND = True
+#PUBLIC_SCHEMA_URLCONF = 'myApp.urls_public'
+#SHOW_PUBLIC_IF_NO_TENANT_FOUND = True
 
 
 # Template configuration
@@ -167,7 +170,7 @@ DATABASES = {
 
     'default': {
 
-        'ENGINE': 'django_tenants.postgresql_backend',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
         'NAME': config('DB_NAME'), 
         'USER': config('DB_USER'),
@@ -178,9 +181,9 @@ DATABASES = {
     }
 
 }
-DATABASE_ROUTERS = (
-    'django_tenants.routers.TenantSyncRouter',
-)
+#DATABASE_ROUTERS = (
+#    'django_tenants.routers.TenantSyncRouter',
+#)
 
 
 # Password validation

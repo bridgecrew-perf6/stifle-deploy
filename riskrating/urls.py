@@ -16,7 +16,7 @@ urlpatterns =[
     path('declineRiskrating',views.updateDeclineRiskratingStatus,name='declineRiskrating'),
     path('approveRiskrating',views.updateApproveRiskratingStatus,name='approveRiskrating'),
     path('holdRiskrating',views.updateHoldRiskratingStatus,name='holdRiskrating'),
-    path('pdf/<int:id>',views.generate_pdf,name='pdf'),
+    #path('pdf/<int:id>',views.generate_pdf,name='pdf'),
     path('sending email',views.sendEDDApprovalEmail,name='sendApprovalEmailRequest'),
 
     

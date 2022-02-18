@@ -11,8 +11,8 @@ urlpatterns =[
     path('createUser',views.createuser,name='createuser'),
     path('listmanagment',views.listmanagment,name='listmanagment'),
     path('updateFuzzyScore',views.updateFuzzyScore,name='updateFuzzyScore'), 
-   
-
+    path('insertDefaultValues',views.insertDefaultValues,name='insertDefaultValues'), 
+    
 
 
     ]

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from customers.models import Client
+#from customers.models import Client
 from django.contrib import admin
 
 
