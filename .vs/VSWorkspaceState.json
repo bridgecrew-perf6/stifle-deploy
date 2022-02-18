@@ -1,16 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\account",
+    "\\activate",
+    "\\admindashboard",
     "\\discounting",
-    "\\discounting\\templatetags",
     "\\identification",
-    "\\myApp",
-    "\\screeing",
+    "\\monitoring",
+    "\\redflags",
+    "\\reporting",
     "\\templates",
-    "\\templates\\admindashboard",
     "\\templates\\base"
   ],
-  "SelectedNode": "\\account\\views.py",
+  "SelectedNode": "\\requirements.txt",
   "PreviewInSolutionExplorer": false
 }

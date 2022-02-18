@@ -22,13 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'bc9ceefe-c328-41db-a4a9-af84c1596f07'
-SECRET_KEY = config('SECRET_KEY') 
+SECRET_KEY = 'bc9ceefe-c328-41db-a4a9-af84c1596f07'
+#SECRET_KEY = config('SECRET_KEY') 
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = config('DEBUG', cast=bool) 
+DEBUG = True
+#DEBUG = config('DEBUG', cast=bool) 
 
 
 ALLOWED_HOSTS = ['*']
@@ -172,10 +172,16 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
 
-        'NAME': config('DB_NAME'), 
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
+        #'NAME': config('DB_NAME'), 
+        #'USER': config('DB_USER'),
+        #'PASSWORD': config('DB_PASSWORD'),
+        #'HOST': config('DB_HOST'),
+        #'PORT': '5432',
+
+        'NAME': 'compliancetest', 
+        'USER': 'postgres',
+        'PASSWORD': 'saim123',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
 
     }
@@ -222,13 +228,23 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'static','media')
 
 MEDIA_URL = '/media/'
 
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_HOST = config('EMAIL_HOST')
+#EMAIL_HOST_USER = config('EMAIL') 
+#EMAIL_HOST_PASSWORD =config('EMAIL_PASSWORD') 
+#EMAIL_PORT = 465
+#EMAIL_USE_SSL = True
+
+#EMAIL_USE_SSL = True
+
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_HOST_USER = config('EMAIL') 
 EMAIL_HOST_PASSWORD =config('EMAIL_PASSWORD') 
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
-#EMAIL_USE_SSL = True
 
 
 #INTERNAL_IPS = [
